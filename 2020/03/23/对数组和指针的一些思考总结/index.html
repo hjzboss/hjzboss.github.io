@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>对数组和指针的一些思考总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在我初学C语言指针和数组时踩过的那些坑指针和地址的区别我c语言的启蒙书是谭浩强先生的《c语言程序设计》(对，你没听错)，在书中有这么一句话  指针就是地址  这句话当时让我摸不着头脑，指针是个变量，地址是个常量，它们两怎么能够相等呢？在我在网上查询相关关于指针的回答后，就发现这是个坑指针和地址不是打等号的！ 指针是个变量，存储的是地址。也就是说指针是个存储地址的变量，指针不是地址。 指针和数组名在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对数组和指针的一些思考总结">
+<meta property="og:url" content="http://yoursite.com/2020/03/23/%E5%AF%B9%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在我初学C语言指针和数组时踩过的那些坑指针和地址的区别我c语言的启蒙书是谭浩强先生的《c语言程序设计》(对，你没听错)，在书中有这么一句话  指针就是地址  这句话当时让我摸不着头脑，指针是个变量，地址是个常量，它们两怎么能够相等呢？在我在网上查询相关关于指针的回答后，就发现这是个坑指针和地址不是打等号的！ 指针是个变量，存储的是地址。也就是说指针是个存储地址的变量，指针不是地址。 指针和数组名在">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200323111645398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2NTIwNjc2,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-03-23T03:59:33.000Z">
+<meta property="article:modified_time" content="2020-03-23T03:59:46.159Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200323111645398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2NTIwNjc2,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-对数组和指针的一些思考总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/23/%E5%AF%B9%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-03-23T03:59:33.000Z" itemprop="datePublished">2020-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      对数组和指针的一些思考总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="在我初学C语言指针和数组时踩过的那些坑"><a href="#在我初学C语言指针和数组时踩过的那些坑" class="headerlink" title="在我初学C语言指针和数组时踩过的那些坑"></a>在我初学C语言指针和数组时踩过的那些坑</h1><h2 id="指针和地址的区别"><a href="#指针和地址的区别" class="headerlink" title="指针和地址的区别"></a>指针和地址的区别</h2><p>我c语言的启蒙书是谭浩强先生的《c语言程序设计》(对，你没听错)，在书中有这么一句话</p>
+<blockquote>
+<p>指针就是地址</p>
+</blockquote>
+<p>这句话当时让我摸不着头脑，指针是个变量，地址是个常量，它们两怎么能够相等呢？<br>在我在网上查询相关关于指针的回答后，就发现这是个坑<br><strong>指针和地址不是打等号的！</strong> 指针是个变量，存储的是地址。<br>也就是说指针是个存储地址的变量，<strong>指针不是地址</strong>。</p>
+<h2 id="指针和数组名"><a href="#指针和数组名" class="headerlink" title="指针和数组名"></a>指针和数组名</h2><p>在学习指针和数组这一章时，我又遇到了一些问题，老师说数组名就是指向数组首元素的指针，当时我信以为然。但是我在看tcpl的时候，书上明确指出数组名和指针是有不同的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">指针是一个变量，因此在c语言中，语句pa&#x3D;a和pa++都是合法的。</span><br><span class="line">但是数组名不是变量。因此，类似于a&#x3D;pa和a++这种形式的语句是非法的。</span><br><span class="line">注：pa是指针变量，a是数组名</span><br></pre></td></tr></table></figure>
+
+
+<p>也就是说数组名不是左值，不能对其进行赋值操作。</p>
+<p>而在《c陷阱与缺陷》中也有这么一句话</p>
+<blockquote>
+<p>如果calendar不是用于sizeof的操作数，而是用于其他场合，那么calendar总是被<strong>转换</strong>成一个指向calendar数组的起始元素的指针。</p>
+</blockquote>
+<p>这句话中的<strong>转换</strong> 两字格外显眼，更加说明了数组名不是指针，只是在大多时候隐式转换为指向数组首元素的指针。于是我写了代码来验证了一下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>,arr);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;arr);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;arr[<span class="number">0</span>]);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>,arr+<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;arr+<span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,<span class="keyword">sizeof</span>(&amp;arr[<span class="number">0</span>]));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,<span class="keyword">sizeof</span>(arr));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,<span class="keyword">sizeof</span>(&amp;arr));</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果如下<br><img src="https://img-blog.csdnimg.cn/20200323111645398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2NTIwNjc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可见在对其使用&amp;和sizeof运算时，数组名并不是指向首元素的指针。</p>
+<p>在对其使用sizeof运算时，数组名是代表的是整个数组，并不是指针，因为指针的大小为8个字节，而数组名却是12个字节。<br>在对其使用&amp;运算符时，&amp;数组名 是整个数组的地址，也说明在这里数组名代表的是整个数组。</p>
+<p>即在这两种情况下，arr是单独的类型，即「长度为3的int数组」类型，而不是「指向int的指针」类型。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>指针和地址是不一样的，指针是变量，地址是常量，指针中存储的是地址。</p>
+<p>数组名和指针也是不一样的，指针是变量，但是数组名不是；数组名在大多时候都转换为指向数组首元素的指针，而在对其使用&amp;和sizeof的时候不会转换。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/23/%E5%AF%B9%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/" data-id="ck83y3bod000048ugc6rtea6j" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/22/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">java核心技术笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/23/%E5%AF%B9%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/">对数组和指针的一些思考总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/22/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">java核心技术笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/21/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
