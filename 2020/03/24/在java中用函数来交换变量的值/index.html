@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>在java中用函数来交换变量的值 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="我的一些思考最近看到《java核心技术》关于方法参数这一小节，java的引用和c++的引用不一样，对于函数的传参引发了我一些思考。 在c&#x2F;c++中我喜欢将变量的交换啊这些功能都实现在函数中，再在main函数中来调用这些函数，于是我想着在java中如何用方法（函数）来实现两个变量的值的交换。 在c&#x2F;c++中可以通过传地址，c++还可以传引用给函数，从而可以在函数内部间接操作变量进行值的交换. 123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在java中用函数来交换变量的值">
+<meta property="og:url" content="http://yoursite.com/2020/03/24/%E5%9C%A8java%E4%B8%AD%E7%94%A8%E5%87%BD%E6%95%B0%E6%9D%A5%E4%BA%A4%E6%8D%A2%E5%8F%98%E9%87%8F%E7%9A%84%E5%80%BC/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我的一些思考最近看到《java核心技术》关于方法参数这一小节，java的引用和c++的引用不一样，对于函数的传参引发了我一些思考。 在c&#x2F;c++中我喜欢将变量的交换啊这些功能都实现在函数中，再在main函数中来调用这些函数，于是我想着在java中如何用方法（函数）来实现两个变量的值的交换。 在c&#x2F;c++中可以通过传地址，c++还可以传引用给函数，从而可以在函数内部间接操作变量进行值的交换. 123">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-23T16:30:35.000Z">
+<meta property="article:modified_time" content="2020-03-23T16:31:28.904Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,16 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-在java中用函数来交换变量的值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-在java中用函数来交换变量的值" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/24/%E5%9C%A8java%E4%B8%AD%E7%94%A8%E5%87%BD%E6%95%B0%E6%9D%A5%E4%BA%A4%E6%8D%A2%E5%8F%98%E9%87%8F%E7%9A%84%E5%80%BC/">在java中用函数来交换变量的值</a>
+    <h1 class="article-title" itemprop="name">
+      在java中用函数来交换变量的值
     </h1>
   
 
@@ -185,6 +187,27 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -192,16 +215,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/24/%E5%9C%A8java%E4%B8%AD%E7%94%A8%E5%87%BD%E6%95%B0%E6%9D%A5%E4%BA%A4%E6%8D%A2%E5%8F%98%E9%87%8F%E7%9A%84%E5%80%BC/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/24/%E5%9C%A8java%E4%B8%AD%E7%94%A8%E5%87%BD%E6%95%B0%E6%9D%A5%E4%BA%A4%E6%8D%A2%E5%8F%98%E9%87%8F%E7%9A%84%E5%80%BC/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/23/%E5%AF%B9%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">对数组和指针的一些思考总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -221,401 +303,14 @@
 
 
 
-
   
-    <article id="post-对数组和指针的一些思考总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/23/%E5%AF%B9%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/">对数组和指针的一些思考总结</a>
-    </h1>
   
 
-        
-        <a href="/2020/03/23/%E5%AF%B9%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2020-03-23T03:59:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="在我初学C语言指针和数组时踩过的那些坑"><a href="#在我初学C语言指针和数组时踩过的那些坑" class="headerlink" title="在我初学C语言指针和数组时踩过的那些坑"></a>在我初学C语言指针和数组时踩过的那些坑</h1><h2 id="指针和地址的区别"><a href="#指针和地址的区别" class="headerlink" title="指针和地址的区别"></a>指针和地址的区别</h2><p>我c语言的启蒙书是谭浩强先生的《c语言程序设计》(对，你没听错)，在书中有这么一句话</p>
-<blockquote>
-<p>指针就是地址</p>
-</blockquote>
-<p>这句话当时让我摸不着头脑，指针是个变量，地址是个常量，它们两怎么能够相等呢？<br>在我在网上查询相关关于指针的回答后，就发现这是个坑<br><strong>指针和地址不是打等号的！</strong> 指针是个变量，存储的是地址。<br>也就是说指针是个存储地址的变量，<strong>指针不是地址</strong>。</p>
-<h2 id="指针和数组名"><a href="#指针和数组名" class="headerlink" title="指针和数组名"></a>指针和数组名</h2><p>在学习指针和数组这一章时，我又遇到了一些问题，老师说数组名就是指向数组首元素的指针，当时我信以为然。但是我在看tcpl的时候，书上明确指出数组名和指针是有不同的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">指针是一个变量，因此在c语言中，语句pa&#x3D;a和pa++都是合法的。</span><br><span class="line">但是数组名不是变量。因此，类似于a&#x3D;pa和a++这种形式的语句是非法的。</span><br><span class="line">注：pa是指针变量，a是数组名</span><br></pre></td></tr></table></figure>
-
-
-<p>也就是说数组名不是左值，不能对其进行赋值操作。</p>
-<p>而在《c陷阱与缺陷》中也有这么一句话</p>
-<blockquote>
-<p>如果calendar不是用于sizeof的操作数，而是用于其他场合，那么calendar总是被<strong>转换</strong>成一个指向calendar数组的起始元素的指针。</p>
-</blockquote>
-<p>这句话中的<strong>转换</strong> 两字格外显眼，更加说明了数组名不是指针，只是在大多时候隐式转换为指向数组首元素的指针。于是我写了代码来验证了一下</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>,arr);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;arr);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;arr[<span class="number">0</span>]);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>,arr+<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;arr+<span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,<span class="keyword">sizeof</span>(&amp;arr[<span class="number">0</span>]));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,<span class="keyword">sizeof</span>(arr));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,<span class="keyword">sizeof</span>(&amp;arr));</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果如下<br><img src="https://img-blog.csdnimg.cn/20200323111645398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2NTIwNjc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可见在对其使用&amp;和sizeof运算时，数组名并不是指向首元素的指针。</p>
-<p>在对其使用sizeof运算时，数组名是代表的是整个数组，并不是指针，因为指针的大小为8个字节，而数组名却是12个字节。<br>在对其使用&amp;运算符时，&amp;数组名 是整个数组的地址，也说明在这里数组名代表的是整个数组。</p>
-<p>即在这两种情况下，arr是单独的类型，即「长度为3的int数组」类型，而不是「指向int的指针」类型。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>指针和地址是不一样的，指针是变量，地址是常量，指针中存储的是地址。</p>
-<p>数组名和指针也是不一样的，指针是变量，但是数组名不是；数组名在大多时候都转换为指向数组首元素的指针，而在对其使用&amp;和sizeof的时候不会转换。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/23/%E5%AF%B9%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java核心技术笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/22/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">java核心技术笔记</a>
-    </h1>
   
 
-        
-        <a href="/2020/03/22/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-03-22T03:57:29.017Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="java的基本程序设计结构"><a href="#java的基本程序设计结构" class="headerlink" title="java的基本程序设计结构"></a>java的基本程序设计结构</h1><p>参考资料：《java核心技术》第三章</p>
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>  源代码的文件名必须与公共类的名字相同，并用.java作为扩展名。<br>  每个java程序都必须要有一个main方法，其声明格式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line">public class ClassName</span><br><span class="line">&#123;</span><br><span class="line">   public static void main(String[] args)</span><br><span class="line">   &#123;</span><br><span class="line">      program statements</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>java的编码机制为Unicode</p>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>java的注释格式和c/c++相同，//或/**/</p>
-<h2 id="java的数据类型"><a href="#java的数据类型" class="headerlink" title="java的数据类型"></a>java的数据类型</h2><p>1.基本数据类型（8种）<br>|整型|字节数  |<br>|–|–|<br>|int  |4  |<br>|short|2|<br>|long|8|<br>|byte|1|</p>
-<table>
-<thead>
-<tr>
-<th>浮点型</th>
-<th>字节数</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>float</td>
-<td>4</td>
-</tr>
-<tr>
-<td>double</td>
-<td>8</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>字符类型</th>
-<th>字节数</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>char</td>
-<td>2</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>boolean类型</th>
-<th>字节数</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>boolean</td>
-<td>1</td>
-</tr>
-</tbody></table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1.基本数据类型:加上前缀OB或Ob可以写二进制数；</span><br><span class="line"></span><br><span class="line">              浮点类型默认为double类型，float类型的数值要加后缀F或f；</span><br><span class="line">              三个特殊的浮点数值：正无穷大、负无穷大、NaN（不是一个数字）</span><br><span class="line">              所有的“非数值“的值都认为是不相同的，如double.NaN;</span><br><span class="line">              **浮点数值不适用于无法接受舍入误差的金融计算！！！**</span><br><span class="line">                      </span><br><span class="line">2.引用数据类型:类（class）、接口（interface）、数组[]；</span><br><span class="line">注：</span><br><span class="line">&#x2F;&#x2F;java没有无符号形式的int，short，long，byte类型</span><br><span class="line">&#x2F;&#x2F;java中所有的数值类型所占用的字节数与平台无关（与c&#x2F;c++不同）</span><br></pre></td></tr></table></figure>
-<p>从java10开始，对于局部变量，如果可以从变量的初始值推断出它ysD的类型，就不在需要声明它的类型。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vacationDays=<span class="number">12</span><span class="comment">//vacationDays是一个整型</span></span><br><span class="line"><span class="keyword">var</span> greeting=<span class="string">"hello"</span>;<span class="comment">//greeting是一个字符串</span></span><br></pre></td></tr></table></figure>
-<p>c和c++区分变量和声明和定义，而java不区分</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">例如</span><br><span class="line">int i &#x3D; 10;&#x2F;&#x2F;是一个定义</span><br><span class="line">extern int i;&#x2F;&#x2F;是一个声明</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="变量和常量"><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h2><p>c和c++区分变量和声明和定义，而java不区分</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">例如</span><br><span class="line">int i &#x3D; 10;&#x2F;&#x2F;是一个定义</span><br><span class="line">extern int i;&#x2F;&#x2F;是一个声明</span><br></pre></td></tr></table></figure>
-<p>在java中，利用关键字final指示常量,表示这个值只能被赋值一次</p>
-<p>布尔常量true和false是可以直接输出的，而空常量null是不能直接输出的！</p>
-<p><strong>枚举类型</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Size&#123;s,m,l,e&#125;;</span><br><span class="line">Size a=Size.s;<span class="comment">//现在可以声明这种类型的变量;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>每个用双引号括起来的字符串都是String类的一个实例<br>java字符串由char值序列组成<br>String类的substring方法可以提取子串</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String greeting = <span class="string">"hello"</span>;</span><br><span class="line">String s = greeting.substring(<span class="number">0</span>,<span class="number">3</span>);</span><br><span class="line"><span class="comment">//创建一个由字符"hel"组成的字符串</span></span><br><span class="line"><span class="comment">//从0开始计数，直到3为止，但不包括3</span></span><br><span class="line"><span class="comment">//字符串s.substring(a,b)的长度为b-a</span></span><br></pre></td></tr></table></figure>
-<p>和c++一样，java允许使用‘+’来连接两个字符串<br>将一个字符串与一个非字符串进行连接时，后者会被转换成字符串，但是连接顺序有时候也左右着结果</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String s=<span class="string">"hello"</span>;</span><br><span class="line">String st=<span class="string">"world"</span>;</span><br><span class="line">System.out.println(s+st);<span class="comment">//结果为helloworld</span></span><br><span class="line">System.out.println(s+st+<span class="number">5</span>+<span class="number">1</span>);<span class="comment">//结果为helloworld51</span></span><br><span class="line">System.out.println(<span class="number">5</span>+<span class="number">1</span>+s+st);<span class="comment">//结果为6helloworld</span></span><br><span class="line"><span class="comment">//要注意字符串和非字符串的连接顺序</span></span><br></pre></td></tr></table></figure>
-<p>String类没有提供修改字符串中某个字符的方法，只能提取想保留的字符串，再与希望替换的字符连接。</p>
-<p>不可变字符串虽然效率不高，但是编译器可以让字符串共享！共享相同的字符，这带来的高效率远比连接字符串损失的效率高得多。</p>
-<p>有时候需要由较短的字符串构建字符串，可以用StringBuilder类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder b=<span class="keyword">new</span> StringBuilder();<span class="comment">//构建一个新的字符串构建器</span></span><br><span class="line">b.append(ch);<span class="comment">//调用append方法可以添加单个字母</span></span><br><span class="line">b.append(str);<span class="comment">//也可以添加字符串</span></span><br><span class="line">String s=b.toString();<span class="comment">//得到一个字符串对象，其中包含了构建器中的字符序列</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>检测字符串相等不要用“==“!!!，要用equals方法或compareTo方法</strong><br>“==”运算符只能确定两个字符串是否放在同一个位置上</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s.equals(t);<span class="comment">//s和t相等返回true，否则返回false</span></span><br><span class="line"><span class="string">"hello"</span>.equals(s)<span class="comment">//s和t也可以是字符串常量</span></span><br><span class="line">s.compareTo(<span class="string">"hello"</span>)<span class="comment">//</span></span><br></pre></td></tr></table></figure>
-<p>常用String API</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s.substring(a,b);<span class="comment">//返回一个新字符串，包含原字符串从a到b-1的所有代码单元</span></span><br><span class="line">s.empty();<span class="comment">//字符串为空返回true</span></span><br><span class="line">s.compareTo(t);<span class="comment">//按照字典顺序，如果s在t之前返回负数，在后返回正数，相等返回0（与c语言strcmp相类似）</span></span><br><span class="line">s.equals(t);<span class="comment">//s与t相等，返回true</span></span><br><span class="line">s.equalsIgnoreCase(t);<span class="comment">//与equals相似，不过忽略大小写</span></span><br><span class="line">s.length();<span class="comment">//返回字符串代码单元数量</span></span><br><span class="line">s.startsWith(t);<span class="comment">//若字符串s以字符串t开头，返回true</span></span><br><span class="line">s.endsWith(t);<span class="comment">//与上面相反</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="输入和输出"><a href="#输入和输出" class="headerlink" title="输入和输出"></a>输入和输出</h2><p>输出打印到“标准输出流”</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">System.out.println();<span class="comment">//自动换行</span></span><br><span class="line">System.out.print();<span class="comment">//不换行</span></span><br><span class="line">System.out.printf();<span class="comment">//与c语言printf相似</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>读取输入</strong><br>在程序的最前面添加一行代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
-
-<p>首先需要构造一个与标准输入流System.in相关联的Scanner对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">String name = in.nextLine();<span class="comment">//读取下一行。包括空格</span></span><br><span class="line">String firstName = in.next();<span class="comment">//读取一个单词</span></span><br><span class="line"><span class="keyword">int</span> age = in.nextInt();<span class="comment">//读取整数，浮点数用nextDouble</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="for-each循环（用于数组）"><a href="#for-each循环（用于数组）" class="headerlink" title="for each循环（用于数组）"></a>for each循环（用于数组）</h2><p>java有两种for循环，一种与c/c++一样，这里主要讲另一种for each循环</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] Arr = <span class="keyword">new</span> Arr[n]</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> element:Array)&#123;</span><br><span class="line">   <span class="comment">//statement</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>它定义了一个变量用于暂存集合中的每一个元素，并执行相应的语句，该循环可以用来依次处理数组中的每一个元素</p>
-<h2 id="大数"><a href="#大数" class="headerlink" title="大数"></a>大数</h2><p>如果基本的整数和浮点数精度不能够满足需求，那么可以使用java.math包中两个很有用的类: BigInteger和BigDecimal。他们可以实现任意精度的整数/浮点数运算。</p>
-<p>看以下代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">data</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">double</span> a=<span class="number">0.0</span>;a!=<span class="number">10.0</span>;a+=<span class="number">0.1</span>)&#123;</span><br><span class="line">            System.out.println(a);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//这是个死循环，由于浮点数的精度问题，a永远不可能等于10.0</span></span><br></pre></td></tr></table></figure>
-<p>这时候可以运用大数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">data</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(BigDecimal a = <span class="keyword">new</span> BigDecimal(<span class="number">0.0</span>); a.compareTo(BigDecimal.valueOf(<span class="number">10.0</span>))!=<span class="number">0</span>; a=a.add(BigDecimal.valueOf(<span class="number">0.1</span>)))&#123;</span><br><span class="line">            System.out.println(a);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//结果输出到9.9就成功结束循环</span></span><br></pre></td></tr></table></figure>
-<p>大数的加减乘除相等都要调用其方法，不能使用运算符进行运算，并且其方法内的参数也为大数</p>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组长度不要求是常量：int[] a=new int[n];会创建一个长度为n的数组<br>一旦创建了数组，就不能改变它的长度。</p>
-<p>还可以声明一个匿名数组：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">small = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="comment">//等同于</span></span><br><span class="line"><span class="keyword">int</span>[] temp = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">small = temp;</span><br><span class="line">small.length();<span class="comment">//返回数组长度</span></span><br></pre></td></tr></table></figure>
-<h3 id="数组拷贝"><a href="#数组拷贝" class="headerlink" title="数组拷贝"></a>数组拷贝</h3><p>在java中允许数组拷贝，此时两个变量将引用同一个数组</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arr = small;</span><br><span class="line">arr[<span class="number">5</span>] = <span class="number">12</span>;<span class="comment">//small[5]也为12</span></span><br></pre></td></tr></table></figure>
-<h3 id="Arrays类"><a href="#Arrays类" class="headerlink" title="Arrays类"></a>Arrays类</h3><p>常用API(都为static方法，不需要创建对象再用)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Arrays.toString(xxx arr[]);<span class="comment">//返回一个包含a中元素的字符串，元素用中括号包围，逗号隔开</span></span><br><span class="line">Arrays.copyOf(xxx arr[],<span class="keyword">int</span> end);</span><br><span class="line">Arrays.copyOfRange(xxx arr[],<span class="keyword">int</span> start,<span class="keyword">int</span> end);<span class="comment">//返回一个与arr类型相同的数组，其长度为length或end-start，如果end大于length，其余部分填充0或false</span></span><br><span class="line">Arrays.sort(xxx arr[]);<span class="comment">//快速排序</span></span><br><span class="line">Arrays.binarySearch(xxx []a,xxx v);<span class="comment">//二分查找，返回下标</span></span><br><span class="line">Arrays.equals(xxx arr[],xxx b[]);<span class="comment">//数组大小相同且下标相同的元素对应相等</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h3><p>二维数组也称为矩阵</p>
-<p>在java中实际不存在多维数组，多维数组被解释为”数组的数组”，其数组每个元素都是一个数组，因此可以单独地访问数组的某一行</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> balance[][] = <span class="keyword">new</span> <span class="keyword">double</span>[m][n];</span><br><span class="line"><span class="keyword">double</span> temp = balance[i];<span class="comment">//访问二维数组的第i行</span></span><br><span class="line">balance[i] = balance[i+<span class="number">1</span>];<span class="comment">//并可以让两行交换</span></span><br><span class="line">balance[i+<span class="number">1</span>] = temp;<span class="comment">//</span></span><br><span class="line">balance[i].length;<span class="comment">//求第i行的长度</span></span><br></pre></td></tr></table></figure>
-<p>for each循环处理二维数组</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">double</span> row[]: balance)&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">double</span> value:row)&#123;</span><br><span class="line">      <span class="comment">//do something with value</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 可以创建不规则数组</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr[][] = <span class="keyword">new</span> <span class="keyword">int</span>[max][];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> n = <span class="number">0</span>;n &lt; max;n++)&#123;</span><br><span class="line">    arr[n] = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</span><br><span class="line">&#125;<span class="comment">//创建了一个下三角矩阵</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="命令行参数"><a href="#命令行参数" class="headerlink" title="命令行参数"></a>命令行参数</h2><p>在java程序的main方法中，程序名并没有存储在args数组中。（与c不同）</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/22/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的第一篇博客文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
-    </h1>
   
 
-        
-        <a href="/2020/03/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2020-03-21T14:47:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/21/hello-world/" class="archive-article-date">
-  	<time datetime="2020-03-21T13:39:31.176Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/21/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -638,8 +333,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
