@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | Hexo</title>
+  <title>一个关于复杂声明的问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="在看《c陷阱与缺陷》时，有这么一个复杂声明 1(*(void(*)())0)(); 起初看上去的确挺头疼的，思考了许久突然就有了思路，我的突破点在那个0。 因为括号的优先级高于，所以0先与(void()())结合，而这个与我们平常见的强制类型转换符极其相似 1int x &#x3D; (int)y; 所以这是将0强制转换成某种类型。再看括号中的void(*)(), 1234void (*p)();&#x2F;&#x2F;这是一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2020/03/21/hello-world/index.html">
+<meta property="og:title" content="一个关于复杂声明的问题">
+<meta property="og:url" content="http://yoursite.com/2020/03/25/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8E%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="在看《c陷阱与缺陷》时，有这么一个复杂声明 1(*(void(*)())0)(); 起初看上去的确挺头疼的，思考了许久突然就有了思路，我的突破点在那个0。 因为括号的优先级高于，所以0先与(void()())结合，而这个与我们平常见的强制类型转换符极其相似 1int x &#x3D; (int)y; 所以这是将0强制转换成某种类型。再看括号中的void(*)(), 1234void (*p)();&#x2F;&#x2F;这是一">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-21T13:39:31.176Z">
-<meta property="article:modified_time" content="2020-03-21T13:39:31.176Z">
+<meta property="article:published_time" content="2020-03-25T12:18:05.000Z">
+<meta property="article:modified_time" content="2020-03-25T12:19:58.463Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -154,40 +154,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-一个关于复杂声明的问题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      一个关于复杂声明的问题
     </h1>
   
 
         
-        <a href="/2020/03/21/hello-world/" class="archive-article-date">
-  	<time datetime="2020-03-21T13:39:31.176Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
+        <a href="/2020/03/25/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8E%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-03-25T12:18:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <p>在看《c陷阱与缺陷》时，有这么一个复杂声明</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(*(<span class="keyword">void</span>(*)())<span class="number">0</span>)();</span><br></pre></td></tr></table></figure>
+<p>起初看上去的确挺头疼的，思考了许久突然就有了思路，我的突破点在那个0。</p>
+<p>因为括号的优先级高于<em>，所以0先与(void(</em>)())结合，而这个与我们平常见的强制类型转换符极其相似</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = (<span class="keyword">int</span>)y;</span><br></pre></td></tr></table></figure>
+<p>所以这是将0强制转换成某种类型。<br>再看括号中的void(*)(),</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*p)();<span class="comment">//这是一个函数指针，指向返回值为void，没有参数的函数</span></span><br><span class="line"><span class="keyword">int</span> x;<span class="comment">//这是个整型变量</span></span><br><span class="line">(<span class="keyword">int</span>)<span class="comment">//这是个强制转换类型符，转换为整型</span></span><br><span class="line">(<span class="keyword">void</span> (*)())<span class="comment">//所以这也是个强制转换类型符，转换为函数指针</span></span><br></pre></td></tr></table></figure>
+<p>而将其去掉变量名p，则为强制转换类型符，强制转换为函数指针类型。<br>所以(void (*))0 是将常数0强制转换为函数指针类型。</p>
+<p>整个表达式的意思是调用0这个函数指针所指向的函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MAX</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">int</span> (*p)(<span class="keyword">int</span>,<span class="keyword">int</span>) = MAX;<span class="comment">//使函数指针指向MAX函数</span></span><br><span class="line"></span><br><span class="line">(*p)(<span class="number">2</span>,<span class="number">3</span>)；<span class="comment">//调用函数指针所指向的函数</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -266,7 +262,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/21/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/25/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8E%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E7%9A%84%E9%97%AE%E9%A2%98/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -280,15 +276,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          我的第一篇博客文章
-        
-      </div>
-    </a>
   
+    <a href="/2020/03/24/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《java核心技术》第四章笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
