@@ -175,7 +175,7 @@
         <p>在看《c陷阱与缺陷》时，有这么一个复杂声明</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(*(<span class="keyword">void</span>(*)())<span class="number">0</span>)();</span><br></pre></td></tr></table></figure>
 <p>起初看上去的确挺头疼的，思考了许久突然就有了思路，我的突破点在那个0。</p>
-<p>因为括号的优先级高于<em>，所以0先与(void(</em>)())结合，而这个与我们平常见的强制类型转换符极其相似</p>
+<p>(void(*)())0，0前面的括号与我们平常见的强制类型转换符极其相似</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = (<span class="keyword">int</span>)y;</span><br></pre></td></tr></table></figure>
 <p>所以这是将0强制转换成某种类型。<br>再看括号中的void(*)(),</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*p)();<span class="comment">//这是一个函数指针，指向返回值为void，没有参数的函数</span></span><br><span class="line"><span class="keyword">int</span> x;<span class="comment">//这是个整型变量</span></span><br><span class="line">(<span class="keyword">int</span>)<span class="comment">//这是个强制转换类型符，转换为整型</span></span><br><span class="line">(<span class="keyword">void</span> (*)())<span class="comment">//所以这也是个强制转换类型符，转换为函数指针</span></span><br></pre></td></tr></table></figure>
