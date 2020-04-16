@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>《java核心技术》第六章笔记 | Hexo</title>
+  <title>《java核心技术》第七章笔记 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="接口、lambda表达式与内部类 接口用来描述类应该做什么，而不指定它们具体应该如何实现。 通过使用lambda表达式，可以用一种精妙而简洁的方式使用回调或可变行为的代码。 内部类定义在另一个类的内部，它们的方法可以访问包含它们的外部类的字段。  接口定义一个接口需要使用interface关键字 1234public interface English &amp;#123;    void studyen">
+  <meta name="description" content="异常、断言和日志异常异常对象都是派生于Throwable类的一个类实例 异常分类12345graph LRA[Throwable]  --&gt; B[Error]A --&gt; C[Exception]C --&gt; D[RuntimeException]C --&gt; E[IOException]   Error类层次结构描述了java运行时系统的内部错误和资源耗尽错误。你对此无能为力。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《java核心技术》第六章笔记">
-<meta property="og:url" content="http://yoursite.com/2020/04/12/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="《java核心技术》第七章笔记">
+<meta property="og:url" content="http://yoursite.com/2020/04/16/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%B8%83%E7%AB%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="接口、lambda表达式与内部类 接口用来描述类应该做什么，而不指定它们具体应该如何实现。 通过使用lambda表达式，可以用一种精妙而简洁的方式使用回调或可变行为的代码。 内部类定义在另一个类的内部，它们的方法可以访问包含它们的外部类的字段。  接口定义一个接口需要使用interface关键字 1234public interface English &amp;#123;    void studyen">
+<meta property="og:description" content="异常、断言和日志异常异常对象都是派生于Throwable类的一个类实例 异常分类12345graph LRA[Throwable]  --&gt; B[Error]A --&gt; C[Exception]C --&gt; D[RuntimeException]C --&gt; E[IOException]   Error类层次结构描述了java运行时系统的内部错误和资源耗尽错误。你对此无能为力。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-12T15:28:49.000Z">
-<meta property="article:modified_time" content="2020-04-12T15:29:19.348Z">
+<meta property="article:published_time" content="2020-04-16T15:18:16.000Z">
+<meta property="article:modified_time" content="2020-04-16T15:19:19.962Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -154,143 +154,138 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-《java核心技术》第六章笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-《java核心技术》第七章笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      《java核心技术》第六章笔记
+      《java核心技术》第七章笔记
     </h1>
   
 
         
-        <a href="/2020/04/12/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-04-12T15:28:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
+        <a href="/2020/04/16/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%B8%83%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-04-16T15:18:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="接口、lambda表达式与内部类"><a href="#接口、lambda表达式与内部类" class="headerlink" title="接口、lambda表达式与内部类"></a>接口、lambda表达式与内部类</h1><ul>
-<li>接口用来描述类应该做什么，而不指定它们具体应该如何实现。</li>
-<li>通过使用lambda表达式，可以用一种精妙而简洁的方式使用回调或可变行为的代码。</li>
-<li>内部类定义在另一个类的内部，它们的方法可以访问包含它们的外部类的字段。</li>
-</ul>
-<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>定义一个接口需要使用<strong>interface</strong>关键字</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">English</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">studyen</span><span class="params">()</span></span>;<span class="comment">//接口中的方法</span></span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对于接口，有下面几点需要注意：</p>
+        <h1 id="异常、断言和日志"><a href="#异常、断言和日志" class="headerlink" title="异常、断言和日志"></a>异常、断言和日志</h1><h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>异常对象都是派生于<strong>Throwable</strong>类的一个类实例</p>
+<h3 id="异常分类"><a href="#异常分类" class="headerlink" title="异常分类"></a>异常分类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[Throwable]  --&gt; B[Error]</span><br><span class="line">A --&gt; C[Exception]</span><br><span class="line">C --&gt; D[RuntimeException]</span><br><span class="line">C --&gt; E[IOException]</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>接口中所有的方法都自动是public方法（在实现接口时必须把方法声明为public）</li>
-<li>接口不会有实例字段。</li>
+<li>Error类层次结构描述了java运行时系统的内部错误和资源耗尽错误。你对此无能为力。</li>
+<li>Exception层次又分为两个分支：一个分支派生于RuntimeException;另一分支包含其他异常。</li>
+<li>由编程错误导致的异常属于RuntimeException（数组越界，访问null指针，错误的强制类型转换）</li>
+<li>如果程序本身没有问题，但由于像I/O错误这类问题导致的异常属于其他异常（如文件不存在，试图超越文件末尾继续读取数据等）</li>
 </ul>
-<p>一个类可以实现一个或多个接口，使用<strong>implements</strong>关键字来实现一个接口，这个类还<strong>必须对接口中的所有方法提供定义</strong>。（默认方法可以不用）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">pingpongCoach</span> <span class="keyword">extends</span> <span class="title">coach</span> <span class="keyword">implements</span> <span class="title">English</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">studyen</span><span class="params">()</span> </span>&#123;<span class="comment">//对接口方法的实现</span></span><br><span class="line">        System.out.println(getName()+<span class="string">" coach study English!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从上面可以看见，一个类在实现接口的同时可以继承另一个类。<br><strong>提供实例字段和方法实现的任务应该由实现接口的那个类来完成！</strong> 因此可以将接口看作没有实例字段的抽象类。</p>
-<h3 id="接口的属性"><a href="#接口的属性" class="headerlink" title="接口的属性"></a>接口的属性</h3><p><strong>接口不是类</strong>，不能用new运算符实例化一个接口。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="keyword">new</span> English();<span class="comment">//error</span></span><br></pre></td></tr></table></figure>
-<p>但是可以声明接口的变量，对接口使用<strong>多态</strong>(引用实现了这个接口的类对象)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">English en = <span class="keyword">new</span> pingpongCoach(...);<span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
-<p>也可以用<strong>instanceof</strong> 检查一个对象是否实现了某个特定的接口。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(anObject <span class="keyword">instanceof</span> English)</span><br></pre></td></tr></table></figure>
-<p>接口可以继承另一个接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Orallanguage</span> <span class="keyword">extends</span> <span class="title">English</span></span>&#123;</span><br><span class="line">....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接口中虽然不能包含实例字段，却可以包含<strong>常量</strong>。接口中的字段会被自动设置为<strong>public static final</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">English</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">30</span>;<span class="comment">//public static final int num = 30;</span></span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="接口与抽象类"><a href="#接口与抽象类" class="headerlink" title="接口与抽象类"></a>接口与抽象类</h3><ul>
-<li>抽象类和接口的成员区别</li>
+<p>Java语言将派生于<strong>Error类或RuntimeException类</strong>的所有异常称为<strong>非检查型异常</strong>，所有的其他的异常称为<strong>检查型异常</strong>。</p>
+<p>检查型异常编译期必须进行处理（捕获或者声明），否则程序不能通过编译；而非检查型异常可以通过编译（如数组越界）</p>
+<h3 id="声明检查型异常"><a href="#声明检查型异常" class="headerlink" title="声明检查型异常"></a>声明检查型异常</h3><p>当调用了一个抛出<strong>检查型</strong>异常的方法时，需要在方法首部中添加<strong>throws</strong>子句，声明检查型异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NyAnimation</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Image <span class="title">loadImage</span><span class="params">(String s)</span>Throws FileNotFFoundException</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它指出这个方法<strong>可能</strong>抛出一个异常</p>
+<p>不需要声明非检查型异常（虽然也可以声明）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NyAnimation</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Image <span class="title">loadImage</span><span class="params">(String s)</span>Throws ArrayIndexOutOfBoundsException<span class="comment">//bad style</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总之，一个方法必须声明所有可能抛出的检查型异常，而不应该声明非检查型异常。</p>
+<p>如果一个异常继承自Error或RuntimeException类，则无需处理，如果是继承自Exception类，则必须处理。</p>
+<h3 id="抛出异常的情况"><a href="#抛出异常的情况" class="headerlink" title="抛出异常的情况"></a>抛出异常的情况</h3><ul>
+<li>调用了一个抛出检查型异常的方法</li>
+<li>检测到一个错误，并且利用throw语句抛出一个检查型异常</li>
+<li>程序出现错误（如数组越界）</li>
+<li>java虚拟机或运行时库出现内部错误</li>
 </ul>
-<blockquote>
-<p>抽象类：变量、常量；有构造方法，抽象方法，非抽象方法<br>接口：常量，抽象方法</p>
-</blockquote>
-<ul>
-<li>一个类只能扩展一个类，但是能够实现多个接口</li>
-<li>类和类之间能够多层继承，而接口和接口之间能够多继承<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">English</span> <span class="keyword">extends</span> <span class="title">a</span>,<span class="title">b</span></span>&#123;</span><br><span class="line"><span class="comment">//接口的多继承</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">English</span> <span class="keyword">extends</span> <span class="title">a</span>,<span class="title">b</span>//<span class="title">error</span></span></span><br></pre></td></tr></table></figure></li>
-<li>抽象类是对事物的抽象，而接口是对行为的抽象。（如运动员类，说英语方法）</li>
-</ul>
-<h2 id="接口中的其他方法"><a href="#接口中的其他方法" class="headerlink" title="接口中的其他方法"></a>接口中的其他方法</h2><p>接口中还允许有静态方法、私有方法和默认方法</p>
-<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>接口中的静态方法只能通过接口名调用，静态方法能够<strong>拥有方法体</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ask</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"do you like English?"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>静态方法只能调用静态方法！</strong></p>
-<h3 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h3><p>私有方法可以为<strong>静态方法</strong>或<strong>实例方法</strong>，仅限于在接口本身的方法中使用，只能用作其他方法的辅助方法。</p>
-<h3 id="默认方法"><a href="#默认方法" class="headerlink" title="默认方法"></a>默认方法</h3><p>可以为接口方法提供一个默认方法实现，用<strong>default</strong>修饰符标记这样一个方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">studyen</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"study English"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接口的实现可以不用覆盖这个方法（很少），并且可以调用默认方法。</p>
-<p>默认方法还可以调用其他方法（静态、私有）</p>
-<h3 id="解决默认方法冲突"><a href="#解决默认方法冲突" class="headerlink" title="解决默认方法冲突"></a>解决默认方法冲突</h3><p>如果先在一个接口中将一个方法定义为默认方法，然后又在超类或另一个接口中定义同样的方法，在java中解决的方法如下：</p>
-<ol>
-<li><strong>超类优先</strong>，如果超类提供了一个具体方法，同名而且有相同参数类型的默认方法会被忽略。</li>
-<li><strong>接口冲突</strong>。如果一个接口中提供了一个默认方法，另一个接口提供了一个同名而且参数类型相同的方法，必须<strong>覆盖</strong>这个方法来解决冲突。</li>
+<h3 id="如何抛出异常"><a href="#如何抛出异常" class="headerlink" title="如何抛出异常"></a>如何抛出异常</h3><ol>
+<li>找到一个合适的异常类。（查文档）</li>
+<li>创建这个类的一个对象。</li>
+<li>将对象抛出。</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">default</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="string">" "</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Named</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">default</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> getClass().getName()+<span class="string">"_"</span>+hashcode();&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Person</span>,<span class="title">Named</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> Person.<span class="keyword">super</span>.getName();</span><br><span class="line">	&#125;<span class="comment">//选择两个冲突方法中的一个，或者覆盖这个方法</span></span><br><span class="line">&#125;<span class="comment">//该类实现了上述两个接口</span></span><br></pre></td></tr></table></figure>
-<p>如果至少有一个接口提供了实现，编译器就会报告错误，程序员必须解决这个二义性。</p>
-<p>如果两个接口都<strong>没有</strong>提供默认实现，则只需实现这个方法或者都不实现（该类为抽象类）</p>
-<h2 id="对象克隆"><a href="#对象克隆" class="headerlink" title="对象克隆"></a>对象克隆</h2><p>为一个包含对象引用的变量建立副本时，原变量和副本都是引用的同一个对象，任何一个变量改变都会影响另一个变量。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloneClass c1 = <span class="keyword">new</span> CloneClass(<span class="string">"mike"</span>,<span class="number">15</span>);</span><br><span class="line">        CloneClass c2 = c1;</span><br><span class="line"></span><br><span class="line">        c2.setName(<span class="string">"jack"</span>);</span><br><span class="line">        System.out.println(c1.getName());<span class="comment">//jack</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果希望得到一个新对象，则需要使用clone方法，并且使用clone方法的类要实现Cloneable接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CloneClass c2 = (CloneClass) c1.clone();</span><br><span class="line">System.out.println(c1.getName());<span class="comment">//mike</span></span><br></pre></td></tr></table></figure>
-<p>默认的clone方法是浅拷贝（被复制对象的所有值属性都含有与原来对象的相同，<strong>而所有的对象引用属性仍然指向原来的对象</strong>）<br>如果需要，可以提供深拷贝。</p>
-<p>要小心使用clone，尽量使用new</p>
-<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p>lambda表达式是一个可传递的<strong>代码块</strong>，可以在以后执行一次或多次。</p>
-<p>lambda运算符：所有的lambda表达式都是用新的lambda运算符 “ <strong>-&gt;</strong> “,可以叫他，“转到”或者 “成为”。运算符将表达式分为两部分，左边指定<strong>输入参数</strong>，右边是lambda的主体。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(String s) -&gt; s.length()</span><br></pre></td></tr></table></figure>
-<p>如果方法只有一个参数，而且这个参数的类型可以推倒得出，那么甚至还可以省略小括号：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s -&gt; s.length()</span><br></pre></td></tr></table></figure>
-<p>即使lambda表达式没有参数，仍需提供空括号</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">() -&gt; System.out.println()</span><br></pre></td></tr></table></figure>
-<p>无须指定返回值</p>
-<h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><p>对于<strong>只有一个抽象方法</strong>的接口，需要这种接口的对象时，就可以提供一个lambda表达式，这种接口称为<strong>函数式接口</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">lami</span> </span>&#123;<span class="comment">//只有一个抽象方法的接口为函数式接口</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">show</span><span class="params">(String s)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如何用lambda表达式来表示这个接口呢，看如下代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">lamc</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showtest</span><span class="params">(String s,lami la)</span></span>&#123;</span><br><span class="line">        System.out.println(la.show(s));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        lamc lam = <span class="keyword">new</span> lamc();</span><br><span class="line">        lam.showtest(<span class="string">"demo"</span>,s -&gt; s.length());<span class="comment">//lambda表达式是一个接口的实现</span></span><br><span class="line">        <span class="comment">//第二个参数为一个函数式接口</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这时的lambda表达式实际为一个实现了该接口的类的实例<strong>对象</strong>，箭头右边是对接口中抽象方法的实现。</p>
-<p>既然lambda表达式可以看做实现了接口的对象的话，那么以下方式也是可以的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lami la = s-&gt;s.length();</span><br><span class="line"><span class="comment">//接口lami中的抽象方法被实现为return s.length;</span></span><br></pre></td></tr></table></figure>
-<h2 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h2><p>当lambda表达式<strong>只是执行一个方法调用</strong>时，可直接使用方法引用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lami la = s-&gt;s.length();<span class="comment">//lambda表达式只是调用了String类的length方法</span></span><br><span class="line">lami la = String::length;<span class="comment">//用方法引用来进行简化</span></span><br></pre></td></tr></table></figure>
-<p>方法引用的格式为  <strong>类名::方法</strong>，方法也包括静态方法</p>
-<p>方法引用和lambda表达式一样不能独立存在，总是转换为函数式接口的实例。</p>
-<h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><p>lambda表达式有三个部分</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> 异常类();<span class="comment">//如果是检查型异常还需声明或者放在try块中，否则不能通过编译</span></span><br></pre></td></tr></table></figure>
+<p>一旦方法抛出了异常，这个方法就不会返回调用者。</p>
+<h3 id="创建异常类"><a href="#创建异常类" class="headerlink" title="创建异常类"></a>创建异常类</h3><p>当你的代码可能遇到任何标准异常类都无法描述清楚的问题时，可以创建自己的异常类。</p>
+<p>可以定义一个派生于Exception类或其子类的异常类(为<strong>检查型异常</strong>)，这个类应该包含两个构造器，一个是默认的构造器，一个是包含详细信息的构造器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrorTest</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ErrorTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ErrorTest</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在可以抛出自定义的异常类了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ErrorTest </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">true</span>) <span class="keyword">throw</span> <span class="keyword">new</span> ErrorTest();</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        Exception in thread "main" exception.ErrorTest</span></span><br><span class="line"><span class="comment">	at exception.ExceptionDemo.main(ExceptionDemo.java:20)</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中带参构造方法能够输出信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">       <span class="keyword">if</span>(<span class="keyword">true</span>) <span class="keyword">throw</span> <span class="keyword">new</span> ErrorTest(<span class="string">"但参构造"</span>);</span><br><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment">       Exception in thread "main" exception.ErrorTest: 带参构造</span></span><br><span class="line"><span class="comment">at exception.ExceptionDemo.main(ExceptionDemo.java:20)</span></span><br><span class="line"><span class="comment">       */</span></span><br></pre></td></tr></table></figure>
+<h3 id="捕获异常"><a href="#捕获异常" class="headerlink" title="捕获异常"></a>捕获异常</h3><p>如果发生了某个异常，但没有在任何地方捕获这个异常，程序就会<strong>终止</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ErrorTest </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arrs = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">        show(arrs);</span><br><span class="line">        System.out.println(<span class="string">"y"</span>);</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3</span></span><br><span class="line"><span class="comment">	at exception.ExceptionDemo.show(ExceptionDemo.java:23)</span></span><br><span class="line"><span class="comment">	at exception.ExceptionDemo.main(ExceptionDemo.java:18)</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="comment">//数组越界异常</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(<span class="keyword">int</span>[]arr)</span></span>&#123;</span><br><span class="line">        System.out.println(arr[<span class="number">3</span>]);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>尽管在之后有一条输出语句，但是没有执行，因为程序发现有异常后就终止了，但是<strong>捕获</strong>了这个异常之后程序就不会终止。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ErrorTest </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arrs = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">                show(arrs);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (ArrayIndexOutOfBoundsException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"y"</span>);<span class="comment">//会输出y</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(<span class="keyword">int</span>[]arr)</span></span>&#123;</span><br><span class="line">        System.out.println(arr[<span class="number">3</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3</span></span><br><span class="line"><span class="comment">	at exception.ExceptionDemo.show(ExceptionDemo.java:21)</span></span><br><span class="line"><span class="comment">	at exception.ExceptionDemo.main(ExceptionDemo.java:10)</span></span><br><span class="line"><span class="comment">y</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>要想捕获一个异常，需要用try catch语句块，如果try语句块中的任何代码抛出了catch子句中指定的一个<strong>异常类</strong>，那么</p>
+<ol>
+<li>程序将<strong>跳过</strong>try语句块的其余代码</li>
+<li>程序将执行catch子句中的处理器代码</li>
+</ol>
+<p>请注意：</p>
 <ul>
-<li>一个代码块</li>
-<li>参数</li>
-<li>自由变量的值，这里指<strong>非参数而且不在代码中定义的变量</strong></li>
+<li>如果try语句块中的代码没有抛出任何异常，那么程序将跳过catch子句。</li>
+<li>如果方法中的任何代码抛出了catch子句中没有声明的一个异常类型，那么这个方法就会立即退出。</li>
 </ul>
-<p>lambda表达式可以捕获外围变量的值，但是只能引用值不会改变的变量</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">9</span>;i++)&#123;</span><br><span class="line">    lami lb = s-&gt; s+i;<span class="comment">//error,i是可变的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>即lambda表达式中捕获的变量实际上是<strong>事实最终变量</strong>。</p>
-<p>另外还需注意一点，在lambda表达式中声明与一个局部变量同名的参数或局部变量是不合法的</p>
-<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>把类定义在另一个类的内部，该类就被称为内部类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> n = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">inner</span></span>&#123;<span class="comment">//内部类</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(num);<span class="comment">//内部类可以直接访问外部类的数据成员（包括私有）</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>内部类方法可以访问定义在这个类作用域中的数据，包括<strong>私有数据</strong>，而外部类要访问内部类的成员要创建对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//show();//报错，不能直接访问内部类的成员</span></span><br><span class="line">        inner in = <span class="keyword">new</span> inner();</span><br><span class="line">        in.show();<span class="comment">//外部类访问内部类的成员需要创建对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果调用了一个抛出检查型异常的方法，就必须处理这个异常(try)，或传递这个异常(throws)。</p>
+<h3 id="再次抛出异常与异常链"><a href="#再次抛出异常与异常链" class="headerlink" title="再次抛出异常与异常链"></a>再次抛出异常与异常链</h3><p>可以在catch子句中继续抛出一个异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">....</span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">	<span class="keyword">throw</span> <span class="keyword">new</span> ...;<span class="comment">//新异常</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还可以将原始异常设置为新异常的“原因”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">                show(arrs);<span class="comment">//产生异常，停止try块中的执行</span></span><br><span class="line">        &#125;<span class="keyword">catch</span> (ArrayIndexOutOfBoundsException e)&#123;</span><br><span class="line">            ErrorTest errorTest = <span class="keyword">new</span> ErrorTest();</span><br><span class="line">            errorTest.initCause(e);<span class="comment">//设置e为errorTest的原因</span></span><br><span class="line">            <span class="keyword">throw</span> errorTest;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        Exception in thread "main" exception.ErrorTest</span></span><br><span class="line"><span class="comment">	at exception.ExceptionDemo.main(ExceptionDemo.java:16)</span></span><br><span class="line"><span class="comment">Caused by: java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3</span></span><br><span class="line"><span class="comment">	at exception.ExceptionDemo.show(ExceptionDemo.java:23)</span></span><br><span class="line"><span class="comment">	at exception.ExceptionDemo.main(ExceptionDemo.java:10)</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="comment">//其中原因用caused by给出</span></span><br></pre></td></tr></table></figure>
+<p>当捕获到这个异常时，可以使用下面这条语句获取原始异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">....</span><br><span class="line"><span class="keyword">catch</span> (ErrorTest er)&#123;</span><br><span class="line">            Throwable cause = er.getCause();<span class="comment">//得到原始异常</span></span><br><span class="line">            cause.printStackTrace();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>使用这种包装技术可以在抛出高层异常时不会丢失原始异常</p>
+<h3 id="finally子句"><a href="#finally子句" class="headerlink" title="finally子句"></a>finally子句</h3><p>不管异常有没有被捕获，finally子句中的代码都会执行<br>finally语句主要用于清理资源。</p>
+<h3 id="try-with-Resources语句"><a href="#try-with-Resources语句" class="headerlink" title="try-with-Resources语句"></a>try-with-Resources语句</h3><p>对于以下代码模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//open a resource</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	<span class="comment">//work with the resource</span></span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">	<span class="comment">//close the resource</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>对于成员内部类，外界可以访问，不过需要特殊的格式</li>
+<p>如果资源属于一个实现了AutoCloseable接口的类，这个类中提供了这样的一个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AutoCloseable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么就可以使用另一种快捷方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>(Resource res = ...)&#123;</span><br><span class="line">	<span class="comment">//work with res</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>try块自动退出时会调用res.close()来关闭资源。对于读取文件等资源流，就可以使用这种方式，在其完成后会自动关闭资源流</p>
+<p>如果try块抛出一个异常，而close方法也抛出一个异常，则close方法的异常会被<strong>抑制</strong>。</p>
+<h3 id="使用异常的技巧"><a href="#使用异常的技巧" class="headerlink" title="使用异常的技巧"></a>使用异常的技巧</h3><ul>
+<li>异常不能代替简单的测试，只在异常情况下使用异常。</li>
+<li>不要过分地细化异常，即不要将每一条语句都分装在一个独立的try块中，而是将正常处理和错误处理分开。</li>
+<li>充分利用异常层次结构，不要只适用Throwable。</li>
+<li>不要压制异常。</li>
+<li>不要羞于传递异常。如果调用了一个抛出异常的方法，最好继续传递这个异常，而不是自己捕获。（throws）</li>
 </ul>
-<p>格式:外部类名.内部类名 对象名 = 外部类对象.内部类对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建内部类对象并调用方法</span></span><br><span class="line">        Outer.inner in = <span class="keyword">new</span> Outer().<span class="keyword">new</span> inner();</span><br><span class="line">        in.show();</span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>断言机制允许在<strong>测试</strong>期间向代码中插入一些检查，而在生产代码中会自动删除这些检查。<br>使用关键字assert来使用断言，语法类似于if</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> i&gt;<span class="number">0</span>;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>如果为真，继续执行下面的语句，如果为假则抛出一个AssertionError异常。</p>
+<p>一般情况下断言是禁用的，需要用-ea去启动断言</p>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>平常我在进行调试时都会在代码中插入一些System.out.println语句来观察程序的行为，但是调试完后删起来很麻烦。因此可以用日志来代替，可以很容易地取消全部日志或者取消某个级别以下的日志。</p>
+<h3 id="基本日志"><a href="#基本日志" class="headerlink" title="基本日志"></a>基本日志</h3><p>要生成简单的日志记录，可以使用全局日志记录器并调用其info方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//生成基本日志</span></span><br><span class="line">      Logger.getGlobal().info(<span class="string">"log"</span>);</span><br><span class="line">      <span class="comment">/*</span></span><br><span class="line"><span class="comment">      4月 14, 2020 3:48:45 下午 exception.loggerDemo main</span></span><br><span class="line"><span class="comment">      信息: log</span></span><br><span class="line"><span class="comment">       */</span></span><br></pre></td></tr></table></figure>
+<p>在适当的地方（如main的最前面）调用下面语句即可以取消所有的日志</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logger.getGlobal().setLevel(Level.OFF);</span><br></pre></td></tr></table></figure>
+<h3 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h3><p>可以使用getLogger方法来创建或获取日志记录器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logger logger = Logger.getLogger(LoggerDemo<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>())</span>;</span><br></pre></td></tr></table></figure>
 
+<p>通常有七个日志级别</p>
 <ul>
-<li>对于局部内部类，外界不能访问；局部内部类还可以访问<strong>局部变量</strong>！</li>
+<li>SEVERE</li>
+<li>WARNING</li>
+<li>INFO</li>
+<li>CONFIG</li>
+<li>FINE</li>
+<li>FINER</li>
+<li>FINEST</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">methodclass</span></span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show1</span><span class="params">()</span></span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"局部变量为"</span>+n);<span class="comment">//访问局部变量</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        methodclass methodclass = <span class="keyword">new</span> methodclass();<span class="comment">//需要创建对象</span></span><br><span class="line">        methodclass.show1();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h3><p>匿名内部类是一个继承了该类或者实现了该接口的子类匿名<strong>对象</strong>！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> anonyClass()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show3</span><span class="params">()</span></span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"匿名内部类！"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.show3();<span class="comment">//创建匿名内部类实现anonyClass接口，这是一个对象,能调用其实现的方法</span></span><br><span class="line">        </span><br><span class="line">anonyClass an = <span class="keyword">new</span> anonyClass()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show3</span><span class="params">()</span></span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"匿名内部类！"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;<span class="comment">//该匿名内部类实现了anonyClass这个接口</span></span><br></pre></td></tr></table></figure>
-<p>上述的匿名内部类实现的是一个函数式接口，可以用lambda表达式来代替</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anonyClass ano = ()-&gt; System.out.println(<span class="string">"匿名内部类！"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>由于匿名内部类<strong>没有类名</strong>，所以不能有构造器</p>
-<h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><p>只有内部类可以声明为static<br>特点：不能使用外部类的非static成员变量和成员方法。</p>
-<p>非静态内部类编译后会默认的保存一个指向外部类的引用，而静态类却没有。<strong>即使没有外部类对象，也可以创建静态内部类对象</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">inner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"静态内部类"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Outer.inner in = <span class="keyword">new</span> Outer.inner();<span class="comment">//无须外部类对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：</p>
-<ul>
-<li>静态内部类可以有静态字段和方法</li>
-<li>接口中声明的内部类自动是static和public</li>
+<p>在默认情况下只记录前三个级别。</p>
+<p>也可以设置一个不同的级别</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.setLevel(Level.ALL);<span class="comment">//所有的级别都会被记录</span></span><br></pre></td></tr></table></figure>
+<p>所有的级别都有日志记录方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.finest(<span class="string">"message"</span>);</span><br></pre></td></tr></table></figure>
+<p>但是即使开启了所有的记录级别，<strong>仍然不会再控制台输出INFO以下级别的信息</strong>，此时需要修改配置信息或者<strong>构建一个新的控制台处理器</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">		Logger logger = Logger.getLogger(LoggerDemo<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>())</span>;<span class="comment">//默认不输出INFO以下的日志，需要修改配置文件</span></span><br><span class="line">        ConsoleHandler handler = <span class="keyword">new</span> ConsoleHandler();<span class="comment">//也可以采用这种方式,构造一个新的控制台处理器</span></span><br><span class="line">        handler.setLevel(Level.ALL);</span><br><span class="line">        logger.addHandler(handler);</span><br><span class="line">        logger.setLevel(Level.ALL);</span><br><span class="line">        logger.finest(<span class="string">"message"</span>);</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        4月 16, 2020 11:08:41 下午 exception.LoggerDemo main</span></span><br><span class="line"><span class="comment">非常详细: message</span></span><br><span class="line"><span class="comment">        */</span></span><br></pre></td></tr></table></figure>
+<h3 id="日志技巧"><a href="#日志技巧" class="headerlink" title="日志技巧"></a>日志技巧</h3><ul>
+<li>对于一个简单的应用，选择一个日志记录器。可以把日志记录器命名为与主应用包一样的名字。</li>
+<li>默认的日志配置会把级别等于或高于INFO的所有消息记录的控制台。</li>
 </ul>
+<p>高级日志有部分为略读</p>
 
       
 
@@ -370,7 +365,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/12/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/16/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%B8%83%E7%AB%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -384,18 +379,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/04/16/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%B8%83%E7%AB%A0%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          《java核心技术》第七章笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/04/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">字符串中数据排序</div>
+    <a href="/2020/04/12/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《java核心技术》第六章笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
