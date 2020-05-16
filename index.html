@@ -152,6 +152,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-关于快速排序的思考和改进" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/16/%E5%85%B3%E4%BA%8E%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E6%80%9D%E8%80%83%E5%92%8C%E6%94%B9%E8%BF%9B/">关于快速排序的思考和改进</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/16/%E5%85%B3%E4%BA%8E%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E6%80%9D%E8%80%83%E5%92%8C%E6%94%B9%E8%BF%9B/" class="archive-article-date">
+  	<time datetime="2020-05-16T15:01:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="快速排序java实现"><a href="#快速排序java实现" class="headerlink" title="快速排序java实现"></a>快速排序java实现</h1><p>最近看《算法》看到了快速排序，书上原始的切分算法是这样的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = lo;</span><br><span class="line">    <span class="keyword">int</span> j = hi + <span class="number">1</span>;</span><br><span class="line">    Comparable v = a[lo];<span class="comment">// bad！</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123; </span><br><span class="line"></span><br><span class="line">        <span class="comment">// find item on lo to swap</span></span><br><span class="line">        <span class="keyword">while</span> (less(a[++i], v)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == hi) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// find item on hi to swap</span></span><br><span class="line">        <span class="keyword">while</span> (less(v, a[--j])) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j == lo) <span class="keyword">break</span>;      <span class="comment">// redundant since a[lo] acts as sentinel</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// check if pointers cross</span></span><br><span class="line">        <span class="keyword">if</span> (i &gt;= j) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        exch(a, i, j);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// put partitioning item v at a[j]</span></span><br><span class="line">    exch(a, lo, j);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// now, a[lo .. j-1] &lt;= a[j] &lt;= a[j+1 .. hi]</span></span><br><span class="line">    <span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个算法存在许多的问题：</p>
+<ul>
+<li>其选用的是数组的第一个元素作为切分元素。看一个极端情况：数组已是<strong>有序的</strong>。这时候切分元素每次取的都是最小的元素，每次只移除一个元素，这会导致一个大数组需要切分很多次，时间复杂度变为<strong>平方</strong>级别。</li>
+<li>数组较小时，快速排序的效率低于插入排序。</li>
+</ul>
+<h2 id="算法的改进"><a href="#算法的改进" class="headerlink" title="算法的改进"></a>算法的改进</h2><ul>
+<li>对于第一个问题，可以使用取中位数法。</li>
+<li>对于第二个问题，可以在数组元素低于某个值时，采用插入排序。</li>
+</ul>
+<p>改进后的快速排序完整代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickSort</span> <span class="keyword">implements</span> <span class="title">Sort</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> N = a.length;</span><br><span class="line">        sort(a,<span class="number">0</span>,N-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span>&#123;<span class="comment">//递归调用</span></span><br><span class="line">        <span class="keyword">if</span>(hi&lt;=lo+<span class="number">3</span>) &#123;Insertion.sort(a,lo,hi);<span class="keyword">return</span>;&#125;<span class="comment">//数组小时采用插入</span></span><br><span class="line">        <span class="keyword">int</span> j = partition(a,lo,hi);</span><br><span class="line">        sort(a,lo,j-<span class="number">1</span>);</span><br><span class="line">        sort(a,j+<span class="number">1</span>,hi);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(Comparable[] a,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span>&#123;<span class="comment">//切分算法</span></span><br><span class="line">        Comparable v = select(a,lo,hi);</span><br><span class="line">        <span class="keyword">int</span> i = lo,j = hi - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span>(Sort.less(a[++i],v)) &#123;&#125;</span><br><span class="line">            <span class="keyword">while</span>(Sort.less(v,a[--j])) &#123;&#125;</span><br><span class="line">            <span class="keyword">if</span>(i &lt; j) Sort.exch(a,i,j);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Sort.exch(a,i,hi-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Comparable <span class="title">select</span><span class="params">(Comparable[] a,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span>&#123;<span class="comment">//取中位数</span></span><br><span class="line">        <span class="keyword">int</span> mid = (hi+lo)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(Sort.less(a[mid],a[lo]))&#123;</span><br><span class="line">            Sort.exch(a,mid,lo);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(Sort.less(a[hi],a[lo]))&#123;</span><br><span class="line">            Sort.exch(a,hi,lo);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(Sort.less(a[hi],a[mid]))&#123;</span><br><span class="line">            Sort.exch(a,hi,mid);</span><br><span class="line">        &#125;</span><br><span class="line">        Sort.exch(a,mid,hi-<span class="number">1</span>);<span class="comment">//将其放置在倒数第二个位置充当哨兵</span></span><br><span class="line">        <span class="keyword">return</span> a[hi-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Sort接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable v,Comparable w)</span></span>&#123;<span class="comment">//判断小于</span></span><br><span class="line">        <span class="keyword">return</span> v.compareTo(w)&lt;<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">lesse</span><span class="params">(Comparable v,Comparable w)</span></span>&#123;<span class="comment">//小于等于</span></span><br><span class="line">        <span class="keyword">return</span> ((v.compareTo(w)&lt;<span class="number">0</span>)||(v.compareTo(w)==<span class="number">0</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(Comparable[] a,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;<span class="comment">//交换元素</span></span><br><span class="line">        Comparable t = a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(Comparable[] a)</span></span>&#123;<span class="comment">//打印数组</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">            System.out.println(a[i]+<span class="string">" "</span>);</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isorted</span><span class="params">(Comparable[] a)</span></span>&#123;<span class="comment">//判断数组是否有序</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(less(a[i],a[i-<span class="number">1</span>])) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>插入排序算法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = lo+<span class="number">1</span>;i &lt; hi+<span class="number">1</span>;i++)&#123;<span class="comment">//注意是hi+1</span></span><br><span class="line">        Comparable temp = a[i];</span><br><span class="line">        <span class="keyword">int</span> j;</span><br><span class="line">        <span class="keyword">for</span>(j = i;j &gt; <span class="number">0</span>&amp;&amp;Sort.less(temp,a[j-<span class="number">1</span>]);j--)&#123;</span><br><span class="line">            a[j] = a[j-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        a[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="含大量重复元素的数组"><a href="#含大量重复元素的数组" class="headerlink" title="含大量重复元素的数组"></a>含大量重复元素的数组</h2><p>当给定的数组中含有大量的重复元素时，原来的快速排序算法设定的是即使切分元素和比较元素<strong>相等时也会进行交换</strong>。虽然交换的次数较多，但是时间复杂度仍然保持在NlogN。原因是：</p>
+<ul>
+<li>该算法每次排序会将相等元素数组<strong>平均分为两份</strong>，因此时间复杂度仍然为NlogN。</li>
+</ul>
+<p>不过可以使用三向切分的快速排序来讲其复杂度降为N级别，代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Quick3way</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">        StdRandom.shuffle(a);<span class="comment">//因为要取第一个元素为切分元素，先将其打乱</span></span><br><span class="line">        sort(a, <span class="number">0</span>, a.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">if</span> (hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> lt = lo, gt = hi;</span><br><span class="line">        Comparable v = a[lo];</span><br><span class="line">        <span class="keyword">int</span> i = lo + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= gt) &#123;</span><br><span class="line">            <span class="keyword">int</span> cmp = a[i].compareTo(v);</span><br><span class="line">            <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>) exch(a, lt++, i++);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) exch(a, i, gt--);</span><br><span class="line">            <span class="keyword">else</span>              i++;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(a, lo, lt-<span class="number">1</span>);</span><br><span class="line">        sort(a, gt+<span class="number">1</span>, hi);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这个算法的解决方案基于数组的从左到右传递，该数组保持指针lt使得a [lo..lt-1]小于v，指针gt使得a [gt + 1..hi ]大于v，并且指针i使得a [lt.i-1]等于v，而a [i..gt]尚未检查。</p>
+<p>Quicksort 3路分区概述<br>从i等于lo开始， 我们使用Comparable接口给出的三向比较处理a [i]来处理三种可能的情况：<br><img src="https://img-blog.csdnimg.cn/20200512222434541.png#pic_center" alt="在这里插入图片描述"><br>a [i]小于v：与a [i]交换a [lt]并同时增加lt 和i<br>a [i]大于v：将a [i]与a [gt]交换并减少gt<br>a [i]等于v：递增i</p>
+<p><strong>三向切分快速排序仅在数组中有大量重复元素时效率才高于普通的快速排序！</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/16/%E5%85%B3%E4%BA%8E%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E6%80%9D%E8%80%83%E5%92%8C%E6%94%B9%E8%BF%9B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-《java核心技术》第九章笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1506,166 +1595,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/03/25/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8E%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-《java核心技术》第四章笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/24/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0/">《java核心技术》第四章笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/24/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-03-24T13:36:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="对象与类"><a href="#对象与类" class="headerlink" title="对象与类"></a>对象与类</h1><h2 id="类之间的关系"><a href="#类之间的关系" class="headerlink" title="类之间的关系"></a>类之间的关系</h2><table>
-<thead>
-<tr>
-<th>关系</th>
-<th>描述</th>
-<th>“”</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>依赖</td>
-<td>一个类的方法使用或操纵另一个类的对象</td>
-<td>“uses-a”</td>
-</tr>
-<tr>
-<td>聚合</td>
-<td>类A的对象包含类B的对象</td>
-<td>“has-a”</td>
-</tr>
-<tr>
-<td>继承</td>
-<td>类A扩展类B</td>
-<td>“is-a”</td>
-</tr>
-</tbody></table>
-<h2 id="使用预定义类"><a href="#使用预定义类" class="headerlink" title="使用预定义类"></a>使用预定义类</h2><p>要使用对象，首先要构造对象,使用构造器（构造函数）来初始化对象<br>一个对象变量包含一个对象的引用，或者包含一个特殊值null</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data a = <span class="keyword">new</span> data();<span class="comment">//它引用了新构造的对象</span></span><br></pre></td></tr></table></figure>
-<p><strong>对象和对象变量有重要的区别</strong><br>例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Data deadline;<span class="comment">//变量deadline不是一个对象,而且实际上它也没有引用任何对象</span></span><br><span class="line">deadline.toString();<span class="comment">//还不能对它使用方法</span></span><br></pre></td></tr></table></figure>
-<p><strong>在java中，对象变量的值只是对存储在另外一个地方的某个对象的引用</strong><br>对象变量并没有实际包含一个对象，它只是<strong>引用</strong>一个对象</p>
-<blockquote>
-<p>java中的引用并不是c++中的引用，可以把java中的对象变量看做类似于c++中的对象指针。<br>java中的对象都存储在堆中。</p>
-</blockquote>
-<blockquote>
-<p><strong>值类型和引用类型</strong><br>num是int基本类型变量，值就直接保存在变量中。str是String引用类型变量，变量中保存的只是实际对象对应的地址信息，而不是实际对象数据。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200322133232726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2NTIwNjc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>对于基本类型变量num，赋值运算符将会直接修改变量的值，原来的数据将被覆盖掉，被替换为新的值。对于引用类型变量str，赋值运算符只会改变变量中所保存的对象的地址信息，原来对象的地址被覆盖掉，重新写入新对象的地址数据。但原来的对象本身并不会被改变，只是不再被任何引用所指向的对象，即“垃圾对象”，后续会被垃圾回收器回收。</p>
-</blockquote>
-<p>使用静态工厂方法来构造LocalData类,不是使用构造器！！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LocalData newyear = LocalData.of(<span class="number">1999</span>,<span class="number">12</span>,<span class="number">31</span>);<span class="comment">//不使用构造器来构造</span></span><br><span class="line">LocalData newyear = <span class="keyword">new</span> LocalData.of(<span class="number">1999</span>,<span class="number">12</span>,<span class="number">31</span>);<span class="comment">//error</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="用户自定义类"><a href="#用户自定义类" class="headerlink" title="用户自定义类"></a>用户自定义类</h2><p>在一个源文件中只能有一个公共类，但可以有任意数目的非公共类。</p>
-<p>构造器总是与类同名并且总是结合new运算符来使用<br>构造器没有返回值</p>
-<p><strong>警告：</strong> 不要在构造器中定义与实例字段（对象中的数据）同名的局部变量</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">double</span> salary;</span><br><span class="line">   <span class="comment">//......</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String n,<span class="keyword">double</span> s)</span></span>&#123;</span><br><span class="line">   String name = n;<span class="comment">//这些局部变量会遮蔽同名的实例字段</span></span><br><span class="line">   <span class="keyword">double</span> salary = s;</span><br><span class="line">   <span class="comment">//......</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>要小心使用null值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="keyword">null</span>;</span><br><span class="line">String s = str.substring(<span class="number">0</span>,<span class="number">3</span>);<span class="comment">//对null应用方法会产生异常</span></span><br><span class="line"><span class="comment">/*Exception in thread "main" java.lang.NullPointerException</span></span><br><span class="line"><span class="comment">	at data.data.main(data.java:11)*/</span></span><br></pre></td></tr></table></figure>
-<p>定义方法（成员函数）</p>
-<blockquote>
-<p>在c++中，在类的外部定义方法要使用成员限定符::,而在内部定义则该方法会被设置为内联方法.<br>在java中，所有的方法必须在类的内部定义，但并不表示它们是内联方法，java虚拟机会自动进行优化。</p>
-</blockquote>
-<p>字段访问器：只返回实例字段值<br><strong>注意：</strong> 不要编写返回可变对象引用的访问器方法！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Date hireDay;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">getHireDay</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> hireDay;<span class="comment">//bad</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">data</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">        Employee harry = <span class="keyword">new</span> Employee();</span><br><span class="line">        Date d = harry.getHireDay();<span class="comment">//此时d和harry.hireDay引用自同一个对象</span></span><br><span class="line">        <span class="keyword">double</span> a = <span class="number">245</span>;</span><br><span class="line">        d.setTime(d.getTime()-(<span class="keyword">long</span>)a);<span class="comment">//改变了harry.hireDay!</span></span><br><span class="line">        <span class="comment">//对d使用更改器方法就可以改变这个Employee对象的私有状态！！</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>方法可以访问所属类的任何对象的私有特性</p>
-<h2 id="final关键字的基本用法"><a href="#final关键字的基本用法" class="headerlink" title="final关键字的基本用法"></a>final关键字的基本用法</h2><p>在Java中，final关键字可以用来修饰类、方法和变量（包括成员变量和局部变量）。</p>
-<p>final修饰一个类时，表示这个类不能被继承。<br>修饰方法时，此方法不能被重写。</p>
-<p>修饰变量，final成员常量表示常量，只能被赋值一次</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> num = <span class="number">50</span>;</span><br><span class="line">num = <span class="number">60</span>;<span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
-<p>修饰引用类型时，则在其初始化之后不能再指向其他对象了，但是该引用所指的对象的内容是可变的！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Date str = <span class="keyword">new</span> Date();</span><br><span class="line">str = <span class="keyword">new</span> Date();<span class="comment">//报错，不能再指向其他对象</span></span><br><span class="line">str.setTime(str.getTime());<span class="comment">//可以改变所指对象的内容</span></span><br></pre></td></tr></table></figure>
-<p>当final修饰一个成员变量，必须要显示初始化，有两种初始化方式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Date hireDay=<span class="keyword">new</span> Date();<span class="comment">//在声明时初始化</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Date hireDay;</span><br><span class="line">    Employee(Date d)&#123;</span><br><span class="line">        hireDay = d;</span><br><span class="line">    &#125;<span class="comment">//在构造器中初始化</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="静态字段"><a href="#静态字段" class="headerlink" title="静态字段"></a>静态字段</h2><h3 id="静态变量"><a href="#静态变量" class="headerlink" title="静态变量"></a>静态变量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> nextid = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在每个Employee对象都有一个自己的id字段，但这个类所有的实例都共享一个nextid字段。<br>假如有1000个Employee类对象，就有1000个实例字段id，分别对应每个对象，但是只有一个静态字段nextid。<br>即使没有Employee对象，静态字段nextid也存在，它属于类，不属于任何单个对象。</p>
-<h3 id="静态常量"><a href="#静态常量" class="headerlink" title="静态常量"></a>静态常量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> nextid = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>静态方法不是在对象上执行的方法，静态方法只能访问静态字段。<br>可以直接提供类名来调用静态方法，而不需要通过类对象的引用来调用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">empty</span><span class="params">()</span></span>&#123;<span class="comment">//非静态</span></span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">empty1</span><span class="params">()</span></span>&#123;<span class="comment">//静态版本</span></span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">data</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">        Employee.empty();<span class="comment">//直接通过类名调用非静态方法会报错</span></span><br><span class="line">        Employee.empty1();<span class="comment">//可以直接调用静态方法</span></span><br><span class="line">        Employee a = <span class="keyword">new</span> Employee();</span><br><span class="line">        a.empty();<span class="comment">//对于非静态方法需要通过类对象的引用来调用</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在c++中，要使用成员访问符:: 来访问作用域之外的静态字段和静态方法<br>如Math::PI<br>在Java中则是Math.PI,功能上相同，语法不同</p>
-</blockquote>
-<h2 id="方法参数"><a href="#方法参数" class="headerlink" title="方法参数"></a>方法参数</h2><p>java方法参数中的对象引用是<strong>按值传递</strong>的，并不是按引用传递</p>
-<blockquote>
-<p>方法参数总结:<br>方法不能修改基本数据类型的参数<br>方法可以改变对象参数的状态<br><strong>方法不能让一个对象参数引用一个新的对象</strong></p>
-</blockquote>
-<h2 id="对象构造"><a href="#对象构造" class="headerlink" title="对象构造"></a>对象构造</h2><h3 id="默认字段初始化"><a href="#默认字段初始化" class="headerlink" title="默认字段初始化"></a>默认字段初始化</h3><p>如果在构造器中没有显式地为字段设置初值，那么就会自动地赋值为默认值：数值为0，布尔为false，对象引用为null。</p>
-<h3 id="无参数的构造器"><a href="#无参数的构造器" class="headerlink" title="无参数的构造器"></a>无参数的构造器</h3><p>如果写一个类时没有编写构造器，就会自动为你提供一个无参数的构造器，他会把所有的实例字段设置为默认值。</p>
-<p>如果类中提供了至少一种构造器，但是没有提供无参数的构造器，那么构造对象时不提供参数是不合法的！</p>
-<h3 id="显式字段初始化"><a href="#显式字段初始化" class="headerlink" title="显式字段初始化"></a>显式字段初始化</h3><p>在java中可以直接初始化类的实例字段</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">data</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num = <span class="number">1</span>;<span class="comment">//直接初始化</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是在c++中只能在构造函数中初始化，这与java不同；并且java没有成员初始化列表这一功能。</p>
-<h3 id="调用另一个构造器"><a href="#调用另一个构造器" class="headerlink" title="调用另一个构造器"></a>调用另一个构造器</h3><p>可以用this在构造器中调用另一个构造器来初始化</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(<span class="keyword">double</span> s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(<span class="string">"Employee#"</span>+nextid,s);<span class="comment">//另一个构造函数Employee(String,double)</span></span><br><span class="line">    nextid++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="初始化块"><a href="#初始化块" class="headerlink" title="初始化块"></a>初始化块</h3><p>初始化数据字段的方法有三种：<br>1.在构造器中设置值<br>2.在声明中赋值，显式赋值<br>3.利用初始化块赋值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> nextid = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    &#123;</span><br><span class="line">       id = nextid;</span><br><span class="line">       nextid++;</span><br><span class="line">    &#125;<span class="comment">//初始化块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>也有一种静态初始化块，只在第一次加载类时进行初始化</p>
-<blockquote>
-<p>静态初始化块只会调用一次，随着类的加载而加载，（类只加载一次）<br>普通初始化块可以调用多次，随着对象的创建而加载</p>
-</blockquote>
-<p>而对于他们的理解，我写了这么一组代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num1;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> temp = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> temp1 = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.num = x+temp;</span><br><span class="line">        <span class="keyword">this</span>.num1 = x+temp1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getNum</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getNum1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;<span class="comment">//初始化块</span></span><br><span class="line">        temp1++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span><span class="comment">//静态初始化块</span></span><br><span class="line">    &#123;</span><br><span class="line">        temp++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">data</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">        test b = <span class="keyword">new</span> test(<span class="number">1</span>);</span><br><span class="line">        test c = <span class="keyword">new</span> test(<span class="number">1</span>);</span><br><span class="line">        System.out.printf(<span class="string">"%d %d\n"</span>,b.getNum(),c.getNum());</span><br><span class="line">        <span class="comment">//结果为3 3</span></span><br><span class="line">        System.out.printf(<span class="string">"%d %d\n"</span>,b.getNum1(),c.getNum1());</span><br><span class="line">        <span class="comment">//结果为3 4</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//初始化时首先会初始化静态字段，再运行初始化块，</span></span><br><span class="line">        <span class="comment">//然后才运行构造器的主体部分，</span></span><br><span class="line">        <span class="comment">//因此在第一次初始化时temp和temp1都先加1变为2，</span></span><br><span class="line">        <span class="comment">// 然后再调用构造器使temp，temp1分别与num，num1相加，输出结果都为3</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//static块只在类第一次加载的时候初始化，</span></span><br><span class="line">        <span class="comment">//所以在创建第二个对象时，temp不会再执行static块使之加1，</span></span><br><span class="line">        <span class="comment">//temp依然是2</span></span><br><span class="line">        <span class="comment">//但是普通初始块仍会随着对象的创建而再次加载，</span></span><br><span class="line">        <span class="comment">//所以temp1仍然会再次执行初始化块使之加1变为3.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对于初始化的执行顺序，构造器一般在最后执行</p>
-<blockquote>
-<p>静态初始化块 | 静态属性初始化 &gt; 普通初始化块 | 普通属性初始化 &gt; 构造器</p>
-</blockquote>
-<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>包相当于一个文件夹，将类组织在一个集合中<br>一个类可以使用所属包中的所有类，以及其他包中的公共类</p>
-<p>标记为public的部分可以由任意类使用；标记为private的部分只能由定义他们的类使用，如果没有指定public或private，这个部分可以被同一个包中的所有方法访问。</p>
-<h3 id="类设计技巧"><a href="#类设计技巧" class="headerlink" title="类设计技巧"></a>类设计技巧</h3><blockquote>
-<p>1.保证数据私有，不要破坏封装性。<br>2.一定要对数据初始化。<br>3.不要在类中使用过多的基本类型，用其他的类替换使用多个相关的基本类型。<br>4.不是所有的字段都需要单独的字段访问器和字段更改器。<br>5.分解有过多职责的类。<br>6.类名和方法名要能够体现他们的职责。<br>7.优先使用不可变的类。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/24/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
         </p>
       
 
