@@ -152,6 +152,114 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java中4个常用的函数式接口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/31/java%E4%B8%AD4%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">java中4个常用的函数式接口</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/31/java%E4%B8%AD4%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
+  	<time datetime="2020-05-31T15:08:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h1><p>只有一个抽象方法的接口叫做函数式接口。这时就可以提供一个lambda表达式。</p>
+<p>下面将介绍4个常用的函数式接口</p>
+<ul>
+<li>Supplier&lt; T &gt;</li>
+<li>Consumer&lt; T &gt;</li>
+<li>Function&lt;T,R&gt;</li>
+<li>Predicate&lt; T &gt;</li>
+</ul>
+<h2 id="Supplier-lt-T-gt"><a href="#Supplier-lt-T-gt" class="headerlink" title="Supplier&lt; T &gt;"></a>Supplier&lt; T &gt;</h2><p>Supplier接口中只有一个方法，需要实现的方法是get，该方法返回一个类型为T的值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">T <span class="title">get</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>下面的例子用该方法来返回数组中的最大值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Supplier;</span><br><span class="line"></span><br><span class="line"><span class="comment">//supplier函数式接口用来返回数据</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">supplier</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> a = max(()-&gt;&#123;</span><br><span class="line">            <span class="keyword">int</span> max = arr[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(max&lt;arr[i]) max = arr[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> max;</span><br><span class="line">        &#125;);</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(Supplier&lt;Integer&gt; s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> s.get();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Consumer-lt-T-gt"><a href="#Consumer-lt-T-gt" class="headerlink" title="Consumer&lt; T &gt;"></a>Consumer&lt; T &gt;</h2><p>需要实现的方法为accept，接收一个T类型的参数，没有返回值。可以用来处理数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T var1)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>下面的例子用来输出字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">consumer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        print(<span class="string">"hello"</span>,System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(String s,Consumer&lt;String&gt; c)</span></span>&#123;</span><br><span class="line">        c.accept(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该接口还有另一个很实用的方法andThen，该方法提供了默认实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> Consumer&lt;T&gt; <span class="title">andThen</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; after)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(after);</span><br><span class="line">    <span class="keyword">return</span> (t) -&gt; &#123;</span><br><span class="line">        <span class="keyword">this</span>.accept(t);</span><br><span class="line">        after.accept(t);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用这个方法会返回一个Consumer对象，它的accept实现为依次调用两个对象的accept方法</p>
+<p>下面用这个方法来输出两个不同的字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">consumer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        print(<span class="string">"hello"</span>,System.out::println,s-&gt;&#123;</span><br><span class="line">            System.out.println(s+<span class="string">" world!"</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(String s, Consumer&lt;String&gt; c1,Consumer&lt;String&gt; c2)</span></span>&#123;</span><br><span class="line">        c1.andThen(c2).accept(s);</span><br><span class="line">        <span class="comment">//返回的对象的accept方法为先调用c1的accept,再调用c2的accept</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//hello</span></span><br><span class="line"><span class="comment">//hello world</span></span><br></pre></td></tr></table></figure>
+<h2 id="Function-lt-T-R-gt"><a href="#Function-lt-T-R-gt" class="headerlink" title="Function&lt;T,R&gt;"></a>Function&lt;T,R&gt;</h2><p>需要实现的方法为apply，输入一个T类型的值，返回一个R类型的值，可以用来转换数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">R <span class="title">apply</span><span class="params">(T var1)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>下面的例子为将字符串转换为数字</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Function;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Function&lt;T,R&gt;的apply方法，输入T，返回R</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">function</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        convert(<span class="string">"123"</span>,Integer::parseInt);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将字符串转换为数字</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">convert</span><span class="params">(String s, Function&lt;String,Integer&gt; f)</span></span>&#123;</span><br><span class="line">        Integer apply = f.apply(s);</span><br><span class="line">        System.out.println(apply);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它也有个andThen方法，不过和Consumer的不同</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">default</span> &lt;V&gt; <span class="function">Function&lt;T, V&gt; <span class="title">andThen</span><span class="params">(Function&lt;? <span class="keyword">super</span> R, ? extends V&gt; after)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(after);</span><br><span class="line">    <span class="keyword">return</span> (t) -&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> after.apply(<span class="keyword">this</span>.apply(t));</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面用这个方法来实现字符串转换数字并加5，然后再转换为字符串并输出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Function;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Function&lt;T,R&gt;的apply方法，输入T，返回R</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">function</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        convertShow(<span class="string">"123"</span>,Integer::parseInt,s -&gt;&#123;<span class="keyword">return</span> String.valueOf(s+<span class="number">5</span>);&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//将字符串转换为数字并加5输出</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">convertShow</span><span class="params">(String s,Function&lt;String,Integer&gt; f1,Function&lt;Integer,String&gt;f2 )</span></span>&#123;</span><br><span class="line">        String s1 = f1.andThen(f2).apply(s);</span><br><span class="line">        System.out.println(s1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//128</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Predicate-lt-T-gt"><a href="#Predicate-lt-T-gt" class="headerlink" title="Predicate&lt; T &gt;"></a>Predicate&lt; T &gt;</h2><p>需要实现的方法为test，该方法可以用来测试数据，返回一个boolean值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T var1)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>下面的例子用来检验字符串的长度</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Predicate;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*predicate可以用来筛选信息*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">predicate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String string = <span class="string">"hello"</span>;</span><br><span class="line">        <span class="keyword">boolean</span> b = test(string,s-&gt;s.length()&gt;<span class="number">3</span>);</span><br><span class="line">        System.out.println(b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(String str,Predicate&lt;String&gt; predicate)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> predicate.test(str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> Predicate<T>还有几个非常有用的方法，分别代表逻辑运算中的与、非、或</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">and</span><span class="params">(Predicate&lt;? <span class="keyword">super</span> T&gt; other)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(other);</span><br><span class="line">    <span class="keyword">return</span> (t) -&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.test(t) &amp;&amp; other.test(t);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">negate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (t) -&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> !<span class="keyword">this</span>.test(t);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">or</span><span class="params">(Predicate&lt;? <span class="keyword">super</span> T&gt; other)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(other);</span><br><span class="line">    <span class="keyword">return</span> (t) -&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.test(t) || other.test(t);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面用与运算来判断字符串的长度是否属于某个范围</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Predicate;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*predicate可以用来筛选信息*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">predicate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String string = <span class="string">"hello"</span>;</span><br><span class="line">        System.out.println(AND(string,s -&gt; s.length()&gt;<span class="number">4</span>,s -&gt; s.length()&lt;<span class="number">14</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">AND</span><span class="params">(String s,Predicate&lt;String&gt; p1,Predicate&lt;String&gt; p2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p1.and(p2).test(s);<span class="comment">//逻辑与</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上接口只是函数式接口中常用的几个，还有其他如Runnable这样的接口也是很常见的。</p>
+<p>这些接口大多数在处理流的时候出现，要熟练掌握lambda表达式，并对其进行运用。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/31/java%E4%B8%AD4%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java网络编程-笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1395,321 +1503,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/04/09/String%E7%B1%BB%E5%9E%8B%E5%92%8Cint%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-《java核心技术》第五章笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/01/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%AC%94%E8%AE%B0/">《java核心技术》第五章笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/01/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-04-01T05:19:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>如果两个对象存在“is-a”关系，即某某是某某，可以使用继承。<br>使用关键字<strong>extends</strong>表示继承（c++中是   :   ）,关键字extends表示正在构造的新类派生于一个已存在的类。这个已存在的类称之为<strong>基类，超类，父类</strong>；新类 称为<strong>子类、派生类</strong></p>
-<h2 id="覆盖方法"><a href="#覆盖方法" class="headerlink" title="覆盖方法"></a>覆盖方法</h2><p>超类中的一些方法对子类不一定适用，需要提供一个新的方法<strong>覆盖</strong>超类中的方法。</p>
-<ul>
-<li>现假设有一个Employee(雇员类)和Manager(经理类),其中Employee中有一个薪资getSalary()方法及加薪raiseSalary()方法,Manager有一个奖金setBonus()方法.</li>
-<li>Manager继承Employee</li>
-</ul>
-<p>Employee类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;<span class="comment">//姓名</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> salary;<span class="comment">//工资</span></span><br><span class="line">    <span class="keyword">private</span> LocalDate hireDay;<span class="comment">//雇佣时间</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String name, <span class="keyword">double</span> salary, <span class="keyword">int</span> year, <span class="keyword">int</span> month,<span class="keyword">int</span> day)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.salary = salary;</span><br><span class="line">        hireDay = LocalDate.of(year,month,day);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getSalary</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> salary;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> LocalDate <span class="title">getHireDay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> hireDay;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">raiseSalary</span><span class="params">(<span class="keyword">double</span> byPercent)</span></span>&#123;<span class="comment">//涨工资</span></span><br><span class="line">        <span class="keyword">double</span> raise = salary * byPercent / <span class="number">100</span>;</span><br><span class="line">        salary += raise;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Manager类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Manager</span> <span class="keyword">extends</span>  <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> bonus;<span class="comment">//奖金</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Manager</span><span class="params">(String name, <span class="keyword">double</span> salary, <span class="keyword">int</span> year, <span class="keyword">int</span> month, <span class="keyword">int</span> day)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name, salary, year, month, day);</span><br><span class="line">        bonus = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBonus</span> <span class="params">(<span class="keyword">double</span> b)</span></span>&#123;</span><br><span class="line">        bonus = b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Manager类中的getSalary()方法应该返回薪资和奖金的总和.所以需要在Manager中提供一个新的方法来覆盖超类Employee中的方法</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Manager</span> <span class="keyword">extends</span>  <span class="title">Employee</span></span>&#123;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getSalary</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       .</span><br><span class="line">       .</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>刚开始一般都会这么想</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getSalary</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> salary + bonus; <span class="comment">//报错</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>salary是Employee类的<strong>私有成员</strong>，只有他自己能够访问</p>
-<ol start="2">
-<li>那么可不可以调用Employee的访问器来访问salary呢?</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getSalary</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> baseSalary = getSalary(); <span class="comment">//报错</span></span><br><span class="line">        <span class="keyword">return</span> baseSalary +bonus;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>这是个死循环，覆盖的方法名和被覆盖的方法的名字是<strong>保持一致的！</strong>，它会首先在本类中寻找，因此这个方法会无限调用自己，应该使用关键字<strong>super</strong>来访问Employee中的getSalary方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getSalary</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> baseSalary = <span class="keyword">super</span>.getSalary();</span><br><span class="line">        <span class="keyword">return</span> baseSalary +bonus;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>super和this相对应，一个表示父类，一个表示本身</p>
-<p><strong>警告：在覆盖方法时，子类方法不能低于超类方法的可见性！</strong></p>
-<h3 id="关于变量的访问顺序"><a href="#关于变量的访问顺序" class="headerlink" title="关于变量的访问顺序"></a>关于变量的访问顺序</h3><p>如果在子类方法中访问一个变量</p>
-<ol>
-<li>现在子类局部变量找</li>
-<li>子类成员范围找</li>
-<li>父类成员范围找（非私有）</li>
-<li>没找到就报错</li>
-</ol>
-<p>方法中的局部变量会覆盖成员变量，虽然也可以使用super和this来访问成员变量，<strong>但是在子类方法中定义的局部变量要尽量不与成员变量同名！</strong></p>
-<h2 id="子类构造器"><a href="#子类构造器" class="headerlink" title="子类构造器"></a>子类构造器</h2><p>子类构造器一定要调用超类的构造器，如果子类构造器没有显式地调用超类的构造器，将自动调用超类的无参构造器<br><strong>但是如果超类没有提供无参构造器，子类又有没有显式地调用超类其他构造器，java编译器会报错！</strong></p>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>在java中，<strong>对象变量是多态的</strong>。<br>例如</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Employee e;</span><br><span class="line">e = <span class="keyword">new</span> Employee();</span><br><span class="line">e = <span class="keyword">new</span> Manager();<span class="comment">//Manager继承自Employee，这也是正确的</span></span><br></pre></td></tr></table></figure>
-<p>即一个对象变量即可以引用其本身类型的变量，也可以引用<strong>任何一个子类</strong>的对象.</p>
-<p><strong>但是：</strong> 编译器只将e看做是Employee的对象，e只能访问Employee类的方法，不能访问子类特有的方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Manager类有个自己的方法setBonus</span></span><br><span class="line">Manager boss = <span class="keyword">new</span> Manager(...);</span><br><span class="line">Employee[] staff = <span class="keyword">new</span> Employee[<span class="number">3</span>];</span><br><span class="line">staff[<span class="number">0</span>] = boss;<span class="comment">//父类对象变量引用子类对象</span></span><br><span class="line">boss.setBonues(<span class="number">5000</span>);<span class="comment">//正确</span></span><br><span class="line">staff[<span class="number">0</span>].setBonues(<span class="number">5000</span>);<span class="comment">//错误</span></span><br><span class="line"><span class="comment">//因为staff[0]声明的类型为Employee，而setBonus不是Employee类的方法</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong> 子类不能引用父类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Manager m = staff[<span class="number">1</span>];<span class="comment">//error;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="多态的前提和体现"><a href="#多态的前提和体现" class="headerlink" title="多态的前提和体现"></a>多态的前提和体现</h3><ul>
-<li>有继承/实现关系</li>
-<li>有方法重写</li>
-<li><strong>有父类引用指向子类对象</strong></li>
-</ul>
-<h3 id="多态的好处与弊端"><a href="#多态的好处与弊端" class="headerlink" title="多态的好处与弊端"></a>多态的好处与弊端</h3><ul>
-<li>提高了程序的拓展性：定义方法的时候，使用父类型作为参数，将来使用的时候可以使用子类作为参数</li>
-<li>不能使用子类特有的功能</li>
-</ul>
-<h2 id="理解方法调用"><a href="#理解方法调用" class="headerlink" title="理解方法调用"></a>理解方法调用</h2><ol>
-<li><p>编译器查看对象的声明类型和方法名</p>
-</li>
-<li><p>确定方法调用中提供的参数类型</p>
-</li>
-<li><p>静态绑定：如果是static、private、final方法或者构造器，编译器将准确地知道应该调用哪个方法</p>
-</li>
-<li><p>动态绑定：程序运行并且采用动态绑定（多态）调用方法时，虚拟机必须调用与x所引用对象的实际类型所对应的方法。假设x的实际类型为d，它是c的子类，如果d定义了这个方法就会调用这个方法；否则将在d类的超类中寻找。</p>
-<h3 id="阻止继承：final类和方法"><a href="#阻止继承：final类和方法" class="headerlink" title="阻止继承：final类和方法"></a>阻止继承：final类和方法</h3><p>将某个特定的方法声明为final，子类就不可以重写（覆盖）这个方法。<br>将某个类声明为final，其中所有的<strong>方法</strong>都会被声明为final，但不包括字段</p>
-</li>
-</ol>
-<h2 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h2><p><strong>当一个父类对象变量引用子类对象时</strong>，如果要访问子类独有的方法，则需要进行强制类型转换</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Employee[] staff = <span class="keyword">new</span> Employee[<span class="number">3</span>];</span><br><span class="line">staff[<span class="number">0</span>] = <span class="keyword">new</span> Manager();</span><br><span class="line">Manager boss = (Manager)staff[<span class="number">0</span>];<span class="comment">//正确,staff[0]为Manager的一个实例</span></span><br></pre></td></tr></table></figure>
-<p>前提是父类对象变量的实际类型要与转换类型一致，如果不一致将会发生错误</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Manager boss = (Manager)staff[<span class="number">1</span>];<span class="comment">//error,staff[1]的实际类型时Employee</span></span><br></pre></td></tr></table></figure>
-<p>因此在进行强制转换前，最好检查一下是否能成功地转换</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(staff[<span class="number">1</span>] <span class="keyword">instanceof</span> Manager)</span><br><span class="line">&#123;</span><br><span class="line">   boss = (Manager)staff[<span class="number">1</span>];</span><br><span class="line">&#125;<span class="comment">//检查是否为Manager的一个实例,是返回true，在这里返回false</span></span><br></pre></td></tr></table></figure>
-<p>综上所述：</p>
-<ul>
-<li>只能在继承层次内进行强制类型转换</li>
-<li>在将超类强制转换为子类之前，应该使用instanceof进行检查</li>
-</ul>
-<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><p>可以用关键字<strong>abstract</strong>来声明一个类，说明这个类为抽象类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">animal</span> </span>&#123;</span><br><span class="line">       ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>说明这个类不能被实例化，也就是不能创建抽象类的对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animal an = <span class="keyword">new</span> animal();<span class="comment">//error</span></span><br></pre></td></tr></table></figure>
-<p>不过可以定义一个抽象类的对象变量，只能引用<strong>非抽象子类</strong>的对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">cat</span> <span class="keyword">extends</span> <span class="title">animal</span> </span>&#123;<span class="comment">//非抽象子类</span></span><br><span class="line">      ......</span><br><span class="line">&#125;</span><br><span class="line">animal an = <span class="keyword">new</span> cat();<span class="comment">//引用子类对象</span></span><br></pre></td></tr></table></figure>
-<p>可以将方法声明为抽象方法，那么就不需要实现这个方法了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;<span class="comment">//不需要在此类中实现</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>抽象方法的功能由其子类实现，<strong>抽象类的子类要么重写抽象类中的抽象类，要么也定义为抽象类！</strong></p>
-<p>注意事项:</p>
-<ul>
-<li>抽象方法必须在抽象类中，有抽象方法的类一定为抽象类，但抽象类可以没有抽象方法。</li>
-<li>抽象类可以有构造器，主要用于<strong>子类访问父类数据的初始化</strong>。</li>
-<li>抽象方法类似于c++中的纯虚函数。</li>
-<li>将通用字段和方法放在超类中</li>
-</ul>
-<h2 id="访问修饰符小结"><a href="#访问修饰符小结" class="headerlink" title="访问修饰符小结"></a>访问修饰符小结</h2><table>
-<thead>
-<tr>
-<th>修饰符</th>
-<th>权限</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>private</td>
-<td>仅对本类可见</td>
-</tr>
-<tr>
-<td>public</td>
-<td>对外部完全可见</td>
-</tr>
-<tr>
-<td>protected</td>
-<td>对本包和所有子类可见</td>
-</tr>
-<tr>
-<td>默认，不需要修饰符</td>
-<td>对本包可见</td>
-</tr>
-</tbody></table>
-<h2 id="Object：所有类的超类"><a href="#Object：所有类的超类" class="headerlink" title="Object：所有类的超类"></a>Object：所有类的超类</h2><p>java中每个类都扩展了Object，如果没有明确指出超类，Object就被认为是这个类的超类。</p>
-<p>可以使用Object类型的变量引用任何类型的对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Employee();</span><br></pre></td></tr></table></figure>
-<p>但如果相对其中的内容进行具体的操作，需要进行强制转换</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Employee e = (Employee)obj;</span><br></pre></td></tr></table></figure>
-<h3 id="equals方法"><a href="#equals方法" class="headerlink" title="equals方法"></a>equals方法</h3><p>Object类中的equals方法用于检测一个对象是否等于另一个对象，但只是确定两个对象引用是否相等。</p>
-<p>我们来看一下equals方法的源码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span> == obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>他依然是比较两个对象的地址值，只有当两个变量引用同一个对象时才会相等，这和“==”是等效的！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">animal a = <span class="keyword">new</span> cat();</span><br><span class="line">animal b = <span class="keyword">new</span> cat();</span><br><span class="line">System.out.println(a.equals(b));<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line">a = b;<span class="comment">//引用同一个对象</span></span><br><span class="line">System.out.printlln(a.equals(b));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>如果要比较两个对象的内容是否相等，需要对equals方法进行重写。<br>在子类定义equals方法时，首先调用父类的equals进行比较（因为通用字段在父类中）。如果超类字段都相等，再比较子类字段。</p>
-<blockquote>
-<p>为了防备两边都为null的情况，有一种<strong>Objects</strong>.equals(a,b)方法。如果两边都为null，返回true；只有一个为null，返回false；都不为null，则调用a.equals(b).</p>
-</blockquote>
-<p>java中对于equals方法的规则如下：</p>
-<ul>
-<li>自反性：对于任何非空引用x，x.equals(x)应该返回true。</li>
-<li>对称性：对于任何x和y，当且仅当y.equals(x)返回true时,x.equals(y)返回true.</li>
-<li>传递性：对于任何引用x,y,z,如果x.equals(y)为true，y.equals(z)为true，那么x.equals(z)为true。</li>
-<li>一致性：如果x和y的引用没有发生变化，反复调用x.equals(y)应该返回同样的值。</li>
-<li>对于任何非空引用x,x.equals(null)应该返回false。</li>
-</ul>
-<p>idea中可以用快捷键重写，重写equals时也会自动重写hashcode。</p>
-<h3 id="hashCode方法"><a href="#hashCode方法" class="headerlink" title="hashCode方法"></a>hashCode方法</h3><p>x.hashCode()返回散列码，Object默认会从对象的存储地址得出散列码。</p>
-<p>equals与hashCode的定义必须<strong>相容</strong>:如果x.equals(y)返回true，那么x.hashCode()与y.hashCode()返回相同的值.</p>
-<h3 id="toString方法"><a href="#toString方法" class="headerlink" title="toString方法"></a>toString方法</h3><p>源码为</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.getClass().getName() + <span class="string">"@"</span> + Integer.toHexString(<span class="keyword">this</span>.hashCode());</span><br><span class="line">&#125;<span class="comment">//打印对象的类名和散列码</span></span><br></pre></td></tr></table></figure>
-<p>idea中也可以用快捷键重写</p>
-<p>如果x是一个任意对象，并调用System.out.println(x),println方法会简单地调用x.toString方法，并打印输出得到的字符串。</p>
-<p>数组继承了Object类的toString方法，并没有覆盖</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[]arr = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">System.out.println(arr);<span class="comment">//结果为[I@4411d970</span></span><br></pre></td></tr></table></figure>
-<p>因此要打印数组，要调用静态方法Arrays.toString</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(Arrays.toString(arr));</span><br><span class="line"><span class="comment">//结果为[1, 2, 3]</span></span><br></pre></td></tr></table></figure>
-<h2 id="泛型数组列表ArrayList"><a href="#泛型数组列表ArrayList" class="headerlink" title="泛型数组列表ArrayList"></a>泛型数组列表ArrayList</h2><p>ArrayList相当于c语言中的顺序表（Linklist相当于链表），它是一个<strong>泛型类</strong>。</p>
-<p>声明和构造一个数组列表</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; objects = <span class="keyword">new</span> ArrayList&lt;&gt;();<span class="comment">//右边的&lt;&gt;内容可以省略</span></span><br></pre></td></tr></table></figure>
-<p><strong>尖括号内的类型参数不允许是基本类型！</strong> 要使用包装器。</p>
-<p>使用add方法将元素添加到数组列表当中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objects.add(<span class="string">"hello"</span>);</span><br><span class="line">objects.add(<span class="string">"world"</span>);</span><br><span class="line">System.out.println(objects);<span class="comment">//[hello, world]</span></span><br></pre></td></tr></table></figure>
-<p>如果调用add而内部数组已满，数组列表就会<strong>自动地创建一个更大的数组</strong>，并将所有的对象从较小的数组中拷贝到较大的数组中。</p>
-<p>如果已经知道或能够估计出数组可能存储的元素数量，就可以在填充数组之前调用ensureCapacity方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objects.ensureCapacity(<span class="number">100</span>);<span class="comment">//分配一个包含100个对象的内部数组</span></span><br></pre></td></tr></table></figure>
-<p>这样一来，前100次add调用不会带来开销很大的重新分配空间，或者还可以这样</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; objects = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">100</span>);<span class="comment">//直接传给构造器</span></span><br></pre></td></tr></table></figure>
-<p>数组列表的容量和数组的大小是有区别的，容量只是<strong>可能</strong>保存的元素的个数；而数组的大小就说明有这么多个空位置可以使用。</p>
-<h3 id="访问数组列表的元素"><a href="#访问数组列表的元素" class="headerlink" title="访问数组列表的元素"></a>访问数组列表的元素</h3><p>不能像数组一样用[ ]来访问元素，而是用get来访问数组列表的元素。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; objects = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">objects.add(<span class="string">"hello "</span>);</span><br><span class="line">objects.add(<span class="string">"world "</span>);</span><br><span class="line">objects.add(<span class="string">"java!"</span>);</span><br><span class="line">System.out.println(objects.get(<span class="number">0</span>)+objects.get(<span class="number">1</span>)+objects.get(<span class="number">2</span>));</span><br><span class="line"><span class="comment">//打印结果</span></span><br><span class="line"><span class="comment">//hello world java!</span></span><br></pre></td></tr></table></figure>
-<p>如果要修改某个元素的值，则要使用set方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objects.set(<span class="number">2</span>,<span class="string">"yeah!"</span>);</span><br><span class="line">System.out.println(objects.get(<span class="number">0</span>)+objects.get(<span class="number">1</span>)+objects.get(<span class="number">2</span>));</span><br><span class="line"><span class="comment">//hello world yeah!</span></span><br></pre></td></tr></table></figure>
-<p>数组列表的容量和实际大小是不同的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; objects = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">5</span>);</span><br><span class="line">objects.add(<span class="string">"hello "</span>);</span><br><span class="line">objects.add(<span class="string">"world "</span>);</span><br><span class="line">objects.add(<span class="string">"java!"</span>);</span><br><span class="line">System.out.println(objects.size());<span class="comment">//容量为5，大小为3</span></span><br><span class="line">objects.set(<span class="number">3</span>,<span class="string">"a"</span>);<span class="comment">//error,只有当实际大小大于3时才能设置</span></span><br></pre></td></tr></table></figure>
-<p>还可以删除数组列表中的某个元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str = objects.remove(<span class="number">2</span>);<span class="comment">//返回被删除的元素</span></span><br><span class="line">System.out.println(objects.size());<span class="comment">//2</span></span><br><span class="line">System.out.println(objects);<span class="comment">//[hello , world ]</span></span><br></pre></td></tr></table></figure>
-<p>for each循环也同样适用于数组列表</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span>(String s:objects)&#123;</span><br><span class="line">            System.out.println(s);</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//hello </span></span><br><span class="line"><span class="comment">//world </span></span><br><span class="line"><span class="comment">//java!</span></span><br></pre></td></tr></table></figure>
-<h3 id="对象包装器和自动装箱"><a href="#对象包装器和自动装箱" class="headerlink" title="对象包装器和自动装箱"></a>对象包装器和自动装箱</h3><p>所有基本类型都有一个与之对应的类，这些类称之为包装器。<br>|基本类型| 包装器 |<br>|–|–|<br>|int  |Integer  |<br>|long|Long|<br>|float|Float|<br>|short|Short|<br>|byte|Byte|<br>|char|Character|<br>|boolean|Boolean|</p>
-<p>同时包装器类还是final，不能派生他们的子类。</p>
-<p>对于那些泛型类包容的是对象类型，即泛型类的类型参数要是对象。而基本类型不是对象，可以用包装器代替基本类型。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;<span class="keyword">int</span>&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();<span class="comment">//error</span></span><br><span class="line">ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();<span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
-<p>有一个很方便的特性能将基本数据类型传进数组列表</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list.add(<span class="number">3</span>);<span class="comment">//ok，等价于以下形式</span></span><br><span class="line">list.add(Integer.valueOf(<span class="number">3</span>));<span class="comment">//会将3自动包装</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n = list.get(i);<span class="comment">//ok，将一个Integer对象赋给int值时会自动拆箱</span></span><br></pre></td></tr></table></figure>
-<p>自动装箱与拆箱也适用于算术表达式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer n = <span class="number">3</span>;<span class="comment">//ok,装箱</span></span><br><span class="line">n++;<span class="comment">//自动拆箱，进行自加运算，再自动装箱</span></span><br></pre></td></tr></table></figure>
-<p>包装器和基本类型有一点很大的不同，基本类型可以用”==”进行比较，而包装器是引用类型，要用equals方法进行比较。</p>
-<p>最后强调一下，装箱和拆箱是<strong>编译器</strong>要做的工作，而不是虚拟机。</p>
-<p>如果想要构造一个Integer对象,则需要使用工厂方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer integer = Integer.valueOf(String s);<span class="comment">//s为数字字符串</span></span><br></pre></td></tr></table></figure>
-<h2 id="参数数量可变的方法"><a href="#参数数量可变的方法" class="headerlink" title="参数数量可变的方法"></a>参数数量可变的方法</h2><p>可以提供参数数量可变的方法，用…即可</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">meth</span><span class="params">(<span class="keyword">int</span>...num)</span></span>&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> n:num)&#123;</span><br><span class="line">     System.out.print(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>括号中的参数都为int类型，参数的个数是可变的，调用以上方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">meth(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>);</span><br><span class="line"><span class="comment">//结果为123456</span></span><br></pre></td></tr></table></figure>
-<p>可见，参数int…num实际为数组，可以看成int[ ]num，它将所有的参数保存在数组之中，具体事例可以参考printf方法的实现。</p>
-<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>对于定义一个枚举类型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> size&#123;small,mid,large&#125;</span><br></pre></td></tr></table></figure>
-<p>这个声明定义的类型是一个类，它刚好有四个事例，不可能构造新的对象。<br>比较两个枚举类型的值可以直接使用==</p>
-<p>我们也可以为其添加构造器，方法和字段</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> size&#123;</span><br><span class="line">    small(<span class="string">"s"</span>),mid(<span class="string">"m"</span>),large(<span class="string">"l"</span>);</span><br><span class="line">    <span class="keyword">private</span> String abbrevuation;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">size</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.abbrevuation = s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAbbrevuation</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> abbrevuation;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>枚举类的构造器总是私有的。</p>
-<p>所有枚举类型都是Enum类的子类，其中继承过来的toString方法将返回枚举常量名。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">size s = size.small;</span><br><span class="line">System.out.println(s.toString());</span><br><span class="line"><span class="comment">//输出small</span></span><br></pre></td></tr></table></figure>
-<p>每个枚举类型都有一个静态的values方法，它将返回一个包含全部枚举值的数组。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">size[] si = size.values();</span><br><span class="line"><span class="keyword">for</span>(size size:si)&#123;</span><br><span class="line">    System.out.println(size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出small mid large</span></span><br></pre></td></tr></table></figure>
-<p>compareTo可以用来比较两个枚举常量的大小，实现略</p>
-<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>java反射机制，是指在运行时去获取一个类的变量和方法信息，然后通过获取到的信息来创建对象，调用方法的一种机制。</p>
-<h3 id="获取Class类的对象"><a href="#获取Class类的对象" class="headerlink" title="获取Class类的对象"></a>获取Class类的对象</h3><p>要想通过反射去使用一个类，首先我们要获取该类的字节码文件对象，也就Class类型的对象。</p>
-<p>这里有个测试类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> reflection;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;<span class="comment">//测试类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;<span class="comment">//年龄</span></span><br><span class="line">    <span class="keyword">private</span> String name;<span class="comment">//姓名</span></span><br><span class="line">    <span class="keyword">private</span> String address;<span class="comment">//地址</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        age = <span class="number">0</span>;</span><br><span class="line">        name = <span class="string">"none"</span>;</span><br><span class="line">        address = <span class="string">"earth"</span>;</span><br><span class="line">    &#125;<span class="comment">//无参构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a,String n,String add)</span></span>&#123;</span><br><span class="line">        age = a;</span><br><span class="line">        name = n;</span><br><span class="line">        address = add;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAddress</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAddress</span><span class="params">(String address)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.address = address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test&#123;"</span> +</span><br><span class="line">                <span class="string">"age="</span> + age +</span><br><span class="line">                <span class="string">", name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", address='"</span> + address + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>有三种方法来获取该测试类的Class对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;test&gt; testClass = test<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line"></span><br><span class="line">Class&lt;?&gt; testClass = Class.forName(<span class="string">"reflection.test"</span>);<span class="comment">//类的位置</span></span><br><span class="line"></span><br><span class="line">test a = <span class="keyword">new</span> test();</span><br><span class="line">Class&lt;? extends test&gt; aClass = a.getClass();</span><br></pre></td></tr></table></figure>
-<p>Class类是一个泛型类，它表示每个类运行时的类型信息，每个类都有个Class类的对象。</p>
-<p>虚拟机为每个类型管理一个唯一的Class对象，因此可以用==来实现两个类对象的比较</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test t = <span class="keyword">new</span> test();</span><br><span class="line">System.out.println(test<span class="class">.<span class="keyword">class</span></span>==t.getClass());<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<h3 id="反射获取构造方法并使用"><a href="#反射获取构造方法并使用" class="headerlink" title="反射获取构造方法并使用"></a>反射获取构造方法并使用</h3><p>如果有一个Class类型的对象，可以用它构造类的实例。调用getConstructor方法将得到一个Constructor类型的对象，然后使用newInstance方法来构造一个实例。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取class对象</span></span><br><span class="line">Class&lt;?&gt; c = Class.forName(<span class="string">"reflection.test"</span>);</span><br><span class="line"><span class="comment">//等同于test o = new test(3,"jack","北京");通过反射来构造对象</span></span><br><span class="line">Constructor con = c.getConstructor(<span class="keyword">int</span><span class="class">.<span class="keyword">class</span>,<span class="title">String</span>.<span class="title">class</span>,<span class="title">String</span>.<span class="title">class</span>)</span>;</span><br><span class="line">Object o = con.newInstance(<span class="number">3</span>, <span class="string">"jack"</span>, <span class="string">"北京"</span>);<span class="comment">//传进参数</span></span><br></pre></td></tr></table></figure>
-<p>其中getConstructor方法中的参数为Class类型的对象，指定要调用的构造器，并且只能是非私有的构造器，如果需要获取所有类型的构造器，需要用getDeclaredConstructor方法</p>
-<p>newInstance方法返回一个Object类的引用</p>
-<h3 id="反射获取成员变量并使用"><a href="#反射获取成员变量并使用" class="headerlink" title="反射获取成员变量并使用"></a>反射获取成员变量并使用</h3><p>可以通过getField方法来获取成员变量，由于许多成员变量都是私有的，因此要使用getDeclaredField方法来获取私有变量，返回一个Filed对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Field age = c.getDeclaredField(<span class="string">"age"</span>);<span class="comment">//访问变量名为age的私有变量</span></span><br></pre></td></tr></table></figure>
-<p>获取了变量之后，便可以对其进行操作，但是默认是<strong>不能对私有成员进行操作的！</strong> 因此需要调用setAccessible方法来取消检查</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">age.setAccessible(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
-<p>现在可以用set方法来修改成员变量,第一个参数为所要修改的对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">age.set(o,<span class="number">5</span>);<span class="comment">//修改对象o中的age为5</span></span><br></pre></td></tr></table></figure>
-<p>get方法来返回这个Field对象所描述的对象的值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(age.get(o));<span class="comment">//5</span></span><br></pre></td></tr></table></figure>
-<p>下面来看一个例子，要求通过反射来修改类中的字段</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span> <span class="keyword">throws</span> ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException </span>&#123;</span><br><span class="line">        <span class="comment">//利用反射来修改类中的字段</span></span><br><span class="line">        <span class="comment">//获取class对象</span></span><br><span class="line">        Class&lt;?&gt; c = Class.forName(<span class="string">"reflection.test"</span>);</span><br><span class="line">        <span class="comment">//等同于test o = new test(3,"jack","北京");通过反射来构造对象</span></span><br><span class="line">        Constructor con = c.getConstructor(<span class="keyword">int</span><span class="class">.<span class="keyword">class</span>,<span class="title">String</span>.<span class="title">class</span>,<span class="title">String</span>.<span class="title">class</span>)</span>;</span><br><span class="line">        Object o = con.newInstance(<span class="number">3</span>, <span class="string">"jack"</span>, <span class="string">"北京"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(o);<span class="comment">//test&#123;age=3, name='jack', address='北京'&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//o.age = 5</span></span><br><span class="line">        <span class="comment">//Field age = c.getField("age");只能访问公有字段</span></span><br><span class="line">        Field age = c.getDeclaredField(<span class="string">"age"</span>);</span><br><span class="line">        age.setAccessible(<span class="keyword">true</span>);<span class="comment">//对私有的成员变量/方法都要暴力使用</span></span><br><span class="line">        age.set(o,<span class="number">5</span>);<span class="comment">//set方法来修改成员变量,第一个参数为所要修改的成员变量所在的对象</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//o.name = "peter"</span></span><br><span class="line">        Field name = c.getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">        name.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        name.set(o,<span class="string">"peter"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//o.address = "长沙"</span></span><br><span class="line">        Field address = c.getDeclaredField(<span class="string">"address"</span>);</span><br><span class="line">        address.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        address.set(o,<span class="string">"长沙"</span>);</span><br><span class="line">        System.out.println(o);<span class="comment">//test&#123;age=5, name='peter', address='长沙'&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印结果为</span></span><br><span class="line"><span class="comment">//test&#123;age=3, name='jack', address='北京'&#125;</span></span><br><span class="line"><span class="comment">//test&#123;age=5, name='peter', address='长沙'&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="反射获取成员方法并使用"><a href="#反射获取成员方法并使用" class="headerlink" title="反射获取成员方法并使用"></a>反射获取成员方法并使用</h3><p>与获取成员变量一样，方法可以通过getMethod来获取，返回一个Method对象（这些也都是非私有的）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Method getAge = c.getMethod(<span class="string">"getAge"</span>);<span class="comment">//第一个参数为方法名</span></span><br><span class="line"><span class="comment">//调用getAge()</span></span><br><span class="line">Method setage = cl.getMethod(<span class="string">"setAge"</span>, <span class="keyword">int</span><span class="class">.<span class="keyword">class</span>)</span>;<span class="comment">//第二个参数为要调用的方法参数的class对象</span></span><br><span class="line"><span class="comment">//调用setAge(int)</span></span><br></pre></td></tr></table></figure>
-<p>通过invoke方法来使用调用的方法,如果返回类型是基本类型，invoke方法会返回其包装器类型，invoke方法的第一个参数为所调用方法的对象，第二个为传进方法的值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Method getAge = c.getMethod(<span class="string">"getAge"</span>);</span><br><span class="line"><span class="keyword">int</span> a = (<span class="keyword">int</span>) getAge.invoke(o);<span class="comment">//int a = getAge();调用o中的getAge方法</span></span><br></pre></td></tr></table></figure>
-<p>下面来看例子，通过反射来调用方法并使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span> <span class="keyword">throws</span> ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException </span>&#123;</span><br><span class="line">        <span class="comment">//获得Class对象</span></span><br><span class="line">        Class&lt;?&gt; cl = Class.forName(<span class="string">"reflection.test"</span>);</span><br><span class="line">        <span class="comment">//使用反射调用方法</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//test t = new test();</span></span><br><span class="line">        Constructor&lt;?&gt; constructor = cl.getConstructor();<span class="comment">//默认构造函数</span></span><br><span class="line">        Object o = constructor.newInstance();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//t.getAge();</span></span><br><span class="line">        Method getAge = cl.getMethod(<span class="string">"getAge"</span>);<span class="comment">//先得到方法</span></span><br><span class="line">        <span class="keyword">int</span> a = (<span class="keyword">int</span>) getAge.invoke(o);<span class="comment">//如果返回类型是基本类型，invoke方法会返回其包装器类型</span></span><br><span class="line">        System.out.println(a);<span class="comment">//默认值为0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//t.setAge(12);</span></span><br><span class="line">        Method setage = cl.getMethod(<span class="string">"setAge"</span>, <span class="keyword">int</span><span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        setage.invoke(o,<span class="number">12</span>);<span class="comment">//第一个参数是所要调用方法的对象，可以看做调用o的setage方法</span></span><br><span class="line">        a = (<span class="keyword">int</span>) getAge.invoke(o);<span class="comment">//通过invoke来使用方法</span></span><br><span class="line">        System.out.println(a);<span class="comment">//值为12</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//对于静态方法，invoke中的第一个参数可以忽略</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="通过反射越过泛型检查"><a href="#通过反射越过泛型检查" class="headerlink" title="通过反射越过泛型检查"></a>通过反射越过泛型检查</h3><p>对于泛型类ArrayList，一旦尖括号中的类型定了，就不能传其他的值进去。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; arr = <span class="keyword">new</span> ArrayList();</span><br><span class="line">arr.add(<span class="number">10</span>);</span><br><span class="line">arr.add(<span class="number">20</span>);</span><br><span class="line">arr.add(<span class="string">"hello"</span>);<span class="comment">//会报错</span></span><br></pre></td></tr></table></figure>
-<p>这时可以利用反射来越过泛型检查</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;? extends ArrayList&gt; cl = arr.getClass();</span><br><span class="line">Method add = cl.getMethod(<span class="string">"add"</span>, Object<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">add.invoke(arr, <span class="string">"hello"</span>);</span><br><span class="line">System.out.println(arr);<span class="comment">//[10, 20, hello]</span></span><br></pre></td></tr></table></figure>
-<h3 id="反射总结"><a href="#反射总结" class="headerlink" title="反射总结"></a>反射总结</h3><p>利用反射来操作类的步骤大致为以下几点</p>
-<ol>
-<li>构造类的Class对象(三种方法)。</li>
-<li>通过Class对象来获取构造器来创建实例。</li>
-<li>通过所构造的Class对象的getMethod和getField方法来获取类的方法和成员变量。</li>
-<li>使用返回的Field类所提供的各种方法来操作成员变量。</li>
-<li>使用返回的Method类的invoke方法来使用所调用的方法。</li>
-<li>如果要访问私有方法、构造器、变量，要使用setAccessible(true)。</li>
-</ol>
-<p>注意事项：</p>
-<ul>
-<li>得到构造器、方法和字段的方法都有一个获取所有类型的方法getDeclaredXXX,可以用它来访问私有类型，不过要加上setAccessible</li>
-<li>invoke的返回值为Object，因此要进行强制类型转换.<h2 id="继承的设计技巧"><a href="#继承的设计技巧" class="headerlink" title="继承的设计技巧"></a>继承的设计技巧</h2></li>
-<li>将公共操作和字段放在超类中</li>
-<li>不要使用被保护的字段</li>
-<li>使用继承实现“is-a”关系</li>
-<li>除非所有继承的方法都有意义，否则不要使用继承</li>
-<li>在覆盖方法时，不要改变预期的行为</li>
-<li>使用多态，而不用使用类型信息</li>
-<li>不要滥用反射</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/01/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
         </p>
       
 
