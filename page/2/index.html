@@ -152,6 +152,185 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-《java核心技术》第六章笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/12/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0%E7%AC%94%E8%AE%B0/">java接口、lambda表达式与内部类</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/12/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-04-12T15:28:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="接口、lambda表达式与内部类"><a href="#接口、lambda表达式与内部类" class="headerlink" title="接口、lambda表达式与内部类"></a>接口、lambda表达式与内部类</h1><ul>
+<li>接口用来描述类应该做什么，而不指定它们具体应该如何实现。</li>
+<li>通过使用lambda表达式，可以用一种精妙而简洁的方式使用回调或可变行为的代码。</li>
+<li>内部类定义在另一个类的内部，它们的方法可以访问包含它们的外部类的字段。</li>
+</ul>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>定义一个接口需要使用<strong>interface</strong>关键字</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">English</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">studyen</span><span class="params">()</span></span>;<span class="comment">//接口中的方法</span></span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于接口，有下面几点需要注意：</p>
+<ul>
+<li>接口中所有的方法都自动是public方法（在实现接口时必须把方法声明为public）</li>
+<li>接口不会有实例字段。</li>
+</ul>
+<p>一个类可以实现一个或多个接口，使用<strong>implements</strong>关键字来实现一个接口，这个类还<strong>必须对接口中的所有方法提供定义</strong>。（默认方法可以不用）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">pingpongCoach</span> <span class="keyword">extends</span> <span class="title">coach</span> <span class="keyword">implements</span> <span class="title">English</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">studyen</span><span class="params">()</span> </span>&#123;<span class="comment">//对接口方法的实现</span></span><br><span class="line">        System.out.println(getName()+<span class="string">" coach study English!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面可以看见，一个类在实现接口的同时可以继承另一个类。<br><strong>提供实例字段和方法实现的任务应该由实现接口的那个类来完成！</strong> 因此可以将接口看作没有实例字段的抽象类。</p>
+<h3 id="接口的属性"><a href="#接口的属性" class="headerlink" title="接口的属性"></a>接口的属性</h3><p><strong>接口不是类</strong>，不能用new运算符实例化一个接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="keyword">new</span> English();<span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+<p>但是可以声明接口的变量，对接口使用<strong>多态</strong>(引用实现了这个接口的类对象)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">English en = <span class="keyword">new</span> pingpongCoach(...);<span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+<p>也可以用<strong>instanceof</strong> 检查一个对象是否实现了某个特定的接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(anObject <span class="keyword">instanceof</span> English)</span><br></pre></td></tr></table></figure>
+<p>接口可以继承另一个接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Orallanguage</span> <span class="keyword">extends</span> <span class="title">English</span></span>&#123;</span><br><span class="line">....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接口中虽然不能包含实例字段，却可以包含<strong>常量</strong>。接口中的字段会被自动设置为<strong>public static final</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">English</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">30</span>;<span class="comment">//public static final int num = 30;</span></span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="接口与抽象类"><a href="#接口与抽象类" class="headerlink" title="接口与抽象类"></a>接口与抽象类</h3><ul>
+<li>抽象类和接口的成员区别</li>
+</ul>
+<blockquote>
+<p>抽象类：变量、常量；有构造方法，抽象方法，非抽象方法<br>接口：常量，抽象方法</p>
+</blockquote>
+<ul>
+<li>一个类只能扩展一个类，但是能够实现多个接口</li>
+<li>类和类之间能够多层继承，而接口和接口之间能够多继承<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">English</span> <span class="keyword">extends</span> <span class="title">a</span>,<span class="title">b</span></span>&#123;</span><br><span class="line"><span class="comment">//接口的多继承</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">English</span> <span class="keyword">extends</span> <span class="title">a</span>,<span class="title">b</span>//<span class="title">error</span></span></span><br></pre></td></tr></table></figure></li>
+<li>抽象类是对事物的抽象，而接口是对行为的抽象。（如运动员类，说英语方法）</li>
+</ul>
+<h2 id="接口中的其他方法"><a href="#接口中的其他方法" class="headerlink" title="接口中的其他方法"></a>接口中的其他方法</h2><p>接口中还允许有静态方法、私有方法和默认方法</p>
+<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>接口中的静态方法只能通过接口名调用，静态方法能够<strong>拥有方法体</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ask</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"do you like English?"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>静态方法只能调用静态方法！</strong></p>
+<h3 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h3><p>私有方法可以为<strong>静态方法</strong>或<strong>实例方法</strong>，仅限于在接口本身的方法中使用，只能用作其他方法的辅助方法。</p>
+<h3 id="默认方法"><a href="#默认方法" class="headerlink" title="默认方法"></a>默认方法</h3><p>可以为接口方法提供一个默认方法实现，用<strong>default</strong>修饰符标记这样一个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">studyen</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"study English"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接口的实现可以不用覆盖这个方法（很少），并且可以调用默认方法。</p>
+<p>默认方法还可以调用其他方法（静态、私有）</p>
+<h3 id="解决默认方法冲突"><a href="#解决默认方法冲突" class="headerlink" title="解决默认方法冲突"></a>解决默认方法冲突</h3><p>如果先在一个接口中将一个方法定义为默认方法，然后又在超类或另一个接口中定义同样的方法，在java中解决的方法如下：</p>
+<ol>
+<li><strong>超类优先</strong>，如果超类提供了一个具体方法，同名而且有相同参数类型的默认方法会被忽略。</li>
+<li><strong>接口冲突</strong>。如果一个接口中提供了一个默认方法，另一个接口提供了一个同名而且参数类型相同的方法，必须<strong>覆盖</strong>这个方法来解决冲突。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">default</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="string">" "</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Named</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">default</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> getClass().getName()+<span class="string">"_"</span>+hashcode();&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Person</span>,<span class="title">Named</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> Person.<span class="keyword">super</span>.getName();</span><br><span class="line">	&#125;<span class="comment">//选择两个冲突方法中的一个，或者覆盖这个方法</span></span><br><span class="line">&#125;<span class="comment">//该类实现了上述两个接口</span></span><br></pre></td></tr></table></figure>
+<p>如果至少有一个接口提供了实现，编译器就会报告错误，程序员必须解决这个二义性。</p>
+<p>如果两个接口都<strong>没有</strong>提供默认实现，则只需实现这个方法或者都不实现（该类为抽象类）</p>
+<h2 id="对象克隆"><a href="#对象克隆" class="headerlink" title="对象克隆"></a>对象克隆</h2><p>为一个包含对象引用的变量建立副本时，原变量和副本都是引用的同一个对象，任何一个变量改变都会影响另一个变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloneClass c1 = <span class="keyword">new</span> CloneClass(<span class="string">"mike"</span>,<span class="number">15</span>);</span><br><span class="line">        CloneClass c2 = c1;</span><br><span class="line"></span><br><span class="line">        c2.setName(<span class="string">"jack"</span>);</span><br><span class="line">        System.out.println(c1.getName());<span class="comment">//jack</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果希望得到一个新对象，则需要使用clone方法，并且使用clone方法的类要实现Cloneable接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CloneClass c2 = (CloneClass) c1.clone();</span><br><span class="line">System.out.println(c1.getName());<span class="comment">//mike</span></span><br></pre></td></tr></table></figure>
+<p>默认的clone方法是浅拷贝（被复制对象的所有值属性都含有与原来对象的相同，<strong>而所有的对象引用属性仍然指向原来的对象</strong>）<br>如果需要，可以提供深拷贝。</p>
+<p>要小心使用clone，尽量使用new</p>
+<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p>lambda表达式是一个可传递的<strong>代码块</strong>，可以在以后执行一次或多次。</p>
+<p>lambda运算符：所有的lambda表达式都是用新的lambda运算符 “ <strong>-&gt;</strong> “,可以叫他，“转到”或者 “成为”。运算符将表达式分为两部分，左边指定<strong>输入参数</strong>，右边是lambda的主体。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(String s) -&gt; s.length()</span><br></pre></td></tr></table></figure>
+<p>如果方法只有一个参数，而且这个参数的类型可以推倒得出，那么甚至还可以省略小括号：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s -&gt; s.length()</span><br></pre></td></tr></table></figure>
+<p>即使lambda表达式没有参数，仍需提供空括号</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">() -&gt; System.out.println()</span><br></pre></td></tr></table></figure>
+<p>无须指定返回值</p>
+<h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><p>对于<strong>只有一个抽象方法</strong>的接口，需要这种接口的对象时，就可以提供一个lambda表达式，这种接口称为<strong>函数式接口</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">lami</span> </span>&#123;<span class="comment">//只有一个抽象方法的接口为函数式接口</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">show</span><span class="params">(String s)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如何用lambda表达式来表示这个接口呢，看如下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">lamc</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showtest</span><span class="params">(String s,lami la)</span></span>&#123;</span><br><span class="line">        System.out.println(la.show(s));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        lamc lam = <span class="keyword">new</span> lamc();</span><br><span class="line">        lam.showtest(<span class="string">"demo"</span>,s -&gt; s.length());<span class="comment">//lambda表达式是一个接口的实现</span></span><br><span class="line">        <span class="comment">//第二个参数为一个函数式接口</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时的lambda表达式实际为一个实现了该接口的类的实例<strong>对象</strong>，箭头右边是对接口中抽象方法的实现。</p>
+<p>既然lambda表达式可以看做实现了接口的对象的话，那么以下方式也是可以的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lami la = s-&gt;s.length();</span><br><span class="line"><span class="comment">//接口lami中的抽象方法被实现为return s.length;</span></span><br></pre></td></tr></table></figure>
+<h2 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h2><p>当lambda表达式<strong>只是执行一个方法调用</strong>时，可直接使用方法引用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lami la = s-&gt;s.length();<span class="comment">//lambda表达式只是调用了String类的length方法</span></span><br><span class="line">lami la = String::length;<span class="comment">//用方法引用来进行简化</span></span><br></pre></td></tr></table></figure>
+<p>方法引用的格式为  <strong>类名::方法</strong>，方法也包括静态方法</p>
+<p>方法引用和lambda表达式一样不能独立存在，总是转换为函数式接口的实例。</p>
+<h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><p>lambda表达式有三个部分</p>
+<ul>
+<li>一个代码块</li>
+<li>参数</li>
+<li>自由变量的值，这里指<strong>非参数而且不在代码中定义的变量</strong></li>
+</ul>
+<p>lambda表达式可以捕获外围变量的值，但是只能引用值不会改变的变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">9</span>;i++)&#123;</span><br><span class="line">    lami lb = s-&gt; s+i;<span class="comment">//error,i是可变的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即lambda表达式中捕获的变量实际上是<strong>事实最终变量</strong>。</p>
+<p>另外还需注意一点，在lambda表达式中声明与一个局部变量同名的参数或局部变量是不合法的</p>
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>把类定义在另一个类的内部，该类就被称为内部类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> n = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">inner</span></span>&#123;<span class="comment">//内部类</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(num);<span class="comment">//内部类可以直接访问外部类的数据成员（包括私有）</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>内部类方法可以访问定义在这个类作用域中的数据，包括<strong>私有数据</strong>，而外部类要访问内部类的成员要创建对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//show();//报错，不能直接访问内部类的成员</span></span><br><span class="line">        inner in = <span class="keyword">new</span> inner();</span><br><span class="line">        in.show();<span class="comment">//外部类访问内部类的成员需要创建对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对于成员内部类，外界可以访问，不过需要特殊的格式</li>
+</ul>
+<p>格式:外部类名.内部类名 对象名 = 外部类对象.内部类对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建内部类对象并调用方法</span></span><br><span class="line">        Outer.inner in = <span class="keyword">new</span> Outer().<span class="keyword">new</span> inner();</span><br><span class="line">        in.show();</span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对于局部内部类，外界不能访问；局部内部类还可以访问<strong>局部变量</strong>！</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">methodclass</span></span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show1</span><span class="params">()</span></span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"局部变量为"</span>+n);<span class="comment">//访问局部变量</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        methodclass methodclass = <span class="keyword">new</span> methodclass();<span class="comment">//需要创建对象</span></span><br><span class="line">        methodclass.show1();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h3><p>匿名内部类是一个继承了该类或者实现了该接口的子类匿名<strong>对象</strong>！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> anonyClass()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show3</span><span class="params">()</span></span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"匿名内部类！"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.show3();<span class="comment">//创建匿名内部类实现anonyClass接口，这是一个对象,能调用其实现的方法</span></span><br><span class="line">        </span><br><span class="line">anonyClass an = <span class="keyword">new</span> anonyClass()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show3</span><span class="params">()</span></span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"匿名内部类！"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;<span class="comment">//该匿名内部类实现了anonyClass这个接口</span></span><br></pre></td></tr></table></figure>
+<p>上述的匿名内部类实现的是一个函数式接口，可以用lambda表达式来代替</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anonyClass ano = ()-&gt; System.out.println(<span class="string">"匿名内部类！"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>由于匿名内部类<strong>没有类名</strong>，所以不能有构造器</p>
+<h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><p>只有内部类可以声明为static<br>特点：不能使用外部类的非static成员变量和成员方法。</p>
+<p>非静态内部类编译后会默认的保存一个指向外部类的引用，而静态类却没有。<strong>即使没有外部类对象，也可以创建静态内部类对象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">inner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"静态内部类"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Outer.inner in = <span class="keyword">new</span> Outer.inner();<span class="comment">//无须外部类对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ul>
+<li>静态内部类可以有静态字段和方法</li>
+<li>接口中声明的内部类自动是static和public</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/12/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-字符串中数据排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
