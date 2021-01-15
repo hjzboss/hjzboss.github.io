@@ -145,6 +145,77 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-一个关于复杂声明的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/25/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8E%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E7%9A%84%E9%97%AE%E9%A2%98/">一个关于复杂声明的问题</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/25/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8E%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-03-25T12:18:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在看《c陷阱与缺陷》时，有这么一个复杂声明</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(*(<span class="keyword">void</span>(*)())<span class="number">0</span>)();</span><br></pre></td></tr></table></figure>
+<p>起初看上去的确挺头疼的，思考了许久突然就有了思路，我的突破点在那个0。</p>
+<p>(void(*)())0，0前面的括号与我们平常见的强制类型转换符极其相似</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = (<span class="keyword">int</span>)y;</span><br></pre></td></tr></table></figure>
+<p>所以这是将0强制转换成某种类型。<br>再看括号中的void(*)(),</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*p)();<span class="comment">//这是一个函数指针，指向返回值为void，没有参数的函数</span></span><br><span class="line"><span class="keyword">int</span> x;<span class="comment">//这是个整型变量</span></span><br><span class="line">(<span class="keyword">int</span>)<span class="comment">//这是个强制转换类型符，转换为整型</span></span><br><span class="line">(<span class="keyword">void</span> (*)())<span class="comment">//所以这也是个强制转换类型符，转换为函数指针</span></span><br></pre></td></tr></table></figure>
+<p>而将其去掉变量名p，则为强制转换类型符，强制转换为函数指针类型。<br>所以(void (*))0 是将常数0强制转换为函数指针类型。</p>
+<p>整个表达式的意思是调用0这个函数指针所指向的函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MAX</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">int</span> (*p)(<span class="keyword">int</span>,<span class="keyword">int</span>) = MAX;<span class="comment">//使函数指针指向MAX函数</span></span><br><span class="line"></span><br><span class="line">(*p)(<span class="number">2</span>,<span class="number">3</span>)；<span class="comment">//调用函数指针所指向的函数</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/25/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8E%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-《java核心技术》第四章笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -575,7 +646,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 hjzboss
+    		&copy; 2021 hjzboss
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
