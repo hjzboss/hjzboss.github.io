@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2021/1 | hjzboss的博客</title>
+  <title>redis与springboot整合需要注意的点 | hjzboss的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="西科18级计算机，目前正在考研中...">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hjzboss的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2021/01/index.html">
+  <meta name="description" content="redis整合注意事项 spring boot如果导入了redis，那么springboot的cacheable注解会默认使用redis来进行缓存，使用默认的RedisCacheManager来调用默认的RedisTemplate保存键值对，其使用的是jdk的序列化器。 如果想要将对象保存至redis，需要自己实现一个RedisTemplate，改变默认的序列化器为json序列化器即可。  123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis与springboot整合需要注意的点">
+<meta property="og:url" content="http://yoursite.com/2021/01/18/redis%E4%B8%8Espringboot%E6%95%B4%E5%90%88%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9/index.html">
 <meta property="og:site_name" content="hjzboss的博客">
-<meta property="og:description" content="西科18级计算机，目前正在考研中...">
+<meta property="og:description" content="redis整合注意事项 spring boot如果导入了redis，那么springboot的cacheable注解会默认使用redis来进行缓存，使用默认的RedisCacheManager来调用默认的RedisTemplate保存键值对，其使用的是jdk的序列化器。 如果想要将对象保存至redis，需要自己实现一个RedisTemplate，改变默认的序列化器为json序列化器即可。  123">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-18T14:46:25.000Z">
+<meta property="article:modified_time" content="2021-01-18T14:47:02.917Z">
 <meta property="article:author" content="hjzboss">
 <meta property="article:tag" content="学生,编程,计算机">
 <meta name="twitter:card" content="summary">
@@ -143,76 +145,187 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-redis与springboot整合需要注意的点" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      redis与springboot整合需要注意的点
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/18/redis%E4%B8%8Espringboot%E6%95%B4%E5%90%88%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9/" class="archive-article-date">
+
+        
+        <a href="/2021/01/18/redis%E4%B8%8Espringboot%E6%95%B4%E5%90%88%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9/" class="archive-article-date">
   	<time datetime="2021-01-18T14:46:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-18</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/18/redis%E4%B8%8Espringboot%E6%95%B4%E5%90%88%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9/">redis与springboot整合需要注意的点</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="redis整合注意事项"><a href="#redis整合注意事项" class="headerlink" title="redis整合注意事项"></a>redis整合注意事项</h1><ol>
+<li>spring boot如果导入了redis，那么springboot的cacheable注解会默认使用redis来进行缓存，使用默认的RedisCacheManager来调用默认的RedisTemplate保存键值对，其使用的是jdk的序列化器。</li>
+<li>如果想要将对象保存至redis，需要自己实现一个RedisTemplate，改变默认的序列化器为json序列化器即可。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean(value = &quot;myRedisTemplate&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RedisTemplate&lt;Object, Employee&gt; <span class="title">myRedisTemplate</span><span class="params">(RedisConnectionFactory factory)</span> </span>&#123;</span><br><span class="line">    RedisTemplate&lt;Object, Employee&gt; template = <span class="keyword">new</span> RedisTemplate&lt;&gt;();</span><br><span class="line">    template.setConnectionFactory(factory);</span><br><span class="line">    <span class="comment">//json序列化器</span></span><br><span class="line">    Jackson2JsonRedisSerializer&lt;Employee&gt; jackson2JsonRedisSerializer</span><br><span class="line">            = <span class="keyword">new</span> Jackson2JsonRedisSerializer&lt;&gt;(Employee.class);</span><br><span class="line">    template.setDefaultSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">    <span class="keyword">return</span> template;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<ol start="3">
+<li>保存不同的对象需要实现不同的RedisTemplate，如保存员工需要实现RedisTemplate&lt;Object, Employee&gt;，而保存部门则要实现一个RedisTemplate&lt;Object, Department&gt;。<strong>否则会产生可以保存对象，但是无法读取对象的异常。</strong></li>
+<li>对于不同的RedisTemplate都需要与一个RedisCacheManager绑定，将其传给RedisCacheManager即可，并要设置一个manager为默认的manager。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//CacheManagerCustomizers可以来定制缓存的一些规则</span></span><br><span class="line"><span class="meta">@Primary</span>  <span class="comment">//将某个缓存管理器作为默认的</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RedisCacheManager <span class="title">employeeCacheManager</span><span class="params">(RedisTemplate&lt;Object, Employee&gt; empRedisTemplate)</span></span>&#123;</span><br><span class="line">    RedisCacheManager cacheManager = <span class="keyword">new</span> RedisCacheManager(empRedisTemplate);</span><br><span class="line">    <span class="comment">//key多了一个前缀</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用前缀，默认会将CacheName作为key的前缀</span></span><br><span class="line">    cacheManager.setUsePrefix(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cacheManager;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RedisCacheManager <span class="title">deptCacheManager</span><span class="params">(RedisTemplate&lt;Object, Department&gt; deptRedisTemplate)</span></span>&#123;</span><br><span class="line">    RedisCacheManager cacheManager = <span class="keyword">new</span> RedisCacheManager(deptRedisTemplate);</span><br><span class="line">    <span class="comment">//key多了一个前缀</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用前缀，默认会将CacheName作为key的前缀</span></span><br><span class="line">    cacheManager.setUsePrefix(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cacheManager;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<ol start="5">
+<li>然后在对应的缓存指定对应的cacheManager</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheConfig(cacheNames=&quot;emp&quot;,cacheManager = &quot;employeeCacheManager&quot;)</span> <span class="comment">//抽取缓存的公共配置</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeService</span> </span>&#123;</span><br><span class="line">	<span class="comment">//crud</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheConfig(cacheNames=&quot;dept&quot;,cacheManager = &quot;deptCacheManager&quot;)</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DepartmentService</span> </span>&#123;</span><br><span class="line">	<span class="comment">//crud</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>也可以使用缓存管理器得到缓存，进行api调用，而不要springboot帮你进行缓存保存</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Department <span class="title">getDeptById</span><span class="params">(Integer id)</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;查询部门&quot;</span>+id);</span><br><span class="line">    Department department = departmentMapper.getDeptById(id);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取某个缓存，value或cacheNames的值为dept的缓存</span></span><br><span class="line">    Cache dept = deptCacheManager.getCache(<span class="string">&quot;dept&quot;</span>);</span><br><span class="line">    dept.put(<span class="string">&quot;dept:1&quot;</span>,department);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> department;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/yilia/支付宝.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/yilia/微信.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/01/18/redis%E4%B8%8Espringboot%E6%95%B4%E5%90%88%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/16/c-const%E3%80%81%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88/" class="archive-article-date">
-  	<time datetime="2021-01-15T16:36:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/16/c-const%E3%80%81%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">c++const、引用和指针</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/16/c-const%E3%80%81%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88/">c++const、引用和指针</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -235,8 +348,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
