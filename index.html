@@ -145,6 +145,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-zookeeper和dubbo简单使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/20/zookeeper%E5%92%8Cdubbo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">zookeeper和dubbo简单使用</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/20/zookeeper%E5%92%8Cdubbo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2021-01-20T13:56:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="dubbo和zookeeper"><a href="#dubbo和zookeeper" class="headerlink" title="dubbo和zookeeper"></a>dubbo和zookeeper</h1><ul>
+<li>Dubbo是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。</li>
+<li>ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。</li>
+</ul>
+<p>dubbo实现各模块的rpc调用，而zookeeper相当于一个管理员。各模块需要先在zookeeper中注册，如果A模块想使用B模块的服务，先要到zookeeper中找到B的地址，然后使用rpc调用。</p>
+<h2 id="在docker中安装和启动zookeeper"><a href="#在docker中安装和启动zookeeper" class="headerlink" title="在docker中安装和启动zookeeper"></a>在docker中安装和启动zookeeper</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull docker.io/zookeeper</span><br><span class="line">docker run <span class="literal">-d</span> -<span class="literal">-name</span> ZK01 <span class="literal">-p</span> <span class="number">2181</span>:<span class="number">2181</span> -<span class="literal">-restart</span> always <span class="number">28</span>ffb774bc32</span><br></pre></td></tr></table></figure>
+
+<h2 id="卖票和买票的例子"><a href="#卖票和买票的例子" class="headerlink" title="卖票和买票的例子"></a>卖票和买票的例子</h2><ol>
+<li>在idea中创建两个模块，买票模块和卖票模块</li>
+<li>在两个模块的pom文件中加入dubbo和zkclient的依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dubbo-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--zookeeper的客户端依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.sgroschupf<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zkclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在卖票模块的配置文件中配置注册中心的地址，要扫描的包（要注册的服务）<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dubbo.application.name=provider.ticket</span><br><span class="line"></span><br><span class="line">dubbo.registry.address=zookeeper://192.168.124.6:2181</span><br><span class="line"></span><br><span class="line">dubbo.scan.base-packages=com.hjznb.provider.service</span><br></pre></td></tr></table></figure></li>
+<li>在买票模块中编写服务代码，在要发布的类上<strong>加上dubbo的service注解</strong>，会将该服务发布出去</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hjznb.provider.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.config.annotation.Service;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Service</span>    <span class="comment">//将服务发布出去，dubbo的注解</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TicketServiceImpl</span> <span class="keyword">implements</span> <span class="title">TicketService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTicket</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;《泰坦尼克号》&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>在买票模块中创建所要使用的卖票模块中的类（<strong>全类名要一致</strong>）</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hjznb.provider.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TicketService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">getTicket</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>在买票代码中使用该服务，需要用@Reference注解来标明要引用的类，duboo会从zookeeper中引用该类。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.config.annotation.Reference;</span><br><span class="line"><span class="keyword">import</span> com.hjznb.provider.service.TicketService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span>	<span class="comment">//spring框架的service注解，将其注入到容器中</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Reference</span></span><br><span class="line">    TicketService ticketService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String ticket = ticketService.getTicket();</span><br><span class="line">        System.out.println(<span class="string">&quot;买到了&quot;</span>+ticket);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>先启动卖票模块，再到买票模块中进行测试，控制台输出：买到了《泰坦尼克号》</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConsumerApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        userService.hello();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// 买到了《泰坦尼克号》</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：需要再两个模块的启动类上加上@EnableDubbo注解才能使用dubbo，否则会产生空指针异常！</strong></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>将服务提供者注册到注册中心的步骤：</p>
+<ol>
+<li>引入dubbo和zkclient</li>
+<li>配置dubbo的扫描包和注册中心地址</li>
+<li>使用@Service发布服务，是dubbo包下的service注解</li>
+</ol>
+<p>消费者消费的步骤：</p>
+<ol>
+<li>引入依赖</li>
+<li>配置注册中心地址</li>
+<li>引用服务@Reference</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/20/zookeeper%E5%92%8Cdubbo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-redis与springboot整合需要注意的点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -3232,114 +3337,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/08/11/mybatis%E6%80%BB%E7%BB%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java中4个常用的函数式接口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/31/java%E4%B8%AD4%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">java中4个常用的函数式接口</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/31/java%E4%B8%AD4%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
-  	<time datetime="2020-05-31T15:08:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h1><p>只有一个抽象方法的接口叫做函数式接口。这时就可以提供一个lambda表达式。</p>
-<p>下面将介绍4个常用的函数式接口</p>
-<ul>
-<li>Supplier&lt; T &gt;</li>
-<li>Consumer&lt; T &gt;</li>
-<li>Function&lt;T,R&gt;</li>
-<li>Predicate&lt; T &gt;</li>
-</ul>
-<h2 id="Supplier-lt-T-gt"><a href="#Supplier-lt-T-gt" class="headerlink" title="Supplier&lt; T &gt;"></a>Supplier&lt; T &gt;</h2><p>Supplier接口中只有一个方法，需要实现的方法是get，该方法返回一个类型为T的值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">T <span class="title">get</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>下面的例子用该方法来返回数组中的最大值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Supplier;</span><br><span class="line"></span><br><span class="line"><span class="comment">//supplier函数式接口用来返回数据</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">supplier</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> a = max(()-&gt;&#123;</span><br><span class="line">            <span class="keyword">int</span> max = arr[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(max&lt;arr[i]) max = arr[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> max;</span><br><span class="line">        &#125;);</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(Supplier&lt;Integer&gt; s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> s.get();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Consumer-lt-T-gt"><a href="#Consumer-lt-T-gt" class="headerlink" title="Consumer&lt; T &gt;"></a>Consumer&lt; T &gt;</h2><p>需要实现的方法为accept，接收一个T类型的参数，没有返回值。可以用来处理数据</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T var1)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>下面的例子用来输出字符串</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">consumer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        print(<span class="string">&quot;hello&quot;</span>,System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(String s,Consumer&lt;String&gt; c)</span></span>&#123;</span><br><span class="line">        c.accept(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>该接口还有另一个很实用的方法andThen，该方法提供了默认实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> Consumer&lt;T&gt; <span class="title">andThen</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; after)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(after);</span><br><span class="line">    <span class="keyword">return</span> (t) -&gt; &#123;</span><br><span class="line">        <span class="keyword">this</span>.accept(t);</span><br><span class="line">        after.accept(t);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>调用这个方法会返回一个Consumer对象，它的accept实现为依次调用两个对象的accept方法</p>
-<p>下面用这个方法来输出两个不同的字符串</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">consumer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        print(<span class="string">&quot;hello&quot;</span>,System.out::println,s-&gt;&#123;</span><br><span class="line">            System.out.println(s+<span class="string">&quot; world!&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(String s, Consumer&lt;String&gt; c1,Consumer&lt;String&gt; c2)</span></span>&#123;</span><br><span class="line">        c1.andThen(c2).accept(s);</span><br><span class="line">        <span class="comment">//返回的对象的accept方法为先调用c1的accept,再调用c2的accept</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//hello</span></span><br><span class="line"><span class="comment">//hello world</span></span><br></pre></td></tr></table></figure>
-<h2 id="Function-lt-T-R-gt"><a href="#Function-lt-T-R-gt" class="headerlink" title="Function&lt;T,R&gt;"></a>Function&lt;T,R&gt;</h2><p>需要实现的方法为apply，输入一个T类型的值，返回一个R类型的值，可以用来转换数据</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">R <span class="title">apply</span><span class="params">(T var1)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>下面的例子为将字符串转换为数字</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Function;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Function&lt;T,R&gt;的apply方法，输入T，返回R</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">function</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        convert(<span class="string">&quot;123&quot;</span>,Integer::parseInt);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将字符串转换为数字</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">convert</span><span class="params">(String s, Function&lt;String,Integer&gt; f)</span></span>&#123;</span><br><span class="line">        Integer apply = f.apply(s);</span><br><span class="line">        System.out.println(apply);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>它也有个andThen方法，不过和Consumer的不同</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">default</span> &lt;V&gt; <span class="function">Function&lt;T, V&gt; <span class="title">andThen</span><span class="params">(Function&lt;? <span class="keyword">super</span> R, ? extends V&gt; after)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(after);</span><br><span class="line">    <span class="keyword">return</span> (t) -&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> after.apply(<span class="keyword">this</span>.apply(t));</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>下面用这个方法来实现字符串转换数字并加5，然后再转换为字符串并输出</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Function;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Function&lt;T,R&gt;的apply方法，输入T，返回R</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">function</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        convertShow(<span class="string">&quot;123&quot;</span>,Integer::parseInt,s -&gt;&#123;<span class="keyword">return</span> String.valueOf(s+<span class="number">5</span>);&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//将字符串转换为数字并加5输出</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">convertShow</span><span class="params">(String s,Function&lt;String,Integer&gt; f1,Function&lt;Integer,String&gt;f2 )</span></span>&#123;</span><br><span class="line">        String s1 = f1.andThen(f2).apply(s);</span><br><span class="line">        System.out.println(s1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//128</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Predicate-lt-T-gt"><a href="#Predicate-lt-T-gt" class="headerlink" title="Predicate&lt; T &gt;"></a>Predicate&lt; T &gt;</h2><p>需要实现的方法为test，该方法可以用来测试数据，返回一个boolean值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T var1)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>下面的例子用来检验字符串的长度</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Predicate;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*predicate可以用来筛选信息*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">predicate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String string = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">        <span class="keyword">boolean</span> b = test(string,s-&gt;s.length()&gt;<span class="number">3</span>);</span><br><span class="line">        System.out.println(b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(String str,Predicate&lt;String&gt; predicate)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> predicate.test(str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> Predicate<T>还有几个非常有用的方法，分别代表逻辑运算中的与、非、或</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">and</span><span class="params">(Predicate&lt;? <span class="keyword">super</span> T&gt; other)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(other);</span><br><span class="line">    <span class="keyword">return</span> (t) -&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.test(t) &amp;&amp; other.test(t);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">negate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (t) -&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> !<span class="keyword">this</span>.test(t);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">or</span><span class="params">(Predicate&lt;? <span class="keyword">super</span> T&gt; other)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(other);</span><br><span class="line">    <span class="keyword">return</span> (t) -&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.test(t) || other.test(t);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>下面用与运算来判断字符串的长度是否属于某个范围</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Predicate;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*predicate可以用来筛选信息*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">predicate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String string = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">        System.out.println(AND(string,s -&gt; s.length()&gt;<span class="number">4</span>,s -&gt; s.length()&lt;<span class="number">14</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">AND</span><span class="params">(String s,Predicate&lt;String&gt; p1,Predicate&lt;String&gt; p2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p1.and(p2).test(s);<span class="comment">//逻辑与</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上接口只是函数式接口中常用的几个，还有其他如Runnable这样的接口也是很常见的。</p>
-<p>这些接口大多数在处理流的时候出现，要熟练掌握lambda表达式，并对其进行运用。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/31/java%E4%B8%AD4%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">展开全文 >></a>
         </p>
       
 
