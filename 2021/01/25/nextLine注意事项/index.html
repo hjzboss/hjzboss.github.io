@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | hjzboss的博客</title>
+  <title>nextLine注意事项 | hjzboss的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="西科18级计算机，目前正在考研中...">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hjzboss的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2020/page/2/index.html">
+  <meta name="description" content="java Scanner中的nextLine方法的问题今天在使用java刷算法题的时候，遇到了一些小问题，scanner的nextLine方法读入了空字符串，但是输入明明没有空字符串，于是后面在使用时产生了空指针异常。 问题产生原因分析在官方文档中显示，java的nextLine()会读取到回车结束。 此处的输入案例 123456789101110 12W........WW..WWW.....W">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nextLine注意事项">
+<meta property="og:url" content="http://yoursite.com/2021/01/25/nextLine%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
 <meta property="og:site_name" content="hjzboss的博客">
-<meta property="og:description" content="西科18级计算机，目前正在考研中...">
+<meta property="og:description" content="java Scanner中的nextLine方法的问题今天在使用java刷算法题的时候，遇到了一些小问题，scanner的nextLine方法读入了空字符串，但是输入明明没有空字符串，于是后面在使用时产生了空指针异常。 问题产生原因分析在官方文档中显示，java的nextLine()会读取到回车结束。 此处的输入案例 123456789101110 12W........WW..WWW.....W">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/images/20180602000319418.png">
+<meta property="article:published_time" content="2021-01-25T11:45:22.000Z">
+<meta property="article:modified_time" content="2021-01-25T11:45:44.539Z">
 <meta property="article:author" content="hjzboss">
-<meta property="article:tag" content="学生,编程,计算机">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/20180602000319418.png">
   
     <link rel="alternative" href="/atom.xml" title="hjzboss的博客" type="application/atom+xml">
   
@@ -143,36 +147,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-nextLine注意事项" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nextLine注意事项
+    </h1>
+  
+
+        
+        <a href="/2021/01/25/nextLine%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
+  	<time datetime="2021-01-25T11:45:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-25</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="java-Scanner中的nextLine方法的问题"><a href="#java-Scanner中的nextLine方法的问题" class="headerlink" title="java Scanner中的nextLine方法的问题"></a>java Scanner中的nextLine方法的问题</h1><p>今天在使用java刷算法题的时候，遇到了一些小问题，scanner的nextLine方法读入了空字符串，但是输入明明没有空字符串，于是后面在使用时产生了空指针异常。</p>
+<h2 id="问题产生原因分析"><a href="#问题产生原因分析" class="headerlink" title="问题产生原因分析"></a>问题产生原因分析</h2><p>在官方文档中显示，java的nextLine()会读取到回车结束。<img src="/images/20180602000319418.png" alt="images/"></p>
+<p>此处的输入案例</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">10 12</span><br><span class="line">W........WW.</span><br><span class="line">.WWW.....WWW</span><br><span class="line">....WW...WW.</span><br><span class="line">.........WW.</span><br><span class="line">.........W..</span><br><span class="line">..W......W..</span><br><span class="line">.W.W.....WW.</span><br><span class="line">W.W.W.....W.</span><br><span class="line">.W.W......W.</span><br><span class="line">..W.......W.</span><br></pre></td></tr></table></figure>
+
+
+
+<p>前面使用了两次nextInt()方法来读取两个数字，然后想使用使用nextLine()来读取下一行数据，但<strong>此时读取的仍然是上一行，因为上一行中有个换行符没读取</strong>，因此nextLine()会先读取换行符，此时读出来一个空字符串。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>在读取下一行数据之前，先调用一次nextLine()方法跳过换行符。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/yilia/支付宝.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/yilia/微信.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/%E5%85%B3%E4%BA%8E%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E6%80%9D%E8%80%83%E5%92%8C%E6%94%B9%E8%BF%9B/" class="archive-article-date">
-  	<time datetime="2020-05-16T15:01:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/%E5%85%B3%E4%BA%8E%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E6%80%9D%E8%80%83%E5%92%8C%E6%94%B9%E8%BF%9B/">关于快速排序的思考和改进</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -184,364 +226,105 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/01/25/nextLine%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/01/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%B9%9D%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-05-01T09:27:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/20/zookeeper%E5%92%8Cdubbo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">zookeeper和dubbo简单使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/01/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%B9%9D%E7%AB%A0%E7%AC%94%E8%AE%B0/">java集合</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/21/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AB%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-04-21T14:11:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/21/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AB%E7%AB%A0%E7%AC%94%E8%AE%B0/">java泛型</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/16/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%B8%83%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-04-16T15:18:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/16/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%B8%83%E7%AB%A0%E7%AC%94%E8%AE%B0/">java异常、断言和日志</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/12/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-04-12T15:28:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/12/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0%E7%AC%94%E8%AE%B0/">java接口、lambda表达式与内部类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-04-09T14:02:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F/">字符串中数据排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/09/String%E7%B1%BB%E5%9E%8B%E5%92%8Cint%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/" class="archive-article-date">
-  	<time datetime="2020-04-09T13:34:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/09/String%E7%B1%BB%E5%9E%8B%E5%92%8Cint%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/">String类型和int类型之间相互转换</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/01/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-04-01T05:19:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/01/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%AC%94%E8%AE%B0/">java继承、多态和反射</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/29/C%E8%AF%AD%E8%A8%80%EF%BC%9A%E9%80%9A%E8%AE%AF%E5%BD%95/" class="archive-article-date">
-  	<time datetime="2020-03-29T06:13:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/29/C%E8%AF%AD%E8%A8%80%EF%BC%9A%E9%80%9A%E8%AE%AF%E5%BD%95/">C语言：通讯录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">c/c++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/25/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8E%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2020-03-25T12:18:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/25/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8E%E5%A4%8D%E6%9D%82%E5%A3%B0%E6%98%8E%E7%9A%84%E9%97%AE%E9%A2%98/">一个关于复杂声明的问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">c/c++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2020/page/3/">3</a><a class="extend next" rel="next" href="/archives/2020/page/3/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -565,8 +348,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
