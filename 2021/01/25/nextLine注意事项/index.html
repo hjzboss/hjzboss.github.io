@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>nextLine注意事项 | hjzboss的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java Scanner中的nextLine方法的问题今天在使用java刷算法题的时候，遇到了一些小问题，scanner的nextLine方法读入了空字符串，但是输入明明没有空字符串，于是后面在使用时产生了空指针异常。 问题产生原因分析在官方文档中显示，java的nextLine()会读取到回车结束。 此处的输入案例 123456789101110 12W........WW..WWW.....W">
+  <meta name="description" content="问题产生原因分析    解决方法      java Scanner中的nextLine方法的问题今天在使用java刷算法题的时候，遇到了一些小问题，scanner的nextLine方法读入了空字符串，但是输入明明没有空字符串，于是后面在使用时产生了空指针异常。 1. 问题产生原因分析在官方文档中显示，java的nextLine()会读取到回车结束。 此处的输入案例 123456789101">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nextLine注意事项">
 <meta property="og:url" content="http://yoursite.com/2021/01/25/nextLine%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
 <meta property="og:site_name" content="hjzboss的博客">
-<meta property="og:description" content="java Scanner中的nextLine方法的问题今天在使用java刷算法题的时候，遇到了一些小问题，scanner的nextLine方法读入了空字符串，但是输入明明没有空字符串，于是后面在使用时产生了空指针异常。 问题产生原因分析在官方文档中显示，java的nextLine()会读取到回车结束。 此处的输入案例 123456789101110 12W........WW..WWW.....W">
+<meta property="og:description" content="问题产生原因分析    解决方法      java Scanner中的nextLine方法的问题今天在使用java刷算法题的时候，遇到了一些小问题，scanner的nextLine方法读入了空字符串，但是输入明明没有空字符串，于是后面在使用时产生了空指针异常。 1. 问题产生原因分析在官方文档中显示，java的nextLine()会读取到回车结束。 此处的输入案例 123456789101">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/images/20180602000319418.png">
 <meta property="article:published_time" content="2021-01-25T11:45:22.000Z">
-<meta property="article:modified_time" content="2021-01-25T11:45:44.539Z">
+<meta property="article:modified_time" content="2021-02-06T04:37:41.259Z">
 <meta property="article:author" content="hjzboss">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -167,15 +167,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="java-Scanner中的nextLine方法的问题"><a href="#java-Scanner中的nextLine方法的问题" class="headerlink" title="java Scanner中的nextLine方法的问题"></a>java Scanner中的nextLine方法的问题</h1><p>今天在使用java刷算法题的时候，遇到了一些小问题，scanner的nextLine方法读入了空字符串，但是输入明明没有空字符串，于是后面在使用时产生了空指针异常。</p>
-<h2 id="问题产生原因分析"><a href="#问题产生原因分析" class="headerlink" title="问题产生原因分析"></a>问题产生原因分析</h2><p>在官方文档中显示，java的nextLine()会读取到回车结束。<img src="/images/20180602000319418.png" alt="images/"></p>
+        <!-- vscode-markdown-toc -->
+<ul>
+<li><ol>
+<li><a href="#">问题产生原因分析</a></li>
+</ol>
+</li>
+<li><ol start="2">
+<li><a href="#-1">解决方法</a></li>
+</ol>
+</li>
+</ul>
+<!-- vscode-markdown-toc-config
+    numbering=true
+    autoSave=true
+    /vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+<h1 id="java-Scanner中的nextLine方法的问题"><a href="#java-Scanner中的nextLine方法的问题" class="headerlink" title="java Scanner中的nextLine方法的问题"></a>java Scanner中的nextLine方法的问题</h1><p>今天在使用java刷算法题的时候，遇到了一些小问题，scanner的nextLine方法读入了空字符串，但是输入明明没有空字符串，于是后面在使用时产生了空指针异常。</p>
+<h2 id="1-问题产生原因分析"><a href="#1-问题产生原因分析" class="headerlink" title="1. 问题产生原因分析"></a>1. <a name=''></a>问题产生原因分析</h2><p>在官方文档中显示，java的nextLine()会读取到回车结束。<img src="/images/20180602000319418.png" alt="images/"></p>
 <p>此处的输入案例</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">10 12</span><br><span class="line">W........WW.</span><br><span class="line">.WWW.....WWW</span><br><span class="line">....WW...WW.</span><br><span class="line">.........WW.</span><br><span class="line">.........W..</span><br><span class="line">..W......W..</span><br><span class="line">.W.W.....WW.</span><br><span class="line">W.W.W.....W.</span><br><span class="line">.W.W......W.</span><br><span class="line">..W.......W.</span><br></pre></td></tr></table></figure>
 
 
 
 <p>前面使用了两次nextInt()方法来读取两个数字，然后想使用使用nextLine()来读取下一行数据，但<strong>此时读取的仍然是上一行，因为上一行中有个换行符没读取</strong>，因此nextLine()会先读取换行符，此时读出来一个空字符串。</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>在读取下一行数据之前，先调用一次nextLine()方法跳过换行符。</p>
+<h2 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2. 解决方法"></a>2. <a name='-1'></a>解决方法</h2><p>在读取下一行数据之前，先调用一次nextLine()方法跳过换行符。</p>
 
       
 
@@ -435,11 +451,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
             
             <div class="clearfix"></div>

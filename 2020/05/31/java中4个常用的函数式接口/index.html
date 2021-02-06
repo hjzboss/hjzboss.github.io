@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>java中4个常用的函数式接口 | hjzboss的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="函数式接口只有一个抽象方法的接口叫做函数式接口。这时就可以提供一个lambda表达式。 下面将介绍4个常用的函数式接口  Supplier&lt; T &gt; Consumer&lt; T &gt; Function&lt;T,R&gt; Predicate&lt; T &gt;  Supplier&lt; T &gt;Supplier接口中只有一个方法，需要实现的方法是get，该方法返回一个类">
+  <meta name="description" content="Supplier&lt; T &gt;     Consumer&lt; T &gt;    Function&lt;T,R&gt;    Predicate&lt; T &gt;      函数式接口只有一个抽象方法的接口叫做函数式接口。这时就可以提供一个lambda表达式。 下面将介绍4个常用的函数式接口  Supplier&lt; T &gt; Consumer&lt; T &gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java中4个常用的函数式接口">
 <meta property="og:url" content="http://yoursite.com/2020/05/31/java%E4%B8%AD4%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/index.html">
 <meta property="og:site_name" content="hjzboss的博客">
-<meta property="og:description" content="函数式接口只有一个抽象方法的接口叫做函数式接口。这时就可以提供一个lambda表达式。 下面将介绍4个常用的函数式接口  Supplier&lt; T &gt; Consumer&lt; T &gt; Function&lt;T,R&gt; Predicate&lt; T &gt;  Supplier&lt; T &gt;Supplier接口中只有一个方法，需要实现的方法是get，该方法返回一个类">
+<meta property="og:description" content="Supplier&lt; T &gt;     Consumer&lt; T &gt;    Function&lt;T,R&gt;    Predicate&lt; T &gt;      函数式接口只有一个抽象方法的接口叫做函数式接口。这时就可以提供一个lambda表达式。 下面将介绍4个常用的函数式接口  Supplier&lt; T &gt; Consumer&lt; T &gt;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-31T15:08:48.000Z">
-<meta property="article:modified_time" content="2021-01-25T11:48:10.438Z">
+<meta property="article:modified_time" content="2021-02-06T04:37:19.206Z">
 <meta property="article:author" content="hjzboss">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -165,7 +165,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h1><p>只有一个抽象方法的接口叫做函数式接口。这时就可以提供一个lambda表达式。</p>
+        <!-- vscode-markdown-toc -->
+<ul>
+<li><ol>
+<li><a href="#SupplierT">Supplier&lt; T &gt;</a></li>
+</ol>
+</li>
+<li><ol start="2">
+<li><a href="#ConsumerT"> Consumer&lt; T &gt;</a></li>
+</ol>
+</li>
+<li><ol start="3">
+<li><a href="#FunctionTR">Function&lt;T,R&gt;</a></li>
+</ol>
+</li>
+<li><ol start="4">
+<li><a href="#PredicateT">Predicate&lt; T &gt;</a></li>
+</ol>
+</li>
+</ul>
+<!-- vscode-markdown-toc-config
+    numbering=true
+    autoSave=true
+    /vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+<h1 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h1><p>只有一个抽象方法的接口叫做函数式接口。这时就可以提供一个lambda表达式。</p>
 <p>下面将介绍4个常用的函数式接口</p>
 <ul>
 <li>Supplier&lt; T &gt;</li>
@@ -173,13 +197,13 @@
 <li>Function&lt;T,R&gt;</li>
 <li>Predicate&lt; T &gt;</li>
 </ul>
-<h2 id="Supplier-lt-T-gt"><a href="#Supplier-lt-T-gt" class="headerlink" title="Supplier&lt; T &gt;"></a>Supplier&lt; T &gt;</h2><p>Supplier接口中只有一个方法，需要实现的方法是get，该方法返回一个类型为T的值。</p>
+<h2 id="1-Supplier-lt-T-gt"><a href="#1-Supplier-lt-T-gt" class="headerlink" title="1. Supplier&lt; T &gt;"></a>1. <a name='SupplierT'></a>Supplier&lt; T &gt;</h2><p>Supplier接口中只有一个方法，需要实现的方法是get，该方法返回一个类型为T的值。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">T <span class="title">get</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
 
 <p>下面的例子用该方法来返回数组中的最大值</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Supplier;</span><br><span class="line"></span><br><span class="line"><span class="comment">//supplier函数式接口用来返回数据</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">supplier</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> a = max(()-&gt;&#123;</span><br><span class="line">            <span class="keyword">int</span> max = arr[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(max&lt;arr[i]) max = arr[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> max;</span><br><span class="line">        &#125;);</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(Supplier&lt;Integer&gt; s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> s.get();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Consumer-lt-T-gt"><a href="#Consumer-lt-T-gt" class="headerlink" title="Consumer&lt; T &gt;"></a>Consumer&lt; T &gt;</h2><p>需要实现的方法为accept，接收一个T类型的参数，没有返回值。可以用来处理数据</p>
+<h2 id="2-Consumer-lt-T-gt"><a href="#2-Consumer-lt-T-gt" class="headerlink" title="2.  Consumer&lt; T &gt;"></a>2. <a name='ConsumerT'></a> Consumer&lt; T &gt;</h2><p>需要实现的方法为accept，接收一个T类型的参数，没有返回值。可以用来处理数据</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T var1)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>下面的例子用来输出字符串</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">consumer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        print(<span class="string">&quot;hello&quot;</span>,System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(String s,Consumer&lt;String&gt; c)</span></span>&#123;</span><br><span class="line">        c.accept(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -189,7 +213,7 @@
 <p>调用这个方法会返回一个Consumer对象，它的accept实现为依次调用两个对象的accept方法</p>
 <p>下面用这个方法来输出两个不同的字符串</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">consumer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        print(<span class="string">&quot;hello&quot;</span>,System.out::println,s-&gt;&#123;</span><br><span class="line">            System.out.println(s+<span class="string">&quot; world!&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(String s, Consumer&lt;String&gt; c1,Consumer&lt;String&gt; c2)</span></span>&#123;</span><br><span class="line">        c1.andThen(c2).accept(s);</span><br><span class="line">        <span class="comment">//返回的对象的accept方法为先调用c1的accept,再调用c2的accept</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//hello</span></span><br><span class="line"><span class="comment">//hello world</span></span><br></pre></td></tr></table></figure>
-<h2 id="Function-lt-T-R-gt"><a href="#Function-lt-T-R-gt" class="headerlink" title="Function&lt;T,R&gt;"></a>Function&lt;T,R&gt;</h2><p>需要实现的方法为apply，输入一个T类型的值，返回一个R类型的值，可以用来转换数据</p>
+<h2 id="3-Function-lt-T-R-gt"><a href="#3-Function-lt-T-R-gt" class="headerlink" title="3. Function&lt;T,R&gt;"></a>3. <a name='FunctionTR'></a>Function&lt;T,R&gt;</h2><p>需要实现的方法为apply，输入一个T类型的值，返回一个R类型的值，可以用来转换数据</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">R <span class="title">apply</span><span class="params">(T var1)</span></span>;</span><br></pre></td></tr></table></figure>
 
 <p>下面的例子为将字符串转换为数字</p>
@@ -201,7 +225,7 @@
 <p>下面用这个方法来实现字符串转换数字并加5，然后再转换为字符串并输出</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Function;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Function&lt;T,R&gt;的apply方法，输入T，返回R</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">function</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        convertShow(<span class="string">&quot;123&quot;</span>,Integer::parseInt,s -&gt;&#123;<span class="keyword">return</span> String.valueOf(s+<span class="number">5</span>);&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//将字符串转换为数字并加5输出</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">convertShow</span><span class="params">(String s,Function&lt;String,Integer&gt; f1,Function&lt;Integer,String&gt;f2 )</span></span>&#123;</span><br><span class="line">        String s1 = f1.andThen(f2).apply(s);</span><br><span class="line">        System.out.println(s1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//128</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Predicate-lt-T-gt"><a href="#Predicate-lt-T-gt" class="headerlink" title="Predicate&lt; T &gt;"></a>Predicate&lt; T &gt;</h2><p>需要实现的方法为test，该方法可以用来测试数据，返回一个boolean值</p>
+<h2 id="4-Predicate-lt-T-gt"><a href="#4-Predicate-lt-T-gt" class="headerlink" title="4. Predicate&lt; T &gt;"></a>4. <a name='PredicateT'></a>Predicate&lt; T &gt;</h2><p>需要实现的方法为test，该方法可以用来测试数据，返回一个boolean值</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T var1)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>下面的例子用来检验字符串的长度</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Predicate;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*predicate可以用来筛选信息*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">predicate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String string = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">        <span class="keyword">boolean</span> b = test(string,s-&gt;s.length()&gt;<span class="number">3</span>);</span><br><span class="line">        System.out.println(b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(String str,Predicate&lt;String&gt; predicate)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> predicate.test(str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -470,11 +494,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
             
             <div class="clearfix"></div>

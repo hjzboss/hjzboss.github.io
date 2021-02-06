@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>java IO流 | hjzboss的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="io流java输入输出流（IO流）可以用来读写文件，网络连接等。而io流又分为字节流和字符流。 字节流基类是InputStream和OutputStream，分别表示输入和输出字节流。其中几个常用的方法：输入流 123abstract int read()&#x2F;&#x2F;从数据中读入一个字节int read(byte[] b)&#x2F;&#x2F;读入一个字节数组，并返回实际读入的字节数&#x2F;&#x2F;读完数据后会后移，遇到输入流末尾时返">
+  <meta name="description" content="字节流    字符流 &#x3D; 字节流+编码   2.1. 字符打印流PrintWriter    File类   3.1. 对象序列化流ObjectOutputStream 3.2. property类和io流的配合使用    总结      io流java输入输出流（IO流）可以用来读写文件，网络连接等。而io流又分为字节流和字符流。 1. 字节流基类是InputStream和OutputSt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java IO流">
 <meta property="og:url" content="http://yoursite.com/2020/05/29/java-IO%E6%B5%81-%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="hjzboss的博客">
-<meta property="og:description" content="io流java输入输出流（IO流）可以用来读写文件，网络连接等。而io流又分为字节流和字符流。 字节流基类是InputStream和OutputStream，分别表示输入和输出字节流。其中几个常用的方法：输入流 123abstract int read()&#x2F;&#x2F;从数据中读入一个字节int read(byte[] b)&#x2F;&#x2F;读入一个字节数组，并返回实际读入的字节数&#x2F;&#x2F;读完数据后会后移，遇到输入流末尾时返">
+<meta property="og:description" content="字节流    字符流 &#x3D; 字节流+编码   2.1. 字符打印流PrintWriter    File类   3.1. 对象序列化流ObjectOutputStream 3.2. property类和io流的配合使用    总结      io流java输入输出流（IO流）可以用来读写文件，网络连接等。而io流又分为字节流和字符流。 1. 字节流基类是InputStream和OutputSt">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-29T04:05:42.000Z">
-<meta property="article:modified_time" content="2021-01-25T11:47:48.329Z">
+<meta property="article:modified_time" content="2021-02-06T04:36:08.862Z">
 <meta property="article:author" content="hjzboss">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -165,8 +165,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="io流"><a href="#io流" class="headerlink" title="io流"></a>io流</h1><p>java输入输出流（IO流）可以用来读写文件，网络连接等。<br>而io流又分为字节流和字符流。</p>
-<h2 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h2><p>基类是InputStream和OutputStream，分别表示输入和输出字节流。<br>其中几个常用的方法：<br>输入流</p>
+        <!-- vscode-markdown-toc -->
+<ul>
+<li><ol>
+<li><a href="#">字节流</a></li>
+</ol>
+</li>
+<li><ol start="2">
+<li><a href="#-1">字符流 = 字节流+编码</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#PrintWriter">字符打印流PrintWriter</a></li>
+</ul>
+</li>
+<li><ol start="3">
+<li><a href="#File">File类</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#ObjectOutputStream">对象序列化流ObjectOutputStream</a></li>
+<li>3.2. <a href="#propertyio">property类和io流的配合使用</a></li>
+</ul>
+</li>
+<li><ol start="4">
+<li><a href="#-1">总结</a></li>
+</ol>
+</li>
+</ul>
+<!-- vscode-markdown-toc-config
+    numbering=true
+    autoSave=true
+    /vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+<h1 id="io流"><a href="#io流" class="headerlink" title="io流"></a>io流</h1><p>java输入输出流（IO流）可以用来读写文件，网络连接等。<br>而io流又分为字节流和字符流。</p>
+<h2 id="1-字节流"><a href="#1-字节流" class="headerlink" title="1. 字节流"></a>1. <a name=''></a>字节流</h2><p>基类是InputStream和OutputStream，分别表示输入和输出字节流。<br>其中几个常用的方法：<br>输入流</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span><span class="comment">//从数据中读入一个字节</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[] b)</span><span class="comment">//读入一个字节数组，并返回实际读入的字节数</span></span></span><br><span class="line"><span class="function"><span class="comment">//读完数据后会后移，遇到输入流末尾时返回-1</span></span></span><br></pre></td></tr></table></figure>
 <p>输出流</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> n)</span><span class="comment">//写出一个字节的数据</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] b)</span><span class="comment">//写入一个字符数组的数据</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] b,<span class="keyword">int</span> off,<span class="keyword">int</span> len)</span><span class="comment">//写入某个范围的字节</span></span></span><br></pre></td></tr></table></figure>
@@ -178,7 +209,7 @@
 <p>字节流可以复制任意类型的数据，一般采用字节缓冲流来一次读取一个字节数组的方式，效率更高</p>
 <p>下面例子为复制文件</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">copy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        FileInputStream fis = <span class="keyword">null</span>;</span><br><span class="line">        FileOutputStream fos = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//因为try中的代码对外面不可见，需要在外面定义为null</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">/*复制文本*/</span></span><br><span class="line">            <span class="keyword">int</span> by;</span><br><span class="line">            fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;D:\\Core java2\\1.txt&quot;</span>);</span><br><span class="line">            fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;D:\\Core java2\\2.txt&quot;</span>);</span><br><span class="line">            <span class="keyword">while</span>((by = fis.read())!= -<span class="number">1</span>)&#123;</span><br><span class="line">                fos.write((<span class="keyword">char</span>)by);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">/*复制图片*/</span></span><br><span class="line">            fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;C:\\Users\\MEC\\Pictures\\IMG_2767.JPG&quot;</span>);</span><br><span class="line">            fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;D:\\Core java2\\handson boy.jpg&quot;</span>);</span><br><span class="line">            <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">int</span> len;</span><br><span class="line">            <span class="keyword">while</span>((len = fis.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">                fos.write(bytes,<span class="number">0</span>,len);<span class="comment">//注意此处，len为返回所读字节的长度</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(fis!=<span class="keyword">null</span>&amp;&amp;fos!=<span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    fis.close();</span><br><span class="line">                    fos.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="字符流-字节流-编码"><a href="#字符流-字节流-编码" class="headerlink" title="字符流 = 字节流+编码"></a>字符流 = 字节流+编码</h2><p>在用字节流来读取汉字时，可能会出现问题，因为默认UTF-8编码中汉字占三个字节，字节流一次读取一个字节可能会出现乱码，这时候可以采用字符流。</p>
+<h2 id="2-字符流-字节流-编码"><a href="#2-字符流-字节流-编码" class="headerlink" title="2. 字符流 = 字节流+编码"></a>2. <a name='-1'></a>字符流 = 字节流+编码</h2><p>在用字节流来读取汉字时，可能会出现问题，因为默认UTF-8编码中汉字占三个字节，字节流一次读取一个字节可能会出现乱码，这时候可以采用字符流。</p>
 <p>字符流大多数用来读写文本文件，其基类为Reader和Writer。文件字符流为<br>OutputStreamWriter和InputStreamReader，字符流以Writer或Reader结尾，字节流以Stream结尾。</p>
 <p>要构造一个字符流，需要在其构造器中给定一个<strong>字节流</strong>！可以在构造器中指定编码方式。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OutputStreamWriter ow = <span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;D:\\Core java2\\4.txt&quot;</span>, <span class="keyword">true</span>), <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line"><span class="comment">//true为追加模式，采用UTF-8编码方式</span></span><br></pre></td></tr></table></figure>
@@ -191,10 +222,10 @@
 <p>此时注意到代码中有一个flush方法，该方法为刷新缓冲区。close方法会先刷新缓冲区然后再关闭资源。</p>
 <p>如果不刷新缓冲区，数据就还留在缓冲区内并没有写出。</p>
 <p><strong>字符流和缓冲流都需要刷新缓冲区。</strong></p>
-<h3 id="字符打印流PrintWriter"><a href="#字符打印流PrintWriter" class="headerlink" title="字符打印流PrintWriter"></a>字符打印流PrintWriter</h3><p>该流能够以文本格式打印给定的值，格式类似于标准输出流</p>
+<h3 id="2-1-字符打印流PrintWriter"><a href="#2-1-字符打印流PrintWriter" class="headerlink" title="2.1. 字符打印流PrintWriter"></a>2.1. <a name='PrintWriter'></a>字符打印流PrintWriter</h3><p>该流能够以文本格式打印给定的值，格式类似于标准输出流</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">println</span><span class="params">()</span></span>;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
-<h2 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h2><p>File类的构造器中需要给定一个路径</p>
+<h2 id="3-File类"><a href="#3-File类" class="headerlink" title="3. File类"></a>3. <a name='File'></a>File类</h2><p>File类的构造器中需要给定一个路径</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File f = <span class="keyword">new</span> File(<span class="string">&quot;D:\\Core java2&quot;</span>);</span><br></pre></td></tr></table></figure>
 <p>可以利用该类来操纵文件</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f.createNewFile();<span class="comment">//创建一个空文件，如果文件已存在就抛出异常</span></span><br><span class="line">f.mkdir();<span class="comment">//创建目录</span></span><br><span class="line">f.mkdirs();<span class="comment">//c创建多级目录</span></span><br><span class="line">f.delete();<span class="comment">//删除文件，如果不存在抛出异常</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
@@ -204,7 +235,7 @@
 <p>下面来利用File类来访问一个路径并打印所有文件的名称</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">file</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Path path = Paths.get(<span class="string">&quot;D:\\Core java2&quot;</span>);<span class="comment">//创建一个路径</span></span><br><span class="line">        System.out.println(Files.isDirectory(path));<span class="comment">//判断该路径是否为目录，true</span></span><br><span class="line"></span><br><span class="line">        File f = <span class="keyword">new</span> File(<span class="string">&quot;D:\\Core java2&quot;</span>);</span><br><span class="line">        getPaths(f);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getPaths</span><span class="params">(File file)</span></span>&#123;<span class="comment">//输出指定目录中的所有文件信息</span></span><br><span class="line">        File[] files = file.listFiles();</span><br><span class="line">        <span class="keyword">if</span>(files != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(File f:files)&#123;</span><br><span class="line">                <span class="keyword">if</span>(f.isDirectory())&#123;</span><br><span class="line">                    getPaths(f);<span class="comment">//如果是目录就递归调用</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> System.out.println(f);<span class="comment">//如果是文件就输出</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果会打印出该路径下所有文件的名称。</p>
-<h3 id="对象序列化流ObjectOutputStream"><a href="#对象序列化流ObjectOutputStream" class="headerlink" title="对象序列化流ObjectOutputStream"></a>对象序列化流ObjectOutputStream</h3><p>对象序列化就是将对象保存在磁盘或者在网络中传输对象。反序列化就是从磁盘中读取出一个对象。</p>
+<h3 id="3-1-对象序列化流ObjectOutputStream"><a href="#3-1-对象序列化流ObjectOutputStream" class="headerlink" title="3.1. 对象序列化流ObjectOutputStream"></a>3.1. <a name='ObjectOutputStream'></a>对象序列化流ObjectOutputStream</h3><p>对象序列化就是将对象保存在磁盘或者在网络中传输对象。反序列化就是从磁盘中读取出一个对象。</p>
 <p>对象序列化流就是用来操纵对象并对其进行序列化，被序列化的类需要实现<br>Serializable接口，该接口只是个标志，没有方法</p>
 <p>下面看个例子，以一个测试类为例</p>
 <p>测试类</p>
@@ -220,8 +251,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">42L</span>;<span class="comment">//名字都是固定的</span></span><br></pre></td></tr></table></figure>
 
 <p>对象序列化流可以保存和传输对象。</p>
-<h3 id="property类和io流的配合使用"><a href="#property类和io流的配合使用" class="headerlink" title="property类和io流的配合使用"></a>property类和io流的配合使用</h3><p>property类可以将属性映射保存在流中。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>io流中还有许多的类，在这只是列举了常用的类。<br>字节流为读取字节，字符流读取字符。<br>字符流使用了缓冲区，需要刷新缓冲区。</p>
+<h3 id="3-2-property类和io流的配合使用"><a href="#3-2-property类和io流的配合使用" class="headerlink" title="3.2. property类和io流的配合使用"></a>3.2. <a name='propertyio'></a>property类和io流的配合使用</h3><p>property类可以将属性映射保存在流中。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. <a name='-1'></a>总结</h2><p>io流中还有许多的类，在这只是列举了常用的类。<br>字节流为读取字节，字符流读取字符。<br>字符流使用了缓冲区，需要刷新缓冲区。</p>
 <p>使用io流的三个步骤</p>
 <ol>
 <li>创建流对象</li>
@@ -487,11 +518,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
             
             <div class="clearfix"></div>
