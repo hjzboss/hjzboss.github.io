@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 49
+			总文章数 50
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -153,6 +153,265 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-《java核心技术》第八章笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/21/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AB%E7%AB%A0%E7%AC%94%E8%AE%B0/">java泛型</a>
+    </h1>
+  
+
+        <!--显示阅读次数-->
+        
+        <!--显示阅读次数完毕-->
+        
+        <a href="/2020/04/21/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AB%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-04-21T14:11:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- vscode-markdown-toc -->
+<ul>
+<li><ol>
+<li><a href="#">&#x5B9A;&#x4E49;&#x7B80;&#x5355;&#x7684;&#x6CDB;&#x578B;&#x7C7B;</a></li>
+</ol>
+</li>
+<li><ol start="2">
+<li><a href="#-1">&#x6CDB;&#x578B;&#x65B9;&#x6CD5;</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#-1">&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x7684;&#x9650;&#x5B9A;</a></li>
+</ul>
+</li>
+<li><ol start="3">
+<li><a href="#-1">&#x6CDB;&#x578B;&#x4EE3;&#x7801;&#x548C;&#x865A;&#x62DF;&#x673A;</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#-1">&#x7C7B;&#x578B;&#x64E6;&#x9664;</a></li>
+<li>3.2. <a href="#-1">&#x8F6C;&#x6362;&#x6CDB;&#x578B;&#x8868;&#x8FBE;&#x5F0F;</a></li>
+<li>3.3. <a href="#-1">&#x8F6C;&#x6362;&#x6CDB;&#x578B;&#x65B9;&#x6CD5;</a></li>
+</ul>
+</li>
+<li><ol start="4">
+<li><a href="#-1">&#x9650;&#x5236;&#x4E0E;&#x5C40;&#x9650;&#x6027;</a></li>
+</ol>
+</li>
+<li><ol start="5">
+<li><a href="#-1">&#x6CDB;&#x578B;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x89C4;&#x5219;</a></li>
+</ol>
+</li>
+<li><ol start="6">
+<li><a href="#-1">&#x901A;&#x914D;&#x7B26;&#x7C7B;&#x578B;</a></li>
+</ol>
+<ul>
+<li>6.1. <a href="#-1">&#x7EDF;&#x914D;&#x7B26;&#x7684;&#x9650;&#x5B9A;</a></li>
+<li>6.2. <a href="#-1">&#x901A;&#x914D;&#x7B26;&#x9650;&#x5B9A;&#x7684;&#x884C;&#x4E3A;&#x5DEE;&#x5F02;</a></li>
+<li>6.3. <a href="#-1">&#x65E0;&#x9650;&#x5B9A;&#x901A;&#x914D;&#x7B26;</a></li>
+<li>6.4. <a href="#-1">&#x901A;&#x914D;&#x7B26;&#x6355;&#x83B7;</a></li>
+</ul>
+</li>
+<li><ol start="7">
+<li><a href="#-1">&#x53CD;&#x5C04;&#x548C;&#x6CDB;&#x578B;</a></li>
+</ol>
+</li>
+</ul>
+<!-- vscode-markdown-toc-config
+    numbering=true
+    autoSave=true
+    /vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+<h1 id="&#x6CDB;&#x578B;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;"><a href="#&#x6CDB;&#x578B;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;" class="headerlink" title="&#x6CDB;&#x578B;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;"></a>&#x6CDB;&#x578B;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;</h1><p>&#x5728;java&#x589E;&#x52A0;&#x6CDB;&#x578B;&#x7C7B;&#x4E4B;&#x524D;&#xFF0C;&#x6CDB;&#x578B;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x5B9E;&#x73B0;&#x7684;&#xFF08;Object&#xFF09;&#xFF0C;&#x5F53;&#x83B7;&#x53D6;&#x4E00;&#x4E2A;&#x503C;&#x65F6;&#x8FD8;&#x9700;&#x8FDB;&#x884C;&#x5F3A;&#x5236;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x5F88;&#x4E0D;&#x65B9;&#x4FBF;&#x3002;&#x6CDB;&#x578B;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x66F4;&#x597D;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;<strong>&#x7C7B;&#x578B;&#x53C2;&#x6570;</strong>&#x3002;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">var</span> <span class="variable">files</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+<p>&#x4ED6;&#x4F1A;&#x8BA9;&#x7A0B;&#x5E8F;&#x66F4;&#x6613;&#x8BFB;&#xFF0C;&#x66F4;&#x5B89;&#x5168;&#x3002;</p>
+<h2 id="1-&#x5B9A;&#x4E49;&#x7B80;&#x5355;&#x7684;&#x6CDB;&#x578B;&#x7C7B;"><a href="#1-&#x5B9A;&#x4E49;&#x7B80;&#x5355;&#x7684;&#x6CDB;&#x578B;&#x7C7B;" class="headerlink" title="1. &#x5B9A;&#x4E49;&#x7B80;&#x5355;&#x7684;&#x6CDB;&#x578B;&#x7C7B;"></a>1. <a name></a>&#x5B9A;&#x4E49;&#x7B80;&#x5355;&#x7684;&#x6CDB;&#x578B;&#x7C7B;</h2><p>&#x6CDB;&#x578B;&#x7C7B;&#x5C31;&#x662F;&#x6709;<strong>&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;</strong>&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x7684;&#x7C7B;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x6CDB;&#x578B;&#x7C7B;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Pair</span>&lt;T&gt; {</span><br><span class="line">    <span class="keyword">private</span> T first;</span><br><span class="line">    <span class="keyword">private</span> T secend;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Pair</span><span class="params">(T first, T secend)</span> {</span><br><span class="line">        <span class="built_in">this</span>.first = first;</span><br><span class="line">        <span class="built_in">this</span>.secend = secend;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Pair</span><span class="params">()</span> {</span><br><span class="line">        first = <span class="literal">null</span>;</span><br><span class="line">        secend = <span class="literal">null</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">getFirst</span><span class="params">()</span> {</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setFirst</span><span class="params">(T first)</span> {</span><br><span class="line">        <span class="built_in">this</span>.first = first;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">getSecend</span><span class="params">()</span> {</span><br><span class="line">        <span class="keyword">return</span> secend;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setSecend</span><span class="params">(T secend)</span> {</span><br><span class="line">        <span class="built_in">this</span>.secend = secend;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(T value)</span>{</span><br><span class="line">        System.out.println(value);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>Pair&#x7C7B;&#x5F15;&#x8FDB;&#x4E86;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#x53D8;&#x91CF;T&#xFF0C;&#x7528;&#x5C16;&#x62EC;&#x53F7;&#x62EC;&#x8D77;&#x6765;&#xFF0C;&#x653E;&#x5728;&#x7C7B;&#x540D;&#x7684;&#x540E;&#x9762;&#x3002;&#x6CDB;&#x578B;&#x7C7B;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#xFF1A;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Pair</span>&lt;T,U&gt;{....}</span><br></pre></td></tr></table></figure>
+<p>&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x5728;&#x6574;&#x4E2A;&#x7C7B;&#x5B9A;&#x4E49;&#x4E2D;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#x4EE5;&#x53CA;&#x5B57;&#x6BB5;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x4F8B;&#x5982;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> T first;</span><br></pre></td></tr></table></figure>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5177;&#x4F53;&#x7684;&#x7C7B;&#x578B;&#x66FF;&#x6362;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x6765;&#x5B9E;&#x4F8B;&#x5316;&#x6CDB;&#x578B;&#x7C7B;&#x578B;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;String&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-&#x6CDB;&#x578B;&#x65B9;&#x6CD5;"><a href="#2-&#x6CDB;&#x578B;&#x65B9;&#x6CD5;" class="headerlink" title="2. &#x6CDB;&#x578B;&#x65B9;&#x6CD5;"></a>2. <a name="-1"></a>&#x6CDB;&#x578B;&#x65B9;&#x6CD5;</h2><p>&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x6CDB;&#x578B;&#x7C7B;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x6CDB;&#x578B;&#x65B9;&#x6CD5;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ArrayAlg</span>{</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt;T <span class="title function_">getMiddle</span><span class="params">(T... a)</span>{</span><br><span class="line">		<span class="keyword">return</span> a[a.length/<span class="number">2</span>];</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x662F;&#x5728;&#x666E;&#x901A;&#x7C7B;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x6CDB;&#x578B;&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x6CDB;&#x578B;&#x7C7B;&#x4E2D;&#x5B9A;&#x4E49;&#x3002;<br>&#x6CE8;&#x610F;&#xFF1A;<strong>&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x653E;&#x5728;&#x7C7B;&#x578B;&#x4FEE;&#x9970;&#x7B26;&#x7684;&#x540E;&#x9762;&#xFF0C;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#x7684;&#x524D;&#x9762;</strong></p>
+<p>&#x5F53;&#x8C03;&#x7528;&#x4E00;&#x4E2A;&#x6CDB;&#x578B;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x5177;&#x4F53;&#x7C7B;&#x578B;&#x5305;&#x56F4;&#x5728;&#x5C16;&#x62EC;&#x53F7;&#x4E2D;&#xFF0C;&#x653E;&#x5728;&#x65B9;&#x6CD5;&#x540D;<strong>&#x524D;&#x9762;</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">middle</span> <span class="operator">=</span> ArrayAlg.&lt;String&gt;getMiddle(<span class="string">&quot;j&quot;</span>,<span class="string">&quot;x&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>&#x5927;&#x591A;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x7701;&#x7565;&#x5177;&#x4F53;&#x7C7B;&#x578B;&#x3002;</p>
+<h3 id="2-1-&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x7684;&#x9650;&#x5B9A;"><a href="#2-1-&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x7684;&#x9650;&#x5B9A;" class="headerlink" title="2.1. &#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x7684;&#x9650;&#x5B9A;"></a>2.1. <a name="-1"></a>&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x7684;&#x9650;&#x5B9A;</h3><p>&#x7528;&#x5173;&#x952E;&#x5B57;<strong>extends</strong>&#x5BF9;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x9650;&#x5B9A;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;T <span class="keyword">extends</span> <span class="title class_">BoundingType</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>&#x8868;&#x793A;T&#x662F;&#x9650;&#x5B9A;&#x7C7B;&#x578B;BoundingType&#x7684;&#x5B50;&#x7C7B;&#x578B;&#x3002;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5;&#x662F;&#x7C7B;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;<strong>&#x63A5;&#x53E3;</strong></p>
+<p>&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x6216;&#x901A;&#x914D;&#x7B26;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x9650;&#x5B9A;&#xFF0C;&#x7528;&#x201D;&amp;&#x201D;&#x5206;&#x9694;&#xFF0C;&#x800C;&#x9017;&#x53F7;&#x7528;&#x4E8E;&#x5206;&#x9694;&#x7C7B;&#x578B;&#x53D8;&#x91CF;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;T <span class="keyword">extends</span> <span class="title class_">Comparable</span> &amp; Serializable,U&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="3-&#x6CDB;&#x578B;&#x4EE3;&#x7801;&#x548C;&#x865A;&#x62DF;&#x673A;"><a href="#3-&#x6CDB;&#x578B;&#x4EE3;&#x7801;&#x548C;&#x865A;&#x62DF;&#x673A;" class="headerlink" title="3. &#x6CDB;&#x578B;&#x4EE3;&#x7801;&#x548C;&#x865A;&#x62DF;&#x673A;"></a>3. <a name="-1"></a>&#x6CDB;&#x578B;&#x4EE3;&#x7801;&#x548C;&#x865A;&#x62DF;&#x673A;</h2><p>&#x865A;&#x62DF;&#x673A;&#x6CA1;&#x6709;&#x6CDB;&#x578B;&#x7C7B;&#x578B;&#x5BF9;&#x8C61;&#x2014;&#x2014;&#x2014;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x90FD;&#x5C5E;&#x4E8E;&#x666E;&#x901A;&#x7C7B;&#x3002;&#x865A;&#x62DF;&#x673A;&#x4F1A;<strong>&#x64E6;&#x9664;</strong>&#x7C7B;&#x578B;&#x53C2;&#x6570;</p>
+<h3 id="3-1-&#x7C7B;&#x578B;&#x64E6;&#x9664;"><a href="#3-1-&#x7C7B;&#x578B;&#x64E6;&#x9664;" class="headerlink" title="3.1. &#x7C7B;&#x578B;&#x64E6;&#x9664;"></a>3.1. <a name="-1"></a>&#x7C7B;&#x578B;&#x64E6;&#x9664;</h3><p>&#x65E0;&#x8BBA;&#x4F55;&#x65F6;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x6CDB;&#x578B;&#x7C7B;&#x578B;&#xFF0C;&#x90FD;&#x4F1A;&#x81EA;&#x52A8;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x76F8;&#x5E94;&#x7684;<strong>&#x539F;&#x59CB;&#x7C7B;&#x578B;</strong>&#xFF0C;&#x8FD9;&#x4E2A;&#x539F;&#x59CB;&#x7C7B;&#x578B;&#x7684;&#x540D;&#x5B57;&#x5C31;&#x662F;<strong>&#x53BB;&#x6389;&#x7C7B;&#x578B;&#x53C2;&#x6570;</strong>&#x540E;&#x7684;&#x6CDB;&#x578B;&#x7C7B;&#x578B;&#x540D;&#x3002;</p>
+<p>&#x5728;&#x865A;&#x62DF;&#x673A;&#x4E2D;&#xFF0C;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x4F1A;&#x88AB;&#x64E6;&#x9664;&#xFF0C;&#x5E76;&#x66FF;&#x6362;&#x4E3A;&#x5176;<strong>&#x9650;&#x5B9A;&#x7C7B;&#x578B;</strong>&#xFF0C;&#x65E0;&#x9650;&#x5B9A;&#x7C7B;&#x578B;&#x7684;&#x53D8;&#x91CF;&#x5219;&#x66FF;&#x6362;&#x4E3A;<strong>Object</strong></p>
+<p>&#x4E0A;&#x9762;&#x7684;Pair&#x7C7B;&#x7684;&#x539F;&#x59CB;&#x7C7B;&#x578B;&#x5982;&#x4E0B;&#x5F62;&#x5F0F;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Pair</span>{</span><br><span class="line">	<span class="keyword">private</span> Object first;</span><br><span class="line">    <span class="keyword">private</span> Object secend;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Pair</span><span class="params">(Object first, Object secend)</span> {</span><br><span class="line">        <span class="built_in">this</span>.first = first;</span><br><span class="line">        <span class="built_in">this</span>.secend = secend;</span><br><span class="line">    }</span><br><span class="line">    ...</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>T&#x662F;&#x4E00;&#x4E2A;&#x65E0;&#x9650;&#x5B9A;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x76F4;&#x63A5;&#x7528;Object&#x66FF;&#x6362;&#x6389;</p>
+<p>&#x5BF9;&#x4E8E;&#x6709;&#x9650;&#x5B9A;&#x7684;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#xFF0C;&#x4F1A;&#x88AB;&#x66FF;&#x6362;&#x4E3A;<strong>&#x7B2C;&#x4E00;&#x4E2A;</strong>&#x9650;&#x5B9A;,&#x4F8B;&#x5982;&#xFF1A;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">demo</span>&lt;T <span class="keyword">extends</span> <span class="title class_">Comparable</span> &amp; Serializable&gt;{</span><br><span class="line">	<span class="keyword">private</span> T lower;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">demo</span><span class="params">(T first,T second)</span>{</span><br><span class="line">		...</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//&#x66FF;&#x6362;&#x8FC7;&#x540E;&#x7684;&#x539F;&#x59CB;&#x7C7B;&#x578B;&#xFF0C;&#x7528;&#x7B2C;&#x4E00;&#x4E2A;&#x9650;&#x5B9A;&#x6765;&#x66FF;&#x4EE3;</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">demo</span>{</span><br><span class="line">	<span class="keyword">private</span> Comparable lower;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">demo</span><span class="params">(Comparable first,Comparable second)</span>{</span><br><span class="line">		...</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-&#x8F6C;&#x6362;&#x6CDB;&#x578B;&#x8868;&#x8FBE;&#x5F0F;"><a href="#3-2-&#x8F6C;&#x6362;&#x6CDB;&#x578B;&#x8868;&#x8FBE;&#x5F0F;" class="headerlink" title="3.2. &#x8F6C;&#x6362;&#x6CDB;&#x578B;&#x8868;&#x8FBE;&#x5F0F;"></a>3.2. <a name="-1"></a>&#x8F6C;&#x6362;&#x6CDB;&#x578B;&#x8868;&#x8FBE;&#x5F0F;</h3><p>&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x6CDB;&#x578B;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x64E6;&#x9664;&#x4E86;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x52A0;&#x5165;<strong>&#x5F3A;&#x5236;&#x7C7B;&#x578B;&#x8F6C;&#x6362;</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;Employee&gt; buddies = ....;</span><br><span class="line"><span class="type">Employee</span> <span class="variable">buddy</span> <span class="operator">=</span> buddies.getFirst();<span class="comment">//&#x6E90;&#x7C7B;&#x578B;&#x4E3A;Object</span></span><br><span class="line"><span class="comment">//Employee buddy = (Employee)buddies.getFirst();</span></span><br></pre></td></tr></table></figure>
+<p>&#x865A;&#x62DF;&#x673A;&#x4F1A;&#x628A;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x8F6C;&#x6362;&#x4E3A;&#x4E24;&#x6761;&#x865A;&#x62DF;&#x673A;&#x6307;&#x4EE4;</p>
+<ul>
+<li>&#x5BF9;&#x539F;&#x59CB;&#x65B9;&#x6CD5;Pair.getFirst &#x7684;&#x8C03;&#x7528;&#x3002;</li>
+<li>&#x5BF9;&#x8FD4;&#x56DE;&#x7C7B;&#x7684;Object&#x7C7B;&#x578B;&#x5F3A;&#x5236;&#x8F6C;&#x6362;&#x4E3A;Employee&#x7C7B;&#x578B;&#x3002;</li>
+</ul>
+<p>&#x5F53;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x6CDB;&#x578B;&#x5B57;&#x6BB5;&#x65F6;&#x4E5F;&#x8981;&#x52A0;&#x5165;&#x5F3A;&#x5236;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x548C;&#x8C03;&#x7528;&#x6CDB;&#x578B;&#x65B9;&#x6CD5;&#x65F6;&#x4E00;&#x6837;&#x3002;</p>
+<h3 id="3-3-&#x8F6C;&#x6362;&#x6CDB;&#x578B;&#x65B9;&#x6CD5;"><a href="#3-3-&#x8F6C;&#x6362;&#x6CDB;&#x578B;&#x65B9;&#x6CD5;" class="headerlink" title="3.3. &#x8F6C;&#x6362;&#x6CDB;&#x578B;&#x65B9;&#x6CD5;"></a>3.3. <a name="-1"></a>&#x8F6C;&#x6362;&#x6CDB;&#x578B;&#x65B9;&#x6CD5;</h3><p>&#x5F53;&#x4E00;&#x4E2A;&#x7C7B;&#x7EE7;&#x627F;&#x81EA;&#x4E00;&#x4E2A;&#x6CDB;&#x578B;&#x7C7B;&#xFF0C;&#x5E76;&#x91CD;&#x5199;&#x6CDB;&#x578B;&#x7C7B;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">brige</span> <span class="keyword">extends</span> <span class="title class_">Pair</span>&lt;String&gt; {</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(String value)</span> {<span class="comment">//&#x91CD;&#x5199;show&#x65B9;&#x6CD5;</span></span><br><span class="line">        System.out.println(value);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x65F6;&#x53EF;&#x80FD;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E9B;&#x95EE;&#x9898;&#xFF0C;&#x5F53;&#x7C7B;&#x578B;&#x64E6;&#x9664;&#x8FC7;&#x540E;&#xFF0C;Pair&#x7C7B;&#x4E2D;&#x7684;show&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x4F1A;&#x88AB;&#x66FF;&#x6362;&#x6210;&#x4E3A;Object</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(Object value)</span>{...}<span class="comment">//&#x7236;&#x7C7B;&#x65B9;&#x6CD5;</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(String value)</span>{...}<span class="comment">//&#x5B50;&#x7C7B;&#x91CD;&#x5199;&#x7684;&#x65B9;&#x6CD5;</span></span><br></pre></td></tr></table></figure>
+<p><strong>&#x5219;&#x6B64;&#x65F6;&#x7236;&#x7C7B;&#x4E2D;&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x548C;&#x5B50;&#x7C7B;&#x91CD;&#x5199;&#x65B9;&#x6CD5;&#x4E2D;&#x7684;&#x53C2;&#x6570;&#x4E0D;&#x4E00;&#x81F4;</strong>&#xFF01;&#x7C7B;&#x578B;&#x64E6;&#x9664;&#x548C;&#x591A;&#x6001;&#x4EA7;&#x751F;&#x4E86;&#x51B2;&#x7A81;&#xFF0C;&#x5728;&#x4F7F;&#x7528;&#x591A;&#x6001;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x4EA7;&#x751F;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5728;&#x5B50;&#x7C7B;&#x4E2D;&#x751F;&#x6210;&#x4E00;&#x4E2A;<strong>&#x6865;&#x65B9;&#x6CD5;</strong>&#x6765;&#x4FDD;&#x6301;&#x591A;&#x6001;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x53CD;&#x5C04;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x5B50;&#x7C7B;&#xFF08;brige&#xFF09;&#x4E2D;&#x751F;&#x6210;&#x7684;&#x6865;&#x65B9;&#x6CD5;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">brigeDemo</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        Class&lt;brige&gt; bc = brige.class;</span><br><span class="line">        Method[] declaredMethods = bc.getDeclaredMethods();</span><br><span class="line">        <span class="keyword">for</span> (Method m:declaredMethods) {</span><br><span class="line">            System.out.println(m);</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        public void generic.brige.show(java.lang.String)</span></span><br><span class="line"><span class="comment">        public void generic.brige.show(java.lang.Object)  &#x751F;&#x6210;&#x4E86;&#x6865;&#x65B9;&#x6CD5;</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x89C1;&#xFF0C;&#x5728;brige&#x7C7B;&#x4E2D;&#x589E;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4E3A;Object&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5373;&#x4E3A;&#x6865;&#x65B9;&#x6CD5;&#xFF0C;&#x5FC5;&#x8981;&#x65F6;&#x4E5F;&#x4F1A;&#x52A0;&#x5165;&#x5F3A;&#x5236;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x3002;</p>
+<p>&#x603B;&#x4E4B;&#xFF0C;&#x5BF9;&#x4E8E;java&#x6CDB;&#x578B;&#x7684;&#x8F6C;&#x6362;&#xFF0C;&#x9700;&#x8981;&#x8BB0;&#x4F4F;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x4E8B;&#x5B9E;&#xFF1A;</p>
+<ul>
+<li>&#x865A;&#x62DF;&#x673A;&#x4E2D;&#x6CA1;&#x6709;&#x6CDB;&#x578B;&#xFF0C;&#x53EA;&#x6709;&#x666E;&#x901A;&#x7684;&#x7C7B;&#x548C;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>&#x6240;&#x6709;&#x7684;&#x7C7B;&#x578B;&#x53C2;&#x6570;&#x90FD;&#x4F1A;&#x66FF;&#x6362;&#x6210;&#x4E3A;&#x5B83;&#x4EEC;&#x7684;&#x9650;&#x5B9A;&#x7C7B;&#x578B;&#x6216;Object&#x3002;</li>
+<li>&#x4F1A;&#x5408;&#x6210;&#x6865;&#x65B9;&#x6CD5;&#x6765;&#x4FDD;&#x6301;&#x591A;&#x6001;&#x3002;</li>
+<li>&#x4E3A;&#x4FDD;&#x6301;&#x7C7B;&#x578B;&#x5B89;&#x5168;&#x6027;&#xFF0C;&#x5FC5;&#x8981;&#x65F6;&#x4F1A;&#x63D2;&#x5165;&#x5F3A;&#x5236;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x3002;</li>
+</ul>
+<h2 id="4-&#x9650;&#x5236;&#x4E0E;&#x5C40;&#x9650;&#x6027;"><a href="#4-&#x9650;&#x5236;&#x4E0E;&#x5C40;&#x9650;&#x6027;" class="headerlink" title="4. &#x9650;&#x5236;&#x4E0E;&#x5C40;&#x9650;&#x6027;"></a>4. <a name="-1"></a>&#x9650;&#x5236;&#x4E0E;&#x5C40;&#x9650;&#x6027;</h2><p>&#x4E0B;&#x9762;&#x8BA8;&#x8BBA;&#x4E0B;&#x4F7F;&#x7528;&#x6CDB;&#x578B;&#x7684;&#x9650;&#x5236;</p>
+<ul>
+<li>&#x4E0D;&#x80FD;&#x7528;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x66FF;&#x4EE3;&#x7C7B;&#x578B;&#x53C2;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4ED6;&#x4EEC;&#x7684;&#x5305;&#x88C5;&#x5668;&#x7C7B;&#x578B;&#x3002;</li>
+<li>&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x7C7B;&#x578B;&#x67E5;&#x8BE2;(instanceof)&#x53EA;&#x9002;&#x7528;&#x4E8E;&#x539F;&#x59CB;&#x7C7B;&#x578B;,&#x4F7F;&#x7528;&#x5F3A;&#x5236;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x8F6C;&#x6362;&#x4E3A;&#x4E00;&#x4E2A;&#x6CDB;&#x578B;&#x7C7B;&#x65F6;&#xFF0C;&#x4F1A;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x8B66;&#x544A;&#x3002;</li>
+<li>getClass&#x65B9;&#x6CD5;&#x603B;&#x662F;&#x8FD4;&#x56DE;&#x539F;&#x59CB;&#x7C7B;&#x578B;&#xFF0C;&#x6765;&#x9A8C;&#x8BC1;&#x4E00;&#x4E0B;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;String&gt; pair = <span class="keyword">new</span> <span class="title class_">Pair</span>&lt;&gt;();</span><br><span class="line">Pair&lt;Integer&gt; a = <span class="keyword">new</span> <span class="title class_">Pair</span>&lt;&gt;();</span><br><span class="line">System.out.println(pair.getClass() == a.getClass());<span class="comment">//true</span></span><br><span class="line"><span class="comment">//getClass&#x65B9;&#x6CD5;&#x603B;&#x662F;&#x8FD4;&#x56DE;&#x539F;&#x59CB;&#x7C7B;&#x578B;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x4E0D;&#x80FD;&#x521B;&#x5EFA;&#x53C2;&#x6570;&#x5316;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x4F46;&#x53EF;&#x4EE5;&#x58F0;&#x660E;&#x5E26;&#x6CDB;&#x578B;&#x7684;&#x6570;&#x7EC4;&#x5F15;&#x7528;&#x3002;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt;[] arr = <span class="keyword">new</span> <span class="title class_">ArrayList</span>[<span class="number">5</span>];<span class="comment">//OK</span></span><br><span class="line">ArrayList&lt;String&gt;[] array = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;[<span class="number">5</span>]; <span class="comment">//error&#x4E0D;&#x80FD;&#x521B;&#x5EFA;&#x6CDB;&#x578B;&#x6570;&#x7EC4;&#x5BF9;&#x8C61;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x4E0D;&#x80FD;&#x5B9E;&#x4F8B;&#x5316;&#x7C7B;&#x578B;&#x53D8;&#x91CF;,&#x4E0D;&#x8FC7;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x6765;&#x6784;&#x9020;&#x6CDB;&#x578B;&#x5BF9;&#x8C61;&#x3002;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt;T <span class="title function_">makePair</span><span class="params">(Class&lt;T&gt; cl)</span> <span class="keyword">throws</span> NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {</span><br><span class="line">    <span class="comment">//T t = new T();  &#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x4E0D;&#x80FD;&#x88AB;&#x5B9E;&#x4F8B;&#x5316;</span></span><br><span class="line">    <span class="keyword">return</span> cl.getConstructor().newInstance();<span class="comment">//&#x4F7F;&#x7528;&#x53CD;&#x5C04;&#x5B9E;&#x4F8B;&#x5316;&#x7C7B;&#x578B;&#x53D8;&#x91CF;</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>&#x4E0D;&#x80FD;&#x6784;&#x9020;&#x6CDB;&#x578B;&#x6570;&#x7EC4;&#x3002;T[] t = new T[5]//error</p>
+</li>
+<li><p>&#x6CDB;&#x578B;&#x7C7B;&#x7684;&#x9759;&#x6001;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x65E0;&#x6548;,&#x9759;&#x6B62;&#x4F7F;&#x7528;&#x5E26;&#x6709;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x7684;&#x9759;&#x6001;&#x5B57;&#x6BB5;&#x548C;&#x65B9;&#x6CD5;&#x3002;&#xFF08;&#x5728;&#x6CDB;&#x578B;&#x7C7B;&#x4E2D;&#xFF09;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> T <span class="title function_">makePair</span><span class="params">(Class&lt;T&gt; cl)</span> <span class="keyword">throws</span> NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {</span><br><span class="line">        <span class="keyword">return</span> cl.getConstructor().newInstance();</span><br><span class="line">}<span class="comment">//error</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> T singleInstance;<span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x4E0D;&#x80FD;&#x629B;&#x51FA;&#x6216;&#x6355;&#x83B7;&#x6CDB;&#x578B;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x3002;&#x6CDB;&#x578B;&#x7C7B;&#x751A;&#x81F3;&#x4E0D;&#x5AE9;&#x6269;&#x5C55;Throwable&#x7C7B;&#x3002;</p>
+</li>
+<li><p>&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x6CDB;&#x578B;&#x53D6;&#x6D88;&#x5BF9;&#x68C0;&#x67E5;&#x578B;&#x5F02;&#x5E38;&#x7684;&#x68C0;&#x67E5;&#x3002;&#xFF08;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#x4E3A;RuntimeException&#xFF09;</p>
+</li>
+<li><p>&#x6CE8;&#x610F;&#x64E6;&#x9664;&#x540E;&#x7684;&#x51B2;&#x7A81;&#x3002;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x63A5;&#x53E3;&#x7C7B;&#x662F;<strong>&#x540C;&#x4E00;</strong>&#x63A5;&#x53E3;&#x7684;<strong>&#x4E0D;&#x540C;&#x53C2;&#x6570;&#x5316;</strong>&#xFF0C;&#x4E00;&#x4E2A;&#x7C7B;&#x6216;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x5C31;&#x4E0D;&#x80FD;&#x540C;&#x65F6;&#x4F5C;&#x4E3A;&#x8FD9;&#x4E24;&#x4E2A;&#x63A5;&#x53E3;&#x7C7B;&#x578B;&#x7684;&#x5B50;&#x7C7B;&#x3002;</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span> <span class="keyword">implements</span> <span class="title class_">Comparable</span>&lt;Employee&gt;{...}</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Manager</span> <span class="keyword">extends</span> <span class="title class_">Employee</span> <span class="keyword">implements</span> <span class="title class_">Comparable</span>&lt;Manager&gt;{...}</span><br><span class="line"><span class="comment">//error</span></span><br><span class="line"><span class="comment">//Manager&#x5B9E;&#x73B0;&#x4E86;Comparable&lt;Employee&gt;&#x548C;Comparable&lt;Manager&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-&#x6CDB;&#x578B;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x89C4;&#x5219;"><a href="#5-&#x6CDB;&#x578B;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x89C4;&#x5219;" class="headerlink" title="5. &#x6CDB;&#x578B;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x89C4;&#x5219;"></a>5. <a name="-1"></a>&#x6CDB;&#x578B;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x89C4;&#x5219;</h2><p>&#x73B0;&#x5728;&#x6709;&#x4E00;&#x4E2A;&#x7C7B;Manager&#x7EE7;&#x627F;&#x81EA;Employee&#xFF0C;&#x90A3;&#x4E48;Pair&lt;  Manager&gt;&#x548C;Pair&lt; Employee&gt;&#x6709;&#x4EC0;&#x4E48;&#x5173;&#x7CFB;&#x5462;&#xFF1F;<br>&#x7B54;&#x6848;&#x662F;<strong>&#x6CA1;&#x6709;&#x5173;&#x7CFB;</strong>&#x3002;</p>
+<p>&#x4E0D;&#x8FC7;&#x6CDB;&#x578B;&#x7C7B;&#x53EF;&#x4EE5;&#x6269;&#x5C55;&#x6216;&#x5B9E;&#x73B0;&#x5176;&#x4ED6;&#x7684;&#x6CDB;&#x578B;&#x7C7B;&#x3002;<br>&#x4ECE;&#x6CDB;&#x578B;&#x7C7B;&#x6D3E;&#x751F;&#x5B50;&#x7C7B;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x4EE5;&#x4E0B;&#x51E0;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>&#x5B50;&#x7C7B;&#x4E5F;&#x662F;&#x6CDB;&#x578B;&#x7C7B;&#xFF0C;&#x5B50;&#x7C7B;&#x548C;&#x7236;&#x7C7B;&#x7684;&#x6CDB;&#x578B;&#x7C7B;&#x578B;&#x8981;&#x4E00;&#x81F4;&#x3002;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">brige</span>&lt;T&gt; <span class="keyword">extends</span> <span class="title class_">Pair</span>&lt;T&gt;{...}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x5B50;&#x7C7B;&#x4E0D;&#x662F;&#x6CDB;&#x578B;&#x7C7B;&#xFF0C;&#x7236;&#x7C7B;&#x8981;&#x660E;&#x786E;&#x6CDB;&#x578B;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x3002;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">brige</span> <span class="keyword">extends</span> <span class="title class_">Pair</span>&lt;String&gt;{...}</span><br></pre></td></tr></table></figure>
+<h2 id="6-&#x901A;&#x914D;&#x7B26;&#x7C7B;&#x578B;"><a href="#6-&#x901A;&#x914D;&#x7B26;&#x7C7B;&#x578B;" class="headerlink" title="6. &#x901A;&#x914D;&#x7B26;&#x7C7B;&#x578B;"></a>6. <a name="-1"></a>&#x901A;&#x914D;&#x7B26;&#x7C7B;&#x578B;</h2><p>&#x5728;&#x901A;&#x914D;&#x7B26;&#x7C7B;&#x578B;&#x4E2D;&#xFF0C;&#x5141;&#x8BB8;&#x7C7B;&#x578B;&#x53C2;&#x6570;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x901A;&#x914D;&#x7B26;&#x7C7B;&#x578B;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;? <span class="keyword">extends</span> <span class="title class_">Employee</span>&gt; p</span><br></pre></td></tr></table></figure>
+<p>&#x8868;&#x793A;&#x4EFB;&#x4F55;&#x6CDB;&#x578B;Pair&#x7C7B;&#x578B;&#xFF0C;&#x5B83;&#x7684;&#x7C7B;&#x578B;&#x53C2;&#x6570;&#x662F;Employee&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x5982;<br>Pair&lt; Manager&gt;,&#x4F46;&#x4E0D;&#x662F;Pair&lt; String&gt;&#x3002;</p>
+<p>&#x7C7B;&#x578B;Pair&lt; Manager&gt;&#x662F;Pair&lt;? extends Employee&gt;&#x7684;&#x5B50;&#x7C7B;&#x578B;&#x3002;</p>
+<h3 id="6-1-&#x7EDF;&#x914D;&#x7B26;&#x7684;&#x9650;&#x5B9A;"><a href="#6-1-&#x7EDF;&#x914D;&#x7B26;&#x7684;&#x9650;&#x5B9A;" class="headerlink" title="6.1. &#x7EDF;&#x914D;&#x7B26;&#x7684;&#x9650;&#x5B9A;"></a>6.1. <a name="-1"></a>&#x7EDF;&#x914D;&#x7B26;&#x7684;&#x9650;&#x5B9A;</h3><p>&#x901A;&#x914D;&#x7B26;&#x7684;&#x9650;&#x5B9A;&#x6709;&#x8D85;&#x7C7B;&#x578B;&#x9650;&#x5B9A;(super),&#x4E5F;&#x6709;&#x5B50;&#x7C7B;&#x578B;&#x9650;&#x5B9A;(extends)&#x3002;</p>
+<ol>
+<li>&#x8D85;&#x7C7B;&#x578B;&#x9650;&#x5B9A;super</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;? <span class="built_in">super</span> Manager&gt; p</span><br></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x4E2A;&#x901A;&#x914D;&#x7B26;&#x9650;&#x5236;&#x4E3A;Manager&#x7684;&#x6240;&#x6709;&#x8D85;&#x7C7B;&#x578B;&#x3002;&#x5305;&#x62EC;Object&#x3002;</p>
+<ol start="2">
+<li>&#x5B50;&#x7C7B;&#x578B;&#x9650;&#x5B9A;extends&#xFF0C;&#x4E0E;&#x8D85;&#x7C7B;&#x578B;&#x9650;&#x5B9A;&#x76F8;&#x53CD;&#x3002;</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;? <span class="keyword">extends</span> <span class="title class_">Employee</span>&gt; p</span><br></pre></td></tr></table></figure>
+<h3 id="6-2-&#x901A;&#x914D;&#x7B26;&#x9650;&#x5B9A;&#x7684;&#x884C;&#x4E3A;&#x5DEE;&#x5F02;"><a href="#6-2-&#x901A;&#x914D;&#x7B26;&#x9650;&#x5B9A;&#x7684;&#x884C;&#x4E3A;&#x5DEE;&#x5F02;" class="headerlink" title="6.2. &#x901A;&#x914D;&#x7B26;&#x9650;&#x5B9A;&#x7684;&#x884C;&#x4E3A;&#x5DEE;&#x5F02;"></a>6.2. <a name="-1"></a>&#x901A;&#x914D;&#x7B26;&#x9650;&#x5B9A;&#x7684;&#x884C;&#x4E3A;&#x5DEE;&#x5F02;</h3><p>&#x8D85;&#x7C7B;&#x578B;&#x9650;&#x5B9A;&#x548C;&#x5B50;&#x7C7B;&#x578B;&#x9650;&#x5B9A;&#x5728;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x65F6;&#x6709;&#x4E00;&#x4E9B;&#x5DEE;&#x5F02;&#xFF1A;</p>
+<ul>
+<li>&#x8D85;&#x7C7B;&#x578B;&#x9650;&#x5B9A;&#x53EF;&#x4EE5;&#x4E3A;&#x65B9;&#x6CD5;&#x63D0;&#x4F9B;&#x53C2;&#x6570;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x8FD4;&#x56DE;&#x503C;&#x3002;</li>
+<li>&#x5B50;&#x7C7B;&#x578B;&#x9650;&#x5B9A;&#x7684;&#x884C;&#x4E3A;&#x4E0E;&#x8D85;&#x7C7B;&#x578B;&#x9650;&#x5B9A;&#x76F8;&#x53CD;&#x3002;</li>
+</ul>
+<p>&#x4E0B;&#x9762;&#x6765;&#x770B;&#x4E00;&#x7EC4;&#x4EE3;&#x7801;&#x6765;&#x52A0;&#x6DF1;&#x7406;&#x89E3;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(Pair&lt;? extends Employee&gt; p)</span>{<span class="comment">//&#x5B50;&#x7C7B;&#x578B;&#x9650;&#x5B9A;</span></span><br><span class="line">        <span class="type">Employee</span> <span class="variable">first</span> <span class="operator">=</span> p.getFirst();</span><br><span class="line"><span class="comment">//        p.setFirst(first);    error  &#x901A;&#x914D;&#x7B26;&#x4E0A;&#x9650;&#x4E0D;&#x80FD;&#x5199;&#x5165;&#xFF0C;&#x6B64;&#x65F6;&#x6CDB;&#x578B;&#x7C7B;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E3A;Employee&#x7684;&#x5B50;&#x7C7B;&#xFF0C;</span></span><br><span class="line"><span class="comment">//        &#x4F20;&#x8FDB;&#x53BB;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E3A;&#x6CDB;&#x578B;&#x7C7B;&#x4E2D;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x7236;&#x7C7B;&#xFF0C;&#x5B50;&#x7C7B;&#x5F15;&#x7528;&#x4E0D;&#x80FD;&#x6307;&#x5411;&#x7236;&#x7C7B;&#x5BF9;&#x8C61; Manager = new Employee(); error</span></span><br><span class="line">        System.out.println(first.getName());</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">show2</span><span class="params">(Pair&lt;? <span class="built_in">super</span> Manager&gt; p )</span>{<span class="comment">//&#x8D85;&#x7C7B;&#x578B;&#x9650;&#x5B9A;</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">first</span> <span class="operator">=</span> p.getFirst();</span><br><span class="line">        <span class="type">Manager</span> <span class="variable">m</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Manager</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="string">&quot; &quot;</span>);</span><br><span class="line">        p.setFirst(m);<span class="comment">//&#x901A;&#x914D;&#x7B26;&#x4E0B;&#x9650;&#x53EF;&#x4EE5;&#x5199;&#x5165;&#xFF0C;&#x56E0;&#x4E3A;&#x6B64;&#x65F6;&#x6CDB;&#x578B;&#x7C7B;&#x4E2D;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x80AF;&#x5B9A;&#x4E3A;Manager&#x7684;&#x7236;&#x7C7B;&#xFF0C;</span></span><br><span class="line">        <span class="comment">// &#x7236;&#x7C7B;&#x5F15;&#x7528;&#x53EF;&#x4EE5;&#x6307;&#x5411;&#x5B50;&#x7C7B;&#x5BF9;&#x8C61;,Employee = new Manager(); OK</span></span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<p>&#x603B;&#x4E4B;&#xFF1A;</p>
+<ul>
+<li>&#x5E26;&#x6709;&#x8D85;&#x7C7B;&#x578B;&#x9650;&#x5B9A;&#x7684;&#x901A;&#x914D;&#x7B26;&#x5141;&#x8BB8;&#x4F60;&#x5199;&#x5165;&#x4E00;&#x4E2A;&#x6CDB;&#x578B;&#x5BF9;&#x8C61;&#xFF0C;&#x80FD;&#x5199;&#x5165;&#x7C7B;&#x578B;&#x4E3A;super&#x5173;&#x952E;&#x5B57;&#x4E4B;&#x540E;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5728;&#x8FD9;&#x4E3A;Manager&#xFF0C;&#x5B83;&#x4E00;&#x5B9A;&#x662F;&#x901A;&#x914D;&#x7B26;&#x7C7B;&#x578B;&#x7684;&#x5B50;&#x7C7B;&#x3002;</li>
+<li>&#x800C;&#x5E26;&#x6709;&#x5B50;&#x7C7B;&#x578B;&#x9650;&#x5B9A;&#x7684;&#x901A;&#x914D;&#x7B26;&#x5141;&#x8BB8;&#x4F60;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A;&#x6CDB;&#x578B;&#x5BF9;&#x8C61;&#xFF0C;&#x8BFB;&#x53D6;&#x51FA;&#x7684;&#x5BF9;&#x8C61;&#x53EA;&#x80FD;&#x8D4B;&#x7ED9;extends&#x5173;&#x952E;&#x5B57;&#x4E4B;&#x540E;&#x7684;&#x7C7B;&#x578B;&#x6216;&#x5176;&#x7236;&#x7C7B;&#xFF0C;&#x5728;&#x8FD9;&#x4E3A;Employee,&#x5B83;&#x4E00;&#x5B9A;&#x662F;&#x901A;&#x914D;&#x7B26;&#x7C7B;&#x578B;&#x7684;&#x7236;&#x7C7B;&#x3002;</li>
+<li>&#x7406;&#x89E3;&#x4EE5;&#x4E0A;&#x7684;&#x5173;&#x952E;&#x70B9;&#x662F;<strong>&#x7236;&#x7C7B;&#x5F15;&#x7528;&#x80FD;&#x6307;&#x5411;&#x5B50;&#x7C7B;&#x5BF9;&#x8C61;&#xFF0C;&#x800C;&#x5B50;&#x7C7B;&#x5F15;&#x7528;&#x4E0D;&#x80FD;&#x6307;&#x5411;&#x7236;&#x7C7B;&#x5BF9;&#x8C61;&#x3002;</strong><h3 id="6-3-&#x65E0;&#x9650;&#x5B9A;&#x901A;&#x914D;&#x7B26;"><a href="#6-3-&#x65E0;&#x9650;&#x5B9A;&#x901A;&#x914D;&#x7B26;" class="headerlink" title="6.3. &#x65E0;&#x9650;&#x5B9A;&#x901A;&#x914D;&#x7B26;"></a>6.3. <a name="-1"></a>&#x65E0;&#x9650;&#x5B9A;&#x901A;&#x914D;&#x7B26;</h3>&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6839;&#x672C;&#x65E0;&#x9650;&#x5B9A;&#x7684;&#x901A;&#x914D;&#x7B26;&#xFF0C;&#x4F8B;&#x5982;Pair&lt;?&gt;&#x3002;<br>&#x8BE5;&#x7C7B;&#x578B;&#x65E2;&#x4E0D;&#x80FD;&#x8BFB;&#x53D6;&#x4E5F;&#x4E0D;&#x80FD;&#x5199;&#x5165;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x5728;&#x4E0D;&#x9700;&#x8981;&#x5B9E;&#x9645;&#x7C7B;&#x578B;&#x7684;&#x65B9;&#x6CD5;&#x4E4B;&#x4E2D;&#xFF0C;&#x5982;&#xFF1A;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">hasNulls</span><span class="params">(Pair&lt;?&gt; p)</span>{</span><br><span class="line">	<span class="keyword">return</span> p.getFirst() == <span class="literal">null</span>||p.getSecond == <span class="literal">null</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="6-4-&#x901A;&#x914D;&#x7B26;&#x6355;&#x83B7;"><a href="#6-4-&#x901A;&#x914D;&#x7B26;&#x6355;&#x83B7;" class="headerlink" title="6.4. &#x901A;&#x914D;&#x7B26;&#x6355;&#x83B7;"></a>6.4. <a name="-1"></a>&#x901A;&#x914D;&#x7B26;&#x6355;&#x83B7;</h3><p>&#x6709;&#x4EE5;&#x4E0B;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(Pair&lt;?&gt; p)</span>{swapHelper(p);}</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">swapHelper</span><span class="params">(Pair&lt;T&gt; p)</span>{}</span><br></pre></td></tr></table></figure>
+<p>&#x7B2C;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x7B2C;&#x4E8C;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;T&#x4F1A;&#x6355;&#x83B7;&#x901A;&#x914D;&#x7B26;&#x3002;</p>
+<h2 id="7-&#x53CD;&#x5C04;&#x548C;&#x6CDB;&#x578B;"><a href="#7-&#x53CD;&#x5C04;&#x548C;&#x6CDB;&#x578B;" class="headerlink" title="7. &#x53CD;&#x5C04;&#x548C;&#x6CDB;&#x578B;"></a>7. <a name="-1"></a>&#x53CD;&#x5C04;&#x548C;&#x6CDB;&#x578B;</h2><p>Class&#x7C7B;&#x4E5F;&#x662F;&#x6CDB;&#x578B;&#x7C7B;&#xFF0C;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x8FD9;&#x4E2A;&#x6765;&#x514D;&#x9664;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x3002;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;Pair&gt; pairClass = Pair.class;</span><br><span class="line">Constructor&lt;Pair&gt; constructor = pairClass.getConstructor();</span><br><span class="line"><span class="type">Pair</span> <span class="variable">pair1</span> <span class="operator">=</span> constructor.newInstance();</span><br></pre></td></tr></table></figure>
+<p>&#x5176;&#x4E2D;&#x6784;&#x9020;&#x5B9E;&#x4F8B;&#x7684;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#x76F4;&#x63A5;&#x662F;Pair&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x518D;&#x8FDB;&#x884C;&#x5F3A;&#x5236;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x3002;</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/21/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%85%AB%E7%AB%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
   
     <article id="post-《java核心技术》第七章笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1870,6 +2129,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">处理器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">c</a>
               </li>
             
             <div class="clearfix"></div>
