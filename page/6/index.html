@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 51
+			总文章数 52
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -153,6 +153,231 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-《java核心技术》第四章笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/24/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0/">java对象与类</a>
+    </h1>
+  
+
+        <!--显示阅读次数-->
+        
+        <!--显示阅读次数完毕-->
+        
+        <a href="/2020/03/24/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-03-24T13:36:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- vscode-markdown-toc -->
+<ul>
+<li><ol>
+<li><a href="#">&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;</a></li>
+</ol>
+</li>
+<li><ol start="2">
+<li><a href="#-1">&#x4F7F;&#x7528;&#x9884;&#x5B9A;&#x4E49;&#x7C7B;</a></li>
+</ol>
+</li>
+<li><ol start="3">
+<li><a href="#-1">&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;</a></li>
+</ol>
+</li>
+<li><ol start="4">
+<li><a href="#final">final&#x5173;&#x952E;&#x5B57;&#x7684;&#x57FA;&#x672C;&#x7528;&#x6CD5;</a></li>
+</ol>
+</li>
+<li><ol start="5">
+<li><a href="#-1">&#x9759;&#x6001;&#x5B57;&#x6BB5;</a></li>
+</ol>
+<ul>
+<li>5.1. <a href="#-1">&#x9759;&#x6001;&#x53D8;&#x91CF;</a></li>
+<li>5.2. <a href="#-1">&#x9759;&#x6001;&#x5E38;&#x91CF;</a></li>
+<li>5.3. <a href="#-1">&#x9759;&#x6001;&#x65B9;&#x6CD5;</a></li>
+</ul>
+</li>
+<li><ol start="6">
+<li><a href="#-1">&#x65B9;&#x6CD5;&#x53C2;&#x6570;</a></li>
+</ol>
+</li>
+<li><ol start="7">
+<li><a href="#-1">&#x5BF9;&#x8C61;&#x6784;&#x9020;</a></li>
+</ol>
+<ul>
+<li>7.1. <a href="#-1">&#x9ED8;&#x8BA4;&#x5B57;&#x6BB5;&#x521D;&#x59CB;&#x5316;</a></li>
+<li>7.2. <a href="#-1">&#x65E0;&#x53C2;&#x6570;&#x7684;&#x6784;&#x9020;&#x5668;</a></li>
+<li>7.3. <a href="#-1">&#x663E;&#x5F0F;&#x5B57;&#x6BB5;&#x521D;&#x59CB;&#x5316;</a></li>
+<li>7.4. <a href="#-1">&#x8C03;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x6784;&#x9020;&#x5668;</a></li>
+<li>7.5. <a href="#-1">&#x521D;&#x59CB;&#x5316;&#x5757;</a></li>
+<li>7.6. <a href="#-1">&#x5305;</a></li>
+<li>7.7. <a href="#-1">&#x7C7B;&#x8BBE;&#x8BA1;&#x6280;&#x5DE7;</a></li>
+</ul>
+</li>
+</ul>
+<!-- vscode-markdown-toc-config
+    numbering=true
+    autoSave=true
+    /vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+<h2 id="1-&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;"><a href="#1-&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;" class="headerlink" title="1. &#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;"></a>1. <a name></a>&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;</h2><table>
+<thead>
+<tr>
+<th>&#x5173;&#x7CFB;</th>
+<th>&#x63CF;&#x8FF0;</th>
+<th>&#x201C;&#x201D;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x4F9D;&#x8D56;</td>
+<td>&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x4F7F;&#x7528;&#x6216;&#x64CD;&#x7EB5;&#x53E6;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x5BF9;&#x8C61;</td>
+<td>&#x201C;uses-a&#x201D;</td>
+</tr>
+<tr>
+<td>&#x805A;&#x5408;</td>
+<td>&#x7C7B;A&#x7684;&#x5BF9;&#x8C61;&#x5305;&#x542B;&#x7C7B;B&#x7684;&#x5BF9;&#x8C61;</td>
+<td>&#x201C;has-a&#x201D;</td>
+</tr>
+<tr>
+<td>&#x7EE7;&#x627F;</td>
+<td>&#x7C7B;A&#x6269;&#x5C55;&#x7C7B;B</td>
+<td>&#x201C;is-a&#x201D;</td>
+</tr>
+</tbody></table>
+<h2 id="2-&#x4F7F;&#x7528;&#x9884;&#x5B9A;&#x4E49;&#x7C7B;"><a href="#2-&#x4F7F;&#x7528;&#x9884;&#x5B9A;&#x4E49;&#x7C7B;" class="headerlink" title="2. &#x4F7F;&#x7528;&#x9884;&#x5B9A;&#x4E49;&#x7C7B;"></a>2. <a name="-1"></a>&#x4F7F;&#x7528;&#x9884;&#x5B9A;&#x4E49;&#x7C7B;</h2><p>&#x8981;&#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#xFF0C;&#x9996;&#x5148;&#x8981;&#x6784;&#x9020;&#x5BF9;&#x8C61;,&#x4F7F;&#x7528;&#x6784;&#x9020;&#x5668;&#xFF08;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF09;&#x6765;&#x521D;&#x59CB;&#x5316;&#x5BF9;&#x8C61;<br>&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x53D8;&#x91CF;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x6216;&#x8005;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x503C;null</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">data</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">data</span>();<span class="comment">//&#x5B83;&#x5F15;&#x7528;&#x4E86;&#x65B0;&#x6784;&#x9020;&#x7684;&#x5BF9;&#x8C61;</span></span><br></pre></td></tr></table></figure>
+<p><strong>&#x5BF9;&#x8C61;&#x548C;&#x5BF9;&#x8C61;&#x53D8;&#x91CF;&#x6709;&#x91CD;&#x8981;&#x7684;&#x533A;&#x522B;</strong><br>&#x4F8B;&#x5982;&#xFF1A;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Data deadline;<span class="comment">//&#x53D8;&#x91CF;deadline&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;,&#x800C;&#x4E14;&#x5B9E;&#x9645;&#x4E0A;&#x5B83;&#x4E5F;&#x6CA1;&#x6709;&#x5F15;&#x7528;&#x4EFB;&#x4F55;&#x5BF9;&#x8C61;</span></span><br><span class="line">deadline.toString();<span class="comment">//&#x8FD8;&#x4E0D;&#x80FD;&#x5BF9;&#x5B83;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</span></span><br></pre></td></tr></table></figure>
+<p><strong>&#x5728;java&#x4E2D;&#xFF0C;&#x5BF9;&#x8C61;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x53EA;&#x662F;&#x5BF9;&#x5B58;&#x50A8;&#x5728;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#x7684;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;</strong><br>&#x5BF9;&#x8C61;&#x53D8;&#x91CF;&#x5E76;&#x6CA1;&#x6709;&#x5B9E;&#x9645;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x53EA;&#x662F;<strong>&#x5F15;&#x7528;</strong>&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;</p>
+<blockquote>
+<p>java&#x4E2D;&#x7684;&#x5F15;&#x7528;&#x5E76;&#x4E0D;&#x662F;c++&#x4E2D;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;java&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x53D8;&#x91CF;&#x770B;&#x505A;&#x7C7B;&#x4F3C;&#x4E8E;c++&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x6307;&#x9488;&#x3002;<br>java&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x90FD;&#x5B58;&#x50A8;&#x5728;&#x5806;&#x4E2D;&#x3002;</p>
+</blockquote>
+<blockquote>
+<p><strong>&#x503C;&#x7C7B;&#x578B;&#x548C;&#x5F15;&#x7528;&#x7C7B;&#x578B;</strong><br>num&#x662F;int&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#xFF0C;&#x503C;&#x5C31;&#x76F4;&#x63A5;&#x4FDD;&#x5B58;&#x5728;&#x53D8;&#x91CF;&#x4E2D;&#x3002;str&#x662F;String&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#xFF0C;&#x53D8;&#x91CF;&#x4E2D;&#x4FDD;&#x5B58;&#x7684;&#x53EA;&#x662F;&#x5B9E;&#x9645;&#x5BF9;&#x8C61;&#x5BF9;&#x5E94;&#x7684;&#x5730;&#x5740;&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5B9E;&#x9645;&#x5BF9;&#x8C61;&#x6570;&#x636E;&#x3002;</p>
+<p><img src="https://img-blog.csdnimg.cn/20200322133232726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2NTIwNjc2,size_16,color_FFFFFF,t_70" alt="&#x5728;&#x8FD9;&#x91CC;&#x63D2;&#x5165;&#x56FE;&#x7247;&#x63CF;&#x8FF0;"><br>&#x5BF9;&#x4E8E;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x53D8;&#x91CF;num&#xFF0C;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#x7B26;&#x5C06;&#x4F1A;&#x76F4;&#x63A5;&#x4FEE;&#x6539;&#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x539F;&#x6765;&#x7684;&#x6570;&#x636E;&#x5C06;&#x88AB;&#x8986;&#x76D6;&#x6389;&#xFF0C;&#x88AB;&#x66FF;&#x6362;&#x4E3A;&#x65B0;&#x7684;&#x503C;&#x3002;&#x5BF9;&#x4E8E;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x53D8;&#x91CF;str&#xFF0C;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#x7B26;&#x53EA;&#x4F1A;&#x6539;&#x53D8;&#x53D8;&#x91CF;&#x4E2D;&#x6240;&#x4FDD;&#x5B58;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x5730;&#x5740;&#x4FE1;&#x606F;&#xFF0C;&#x539F;&#x6765;&#x5BF9;&#x8C61;&#x7684;&#x5730;&#x5740;&#x88AB;&#x8986;&#x76D6;&#x6389;&#xFF0C;&#x91CD;&#x65B0;&#x5199;&#x5165;&#x65B0;&#x5BF9;&#x8C61;&#x7684;&#x5730;&#x5740;&#x6570;&#x636E;&#x3002;&#x4F46;&#x539F;&#x6765;&#x7684;&#x5BF9;&#x8C61;&#x672C;&#x8EAB;&#x5E76;&#x4E0D;&#x4F1A;&#x88AB;&#x6539;&#x53D8;&#xFF0C;&#x53EA;&#x662F;&#x4E0D;&#x518D;&#x88AB;&#x4EFB;&#x4F55;&#x5F15;&#x7528;&#x6240;&#x6307;&#x5411;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5373;&#x201C;&#x5783;&#x573E;&#x5BF9;&#x8C61;&#x201D;&#xFF0C;&#x540E;&#x7EED;&#x4F1A;&#x88AB;&#x5783;&#x573E;&#x56DE;&#x6536;&#x5668;&#x56DE;&#x6536;&#x3002;</p>
+</blockquote>
+<p>&#x4F7F;&#x7528;&#x9759;&#x6001;&#x5DE5;&#x5382;&#x65B9;&#x6CD5;&#x6765;&#x6784;&#x9020;LocalData&#x7C7B;,&#x4E0D;&#x662F;&#x4F7F;&#x7528;&#x6784;&#x9020;&#x5668;&#xFF01;&#xFF01;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">LocalData</span> <span class="variable">newyear</span> <span class="operator">=</span> LocalData.of(<span class="number">1999</span>,<span class="number">12</span>,<span class="number">31</span>);<span class="comment">//&#x4E0D;&#x4F7F;&#x7528;&#x6784;&#x9020;&#x5668;&#x6765;&#x6784;&#x9020;</span></span><br><span class="line"><span class="type">LocalData</span> <span class="variable">newyear</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">LocalData</span>.of(<span class="number">1999</span>,<span class="number">12</span>,<span class="number">31</span>);<span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;"><a href="#3-&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;" class="headerlink" title="3. &#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;"></a>3. <a name="-1"></a>&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;</h2><p>&#x5728;&#x4E00;&#x4E2A;&#x6E90;&#x6587;&#x4EF6;&#x4E2D;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x516C;&#x5171;&#x7C7B;&#xFF0C;&#x4F46;&#x53EF;&#x4EE5;&#x6709;&#x4EFB;&#x610F;&#x6570;&#x76EE;&#x7684;&#x975E;&#x516C;&#x5171;&#x7C7B;&#x3002;</p>
+<p>&#x6784;&#x9020;&#x5668;&#x603B;&#x662F;&#x4E0E;&#x7C7B;&#x540C;&#x540D;&#x5E76;&#x4E14;&#x603B;&#x662F;&#x7ED3;&#x5408;new&#x8FD0;&#x7B97;&#x7B26;&#x6765;&#x4F7F;&#x7528;<br>&#x6784;&#x9020;&#x5668;&#x6CA1;&#x6709;&#x8FD4;&#x56DE;&#x503C;</p>
+<p><strong>&#x8B66;&#x544A;&#xFF1A;</strong> &#x4E0D;&#x8981;&#x5728;&#x6784;&#x9020;&#x5668;&#x4E2D;&#x5B9A;&#x4E49;&#x4E0E;&#x5B9E;&#x4F8B;&#x5B57;&#x6BB5;&#xFF08;&#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x6570;&#x636E;&#xFF09;&#x540C;&#x540D;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span>{</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">   <span class="keyword">private</span> <span class="type">double</span> salary;</span><br><span class="line">   <span class="comment">//......</span></span><br><span class="line">}</span><br><span class="line"><span class="keyword">public</span> <span class="title function_">Employee</span><span class="params">(String n,<span class="type">double</span> s)</span>{</span><br><span class="line">   <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> n;<span class="comment">//&#x8FD9;&#x4E9B;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4F1A;&#x906E;&#x853D;&#x540C;&#x540D;&#x7684;&#x5B9E;&#x4F8B;&#x5B57;&#x6BB5;</span></span><br><span class="line">   <span class="type">double</span> <span class="variable">salary</span> <span class="operator">=</span> s;</span><br><span class="line">   <span class="comment">//......</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x8981;&#x5C0F;&#x5FC3;&#x4F7F;&#x7528;null&#x503C;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> str.substring(<span class="number">0</span>,<span class="number">3</span>);<span class="comment">//&#x5BF9;null&#x5E94;&#x7528;&#x65B9;&#x6CD5;&#x4F1A;&#x4EA7;&#x751F;&#x5F02;&#x5E38;</span></span><br><span class="line"><span class="comment">/*Exception in thread &quot;main&quot; java.lang.NullPointerException</span></span><br><span class="line"><span class="comment">	at data.data.main(data.java:11)*/</span></span><br></pre></td></tr></table></figure>
+<p>&#x5B9A;&#x4E49;&#x65B9;&#x6CD5;&#xFF08;&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF09;</p>
+<blockquote>
+<p>&#x5728;c++&#x4E2D;&#xFF0C;&#x5728;&#x7C7B;&#x7684;&#x5916;&#x90E8;&#x5B9A;&#x4E49;&#x65B9;&#x6CD5;&#x8981;&#x4F7F;&#x7528;&#x6210;&#x5458;&#x9650;&#x5B9A;&#x7B26;::,&#x800C;&#x5728;&#x5185;&#x90E8;&#x5B9A;&#x4E49;&#x5219;&#x8BE5;&#x65B9;&#x6CD5;&#x4F1A;&#x88AB;&#x8BBE;&#x7F6E;&#x4E3A;&#x5185;&#x8054;&#x65B9;&#x6CD5;.<br>&#x5728;java&#x4E2D;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x65B9;&#x6CD5;&#x5FC5;&#x987B;&#x5728;&#x7C7B;&#x7684;&#x5185;&#x90E8;&#x5B9A;&#x4E49;&#xFF0C;&#x4F46;&#x5E76;&#x4E0D;&#x8868;&#x793A;&#x5B83;&#x4EEC;&#x662F;&#x5185;&#x8054;&#x65B9;&#x6CD5;&#xFF0C;java&#x865A;&#x62DF;&#x673A;&#x4F1A;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#x3002;</p>
+</blockquote>
+<p>&#x5B57;&#x6BB5;&#x8BBF;&#x95EE;&#x5668;&#xFF1A;&#x53EA;&#x8FD4;&#x56DE;&#x5B9E;&#x4F8B;&#x5B57;&#x6BB5;&#x503C;<br><strong>&#x6CE8;&#x610F;&#xFF1A;</strong> &#x4E0D;&#x8981;&#x7F16;&#x5199;&#x8FD4;&#x56DE;&#x53EF;&#x53D8;&#x5BF9;&#x8C61;&#x5F15;&#x7528;&#x7684;&#x8BBF;&#x95EE;&#x5668;&#x65B9;&#x6CD5;&#xFF01;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span>{</span><br><span class="line">    <span class="keyword">private</span> Date hireDay;</span><br><span class="line">    <span class="keyword">public</span> Date <span class="title function_">getHireDay</span><span class="params">()</span>{</span><br><span class="line">        <span class="keyword">return</span> hireDay;<span class="comment">//bad</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">data</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[]args)</span>{</span><br><span class="line">        <span class="type">Employee</span> <span class="variable">harry</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Employee</span>();</span><br><span class="line">        <span class="type">Date</span> <span class="variable">d</span> <span class="operator">=</span> harry.getHireDay();<span class="comment">//&#x6B64;&#x65F6;d&#x548C;harry.hireDay&#x5F15;&#x7528;&#x81EA;&#x540C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;</span></span><br><span class="line">        <span class="type">double</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">245</span>;</span><br><span class="line">        d.setTime(d.getTime()-(<span class="type">long</span>)a);<span class="comment">//&#x6539;&#x53D8;&#x4E86;harry.hireDay!</span></span><br><span class="line">        <span class="comment">//&#x5BF9;d&#x4F7F;&#x7528;&#x66F4;&#x6539;&#x5668;&#x65B9;&#x6CD5;&#x5C31;&#x53EF;&#x4EE5;&#x6539;&#x53D8;&#x8FD9;&#x4E2A;Employee&#x5BF9;&#x8C61;&#x7684;&#x79C1;&#x6709;&#x72B6;&#x6001;&#xFF01;&#xFF01;</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x6240;&#x5C5E;&#x7C7B;&#x7684;&#x4EFB;&#x4F55;&#x5BF9;&#x8C61;&#x7684;&#x79C1;&#x6709;&#x7279;&#x6027;</p>
+<h2 id="4-final&#x5173;&#x952E;&#x5B57;&#x7684;&#x57FA;&#x672C;&#x7528;&#x6CD5;"><a href="#4-final&#x5173;&#x952E;&#x5B57;&#x7684;&#x57FA;&#x672C;&#x7528;&#x6CD5;" class="headerlink" title="4. final&#x5173;&#x952E;&#x5B57;&#x7684;&#x57FA;&#x672C;&#x7528;&#x6CD5;"></a>4. <a name="final"></a>final&#x5173;&#x952E;&#x5B57;&#x7684;&#x57FA;&#x672C;&#x7528;&#x6CD5;</h2><p>&#x5728;Java&#x4E2D;&#xFF0C;final&#x5173;&#x952E;&#x5B57;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x4FEE;&#x9970;&#x7C7B;&#x3001;&#x65B9;&#x6CD5;&#x548C;&#x53D8;&#x91CF;&#xFF08;&#x5305;&#x62EC;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF09;&#x3002;</p>
+<p>final&#x4FEE;&#x9970;&#x4E00;&#x4E2A;&#x7C7B;&#x65F6;&#xFF0C;&#x8868;&#x793A;&#x8FD9;&#x4E2A;&#x7C7B;&#x4E0D;&#x80FD;&#x88AB;&#x7EE7;&#x627F;&#x3002;<br>&#x4FEE;&#x9970;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x6B64;&#x65B9;&#x6CD5;&#x4E0D;&#x80FD;&#x88AB;&#x91CD;&#x5199;&#x3002;</p>
+<p>&#x4FEE;&#x9970;&#x53D8;&#x91CF;&#xFF0C;final&#x6210;&#x5458;&#x5E38;&#x91CF;&#x8868;&#x793A;&#x5E38;&#x91CF;&#xFF0C;&#x53EA;&#x80FD;&#x88AB;&#x8D4B;&#x503C;&#x4E00;&#x6B21;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">50</span>;</span><br><span class="line">num = <span class="number">60</span>;<span class="comment">//&#x62A5;&#x9519;</span></span><br></pre></td></tr></table></figure>
+<p>&#x4FEE;&#x9970;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x65F6;&#xFF0C;&#x5219;&#x5728;&#x5176;&#x521D;&#x59CB;&#x5316;&#x4E4B;&#x540E;&#x4E0D;&#x80FD;&#x518D;&#x6307;&#x5411;&#x5176;&#x4ED6;&#x5BF9;&#x8C61;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x8BE5;&#x5F15;&#x7528;&#x6240;&#x6307;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x5185;&#x5BB9;&#x662F;&#x53EF;&#x53D8;&#x7684;&#xFF01;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">Date</span> <span class="variable">str</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">str = <span class="keyword">new</span> <span class="title class_">Date</span>();<span class="comment">//&#x62A5;&#x9519;&#xFF0C;&#x4E0D;&#x80FD;&#x518D;&#x6307;&#x5411;&#x5176;&#x4ED6;&#x5BF9;&#x8C61;</span></span><br><span class="line">str.setTime(str.getTime());<span class="comment">//&#x53EF;&#x4EE5;&#x6539;&#x53D8;&#x6240;&#x6307;&#x5BF9;&#x8C61;&#x7684;&#x5185;&#x5BB9;</span></span><br></pre></td></tr></table></figure>
+<p>&#x5F53;final&#x4FEE;&#x9970;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x5FC5;&#x987B;&#x8981;&#x663E;&#x793A;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x6709;&#x4E24;&#x79CD;&#x521D;&#x59CB;&#x5316;&#x65B9;&#x5F0F;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Date hireDay=<span class="keyword">new</span> <span class="title class_">Date</span>();<span class="comment">//&#x5728;&#x58F0;&#x660E;&#x65F6;&#x521D;&#x59CB;&#x5316;</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Date hireDay;</span><br><span class="line">    Employee(Date d){</span><br><span class="line">        hireDay = d;</span><br><span class="line">    }<span class="comment">//&#x5728;&#x6784;&#x9020;&#x5668;&#x4E2D;&#x521D;&#x59CB;&#x5316;</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h2 id="5-&#x9759;&#x6001;&#x5B57;&#x6BB5;"><a href="#5-&#x9759;&#x6001;&#x5B57;&#x6BB5;" class="headerlink" title="5. &#x9759;&#x6001;&#x5B57;&#x6BB5;"></a>5. <a name="-1"></a>&#x9759;&#x6001;&#x5B57;&#x6BB5;</h2><h3 id="5-1-&#x9759;&#x6001;&#x53D8;&#x91CF;"><a href="#5-1-&#x9759;&#x6001;&#x53D8;&#x91CF;" class="headerlink" title="5.1. &#x9759;&#x6001;&#x53D8;&#x91CF;"></a>5.1. <a name="-1"></a>&#x9759;&#x6001;&#x53D8;&#x91CF;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">nextid</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x73B0;&#x5728;&#x6BCF;&#x4E2A;Employee&#x5BF9;&#x8C61;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x81EA;&#x5DF1;&#x7684;id&#x5B57;&#x6BB5;&#xFF0C;&#x4F46;&#x8FD9;&#x4E2A;&#x7C7B;&#x6240;&#x6709;&#x7684;&#x5B9E;&#x4F8B;&#x90FD;&#x5171;&#x4EAB;&#x4E00;&#x4E2A;nextid&#x5B57;&#x6BB5;&#x3002;<br>&#x5047;&#x5982;&#x6709;1000&#x4E2A;Employee&#x7C7B;&#x5BF9;&#x8C61;&#xFF0C;&#x5C31;&#x6709;1000&#x4E2A;&#x5B9E;&#x4F8B;&#x5B57;&#x6BB5;id&#xFF0C;&#x5206;&#x522B;&#x5BF9;&#x5E94;&#x6BCF;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x4F46;&#x662F;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x9759;&#x6001;&#x5B57;&#x6BB5;nextid&#x3002;<br>&#x5373;&#x4F7F;&#x6CA1;&#x6709;Employee&#x5BF9;&#x8C61;&#xFF0C;&#x9759;&#x6001;&#x5B57;&#x6BB5;nextid&#x4E5F;&#x5B58;&#x5728;&#xFF0C;&#x5B83;&#x5C5E;&#x4E8E;&#x7C7B;&#xFF0C;&#x4E0D;&#x5C5E;&#x4E8E;&#x4EFB;&#x4F55;&#x5355;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;</p>
+<h3 id="5-2-&#x9759;&#x6001;&#x5E38;&#x91CF;"><a href="#5-2-&#x9759;&#x6001;&#x5E38;&#x91CF;" class="headerlink" title="5.2. &#x9759;&#x6001;&#x5E38;&#x91CF;"></a>5.2. <a name="-1"></a>&#x9759;&#x6001;&#x5E38;&#x91CF;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">nextid</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-&#x9759;&#x6001;&#x65B9;&#x6CD5;"><a href="#5-3-&#x9759;&#x6001;&#x65B9;&#x6CD5;" class="headerlink" title="5.3. &#x9759;&#x6001;&#x65B9;&#x6CD5;"></a>5.3. <a name="-1"></a>&#x9759;&#x6001;&#x65B9;&#x6CD5;</h3><p>&#x9759;&#x6001;&#x65B9;&#x6CD5;&#x4E0D;&#x662F;&#x5728;&#x5BF9;&#x8C61;&#x4E0A;&#x6267;&#x884C;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#x53EA;&#x80FD;&#x8BBF;&#x95EE;&#x9759;&#x6001;&#x5B57;&#x6BB5;&#x3002;<br>&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x63D0;&#x4F9B;&#x7C7B;&#x540D;&#x6765;&#x8C03;&#x7528;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x4E0D;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x7C7B;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#x6765;&#x8C03;&#x7528;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">empty</span><span class="params">()</span>{<span class="comment">//&#x975E;&#x9759;&#x6001;</span></span><br><span class="line">        System.out.println();</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">empty1</span><span class="params">()</span>{<span class="comment">//&#x9759;&#x6001;&#x7248;&#x672C;</span></span><br><span class="line">        System.out.println();</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">data</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[]args)</span>{</span><br><span class="line">        Employee.empty();<span class="comment">//&#x76F4;&#x63A5;&#x901A;&#x8FC7;&#x7C7B;&#x540D;&#x8C03;&#x7528;&#x975E;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#x4F1A;&#x62A5;&#x9519;</span></span><br><span class="line">        Employee.empty1();<span class="comment">//&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x9759;&#x6001;&#x65B9;&#x6CD5;</span></span><br><span class="line">        <span class="type">Employee</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Employee</span>();</span><br><span class="line">        a.empty();<span class="comment">//&#x5BF9;&#x4E8E;&#x975E;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x7C7B;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#x6765;&#x8C03;&#x7528;</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>&#x5728;c++&#x4E2D;&#xFF0C;&#x8981;&#x4F7F;&#x7528;&#x6210;&#x5458;&#x8BBF;&#x95EE;&#x7B26;:: &#x6765;&#x8BBF;&#x95EE;&#x4F5C;&#x7528;&#x57DF;&#x4E4B;&#x5916;&#x7684;&#x9759;&#x6001;&#x5B57;&#x6BB5;&#x548C;&#x9759;&#x6001;&#x65B9;&#x6CD5;<br>&#x5982;Math::PI<br>&#x5728;Java&#x4E2D;&#x5219;&#x662F;Math.PI,&#x529F;&#x80FD;&#x4E0A;&#x76F8;&#x540C;&#xFF0C;&#x8BED;&#x6CD5;&#x4E0D;&#x540C;</p>
+</blockquote>
+<h2 id="6-&#x65B9;&#x6CD5;&#x53C2;&#x6570;"><a href="#6-&#x65B9;&#x6CD5;&#x53C2;&#x6570;" class="headerlink" title="6. &#x65B9;&#x6CD5;&#x53C2;&#x6570;"></a>6. <a name="-1"></a>&#x65B9;&#x6CD5;&#x53C2;&#x6570;</h2><p>java&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x5F15;&#x7528;&#x662F;<strong>&#x6309;&#x503C;&#x4F20;&#x9012;</strong>&#x7684;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x6309;&#x5F15;&#x7528;&#x4F20;&#x9012;</p>
+<blockquote>
+<p>&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x603B;&#x7ED3;:<br>&#x65B9;&#x6CD5;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x53C2;&#x6570;<br>&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x6539;&#x53D8;&#x5BF9;&#x8C61;&#x53C2;&#x6570;&#x7684;&#x72B6;&#x6001;<br><strong>&#x65B9;&#x6CD5;&#x4E0D;&#x80FD;&#x8BA9;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x53C2;&#x6570;&#x5F15;&#x7528;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BF9;&#x8C61;</strong></p>
+</blockquote>
+<h2 id="7-&#x5BF9;&#x8C61;&#x6784;&#x9020;"><a href="#7-&#x5BF9;&#x8C61;&#x6784;&#x9020;" class="headerlink" title="7. &#x5BF9;&#x8C61;&#x6784;&#x9020;"></a>7. <a name="-1"></a>&#x5BF9;&#x8C61;&#x6784;&#x9020;</h2><h3 id="7-1-&#x9ED8;&#x8BA4;&#x5B57;&#x6BB5;&#x521D;&#x59CB;&#x5316;"><a href="#7-1-&#x9ED8;&#x8BA4;&#x5B57;&#x6BB5;&#x521D;&#x59CB;&#x5316;" class="headerlink" title="7.1. &#x9ED8;&#x8BA4;&#x5B57;&#x6BB5;&#x521D;&#x59CB;&#x5316;"></a>7.1. <a name="-1"></a>&#x9ED8;&#x8BA4;&#x5B57;&#x6BB5;&#x521D;&#x59CB;&#x5316;</h3><p>&#x5982;&#x679C;&#x5728;&#x6784;&#x9020;&#x5668;&#x4E2D;&#x6CA1;&#x6709;&#x663E;&#x5F0F;&#x5730;&#x4E3A;&#x5B57;&#x6BB5;&#x8BBE;&#x7F6E;&#x521D;&#x503C;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x5730;&#x8D4B;&#x503C;&#x4E3A;&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;&#x6570;&#x503C;&#x4E3A;0&#xFF0C;&#x5E03;&#x5C14;&#x4E3A;false&#xFF0C;&#x5BF9;&#x8C61;&#x5F15;&#x7528;&#x4E3A;null&#x3002;</p>
+<h3 id="7-2-&#x65E0;&#x53C2;&#x6570;&#x7684;&#x6784;&#x9020;&#x5668;"><a href="#7-2-&#x65E0;&#x53C2;&#x6570;&#x7684;&#x6784;&#x9020;&#x5668;" class="headerlink" title="7.2. &#x65E0;&#x53C2;&#x6570;&#x7684;&#x6784;&#x9020;&#x5668;"></a>7.2. <a name="-1"></a>&#x65E0;&#x53C2;&#x6570;&#x7684;&#x6784;&#x9020;&#x5668;</h3><p>&#x5982;&#x679C;&#x5199;&#x4E00;&#x4E2A;&#x7C7B;&#x65F6;&#x6CA1;&#x6709;&#x7F16;&#x5199;&#x6784;&#x9020;&#x5668;&#xFF0C;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x4E3A;&#x4F60;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x65E0;&#x53C2;&#x6570;&#x7684;&#x6784;&#x9020;&#x5668;&#xFF0C;&#x4ED6;&#x4F1A;&#x628A;&#x6240;&#x6709;&#x7684;&#x5B9E;&#x4F8B;&#x5B57;&#x6BB5;&#x8BBE;&#x7F6E;&#x4E3A;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x7C7B;&#x4E2D;&#x63D0;&#x4F9B;&#x4E86;&#x81F3;&#x5C11;&#x4E00;&#x79CD;&#x6784;&#x9020;&#x5668;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x65E0;&#x53C2;&#x6570;&#x7684;&#x6784;&#x9020;&#x5668;&#xFF0C;&#x90A3;&#x4E48;&#x6784;&#x9020;&#x5BF9;&#x8C61;&#x65F6;&#x4E0D;&#x63D0;&#x4F9B;&#x53C2;&#x6570;&#x662F;&#x4E0D;&#x5408;&#x6CD5;&#x7684;&#xFF01;</p>
+<h3 id="7-3-&#x663E;&#x5F0F;&#x5B57;&#x6BB5;&#x521D;&#x59CB;&#x5316;"><a href="#7-3-&#x663E;&#x5F0F;&#x5B57;&#x6BB5;&#x521D;&#x59CB;&#x5316;" class="headerlink" title="7.3. &#x663E;&#x5F0F;&#x5B57;&#x6BB5;&#x521D;&#x59CB;&#x5316;"></a>7.3. <a name="-1"></a>&#x663E;&#x5F0F;&#x5B57;&#x6BB5;&#x521D;&#x59CB;&#x5316;</h3><p>&#x5728;java&#x4E2D;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x521D;&#x59CB;&#x5316;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x5B57;&#x6BB5;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">data</span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">1</span>;<span class="comment">//&#x76F4;&#x63A5;&#x521D;&#x59CB;&#x5316;</span></span><br><span class="line">    ...</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x4F46;&#x662F;&#x5728;c++&#x4E2D;&#x53EA;&#x80FD;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x8FD9;&#x4E0E;java&#x4E0D;&#x540C;&#xFF1B;&#x5E76;&#x4E14;java&#x6CA1;&#x6709;&#x6210;&#x5458;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x8FD9;&#x4E00;&#x529F;&#x80FD;&#x3002;</p>
+<h3 id="7-4-&#x8C03;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x6784;&#x9020;&#x5668;"><a href="#7-4-&#x8C03;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x6784;&#x9020;&#x5668;" class="headerlink" title="7.4. &#x8C03;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x6784;&#x9020;&#x5668;"></a>7.4. <a name="-1"></a>&#x8C03;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x6784;&#x9020;&#x5668;</h3><p>&#x53EF;&#x4EE5;&#x7528;this&#x5728;&#x6784;&#x9020;&#x5668;&#x4E2D;&#x8C03;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x6784;&#x9020;&#x5668;&#x6765;&#x521D;&#x59CB;&#x5316;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">Employee</span><span class="params">(<span class="type">double</span> s)</span>{</span><br><span class="line">    <span class="built_in">this</span>(<span class="string">&quot;Employee#&quot;</span>+nextid,s);<span class="comment">//&#x53E6;&#x4E00;&#x4E2A;&#x6784;&#x9020;&#x51FD;&#x6570;Employee(String,double)</span></span><br><span class="line">    nextid++;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="7-5-&#x521D;&#x59CB;&#x5316;&#x5757;"><a href="#7-5-&#x521D;&#x59CB;&#x5316;&#x5757;" class="headerlink" title="7.5. &#x521D;&#x59CB;&#x5316;&#x5757;"></a>7.5. <a name="-1"></a>&#x521D;&#x59CB;&#x5316;&#x5757;</h3><p>&#x521D;&#x59CB;&#x5316;&#x6570;&#x636E;&#x5B57;&#x6BB5;&#x7684;&#x65B9;&#x6CD5;&#x6709;&#x4E09;&#x79CD;&#xFF1A;<br>1.&#x5728;&#x6784;&#x9020;&#x5668;&#x4E2D;&#x8BBE;&#x7F6E;&#x503C;<br>2.&#x5728;&#x58F0;&#x660E;&#x4E2D;&#x8D4B;&#x503C;&#xFF0C;&#x663E;&#x5F0F;&#x8D4B;&#x503C;<br>3.&#x5229;&#x7528;&#x521D;&#x59CB;&#x5316;&#x5757;&#x8D4B;&#x503C;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">nextid</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id;</span><br><span class="line">    {</span><br><span class="line">       id = nextid;</span><br><span class="line">       nextid++;</span><br><span class="line">    }<span class="comment">//&#x521D;&#x59CB;&#x5316;&#x5757;</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x4E5F;&#x6709;&#x4E00;&#x79CD;&#x9759;&#x6001;&#x521D;&#x59CB;&#x5316;&#x5757;&#xFF0C;&#x53EA;&#x5728;&#x7B2C;&#x4E00;&#x6B21;&#x52A0;&#x8F7D;&#x7C7B;&#x65F6;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;</p>
+<blockquote>
+<p>&#x9759;&#x6001;&#x521D;&#x59CB;&#x5316;&#x5757;&#x53EA;&#x4F1A;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x968F;&#x7740;&#x7C7B;&#x7684;&#x52A0;&#x8F7D;&#x800C;&#x52A0;&#x8F7D;&#xFF0C;&#xFF08;&#x7C7B;&#x53EA;&#x52A0;&#x8F7D;&#x4E00;&#x6B21;&#xFF09;<br>&#x666E;&#x901A;&#x521D;&#x59CB;&#x5316;&#x5757;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x591A;&#x6B21;&#xFF0C;&#x968F;&#x7740;&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;&#x800C;&#x52A0;&#x8F7D;</p>
+</blockquote>
+<p>&#x800C;&#x5BF9;&#x4E8E;&#x4ED6;&#x4EEC;&#x7684;&#x7406;&#x89E3;&#xFF0C;&#x6211;&#x5199;&#x4E86;&#x8FD9;&#x4E48;&#x4E00;&#x7EC4;&#x4EE3;&#x7801;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">test</span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> num;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> num1;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">temp1</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">test</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        <span class="built_in">this</span>.num = x+temp;</span><br><span class="line">        <span class="built_in">this</span>.num1 = x+temp1;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getNum</span><span class="params">()</span>{</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getNum1</span><span class="params">()</span>{</span><br><span class="line">        <span class="keyword">return</span> num1;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    {<span class="comment">//&#x521D;&#x59CB;&#x5316;&#x5757;</span></span><br><span class="line">        temp1++;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">static</span><span class="comment">//&#x9759;&#x6001;&#x521D;&#x59CB;&#x5316;&#x5757;</span></span><br><span class="line">    {</span><br><span class="line">        temp++;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">data</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[]args)</span>{</span><br><span class="line">        <span class="type">test</span> <span class="variable">b</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">test</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="type">test</span> <span class="variable">c</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">test</span>(<span class="number">1</span>);</span><br><span class="line">        System.out.printf(<span class="string">&quot;%d %d\n&quot;</span>,b.getNum(),c.getNum());</span><br><span class="line">        <span class="comment">//&#x7ED3;&#x679C;&#x4E3A;3 3</span></span><br><span class="line">        System.out.printf(<span class="string">&quot;%d %d\n&quot;</span>,b.getNum1(),c.getNum1());</span><br><span class="line">        <span class="comment">//&#x7ED3;&#x679C;&#x4E3A;3 4</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//&#x521D;&#x59CB;&#x5316;&#x65F6;&#x9996;&#x5148;&#x4F1A;&#x521D;&#x59CB;&#x5316;&#x9759;&#x6001;&#x5B57;&#x6BB5;&#xFF0C;&#x518D;&#x8FD0;&#x884C;&#x521D;&#x59CB;&#x5316;&#x5757;&#xFF0C;</span></span><br><span class="line">        <span class="comment">//&#x7136;&#x540E;&#x624D;&#x8FD0;&#x884C;&#x6784;&#x9020;&#x5668;&#x7684;&#x4E3B;&#x4F53;&#x90E8;&#x5206;&#xFF0C;</span></span><br><span class="line">        <span class="comment">//&#x56E0;&#x6B64;&#x5728;&#x7B2C;&#x4E00;&#x6B21;&#x521D;&#x59CB;&#x5316;&#x65F6;temp&#x548C;temp1&#x90FD;&#x5148;&#x52A0;1&#x53D8;&#x4E3A;2&#xFF0C;</span></span><br><span class="line">        <span class="comment">// &#x7136;&#x540E;&#x518D;&#x8C03;&#x7528;&#x6784;&#x9020;&#x5668;&#x4F7F;temp&#xFF0C;temp1&#x5206;&#x522B;&#x4E0E;num&#xFF0C;num1&#x76F8;&#x52A0;&#xFF0C;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x90FD;&#x4E3A;3</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//static&#x5757;&#x53EA;&#x5728;&#x7C7B;&#x7B2C;&#x4E00;&#x6B21;&#x52A0;&#x8F7D;&#x7684;&#x65F6;&#x5019;&#x521D;&#x59CB;&#x5316;&#xFF0C;</span></span><br><span class="line">        <span class="comment">//&#x6240;&#x4EE5;&#x5728;&#x521B;&#x5EFA;&#x7B2C;&#x4E8C;&#x4E2A;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;temp&#x4E0D;&#x4F1A;&#x518D;&#x6267;&#x884C;static&#x5757;&#x4F7F;&#x4E4B;&#x52A0;1&#xFF0C;</span></span><br><span class="line">        <span class="comment">//temp&#x4F9D;&#x7136;&#x662F;2</span></span><br><span class="line">        <span class="comment">//&#x4F46;&#x662F;&#x666E;&#x901A;&#x521D;&#x59CB;&#x5757;&#x4ECD;&#x4F1A;&#x968F;&#x7740;&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;&#x800C;&#x518D;&#x6B21;&#x52A0;&#x8F7D;&#xFF0C;</span></span><br><span class="line">        <span class="comment">//&#x6240;&#x4EE5;temp1&#x4ECD;&#x7136;&#x4F1A;&#x518D;&#x6B21;&#x6267;&#x884C;&#x521D;&#x59CB;&#x5316;&#x5757;&#x4F7F;&#x4E4B;&#x52A0;1&#x53D8;&#x4E3A;3.</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x5BF9;&#x4E8E;&#x521D;&#x59CB;&#x5316;&#x7684;&#x6267;&#x884C;&#x987A;&#x5E8F;&#xFF0C;&#x6784;&#x9020;&#x5668;&#x4E00;&#x822C;&#x5728;&#x6700;&#x540E;&#x6267;&#x884C;</p>
+<blockquote>
+<p>&#x9759;&#x6001;&#x521D;&#x59CB;&#x5316;&#x5757; | &#x9759;&#x6001;&#x5C5E;&#x6027;&#x521D;&#x59CB;&#x5316; &gt; &#x666E;&#x901A;&#x521D;&#x59CB;&#x5316;&#x5757; | &#x666E;&#x901A;&#x5C5E;&#x6027;&#x521D;&#x59CB;&#x5316; &gt; &#x6784;&#x9020;&#x5668;</p>
+</blockquote>
+<h3 id="7-6-&#x5305;"><a href="#7-6-&#x5305;" class="headerlink" title="7.6. &#x5305;"></a>7.6. <a name="-1"></a>&#x5305;</h3><p>&#x5305;&#x76F8;&#x5F53;&#x4E8E;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x5C06;&#x7C7B;&#x7EC4;&#x7EC7;&#x5728;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x4E2D;<br>&#x4E00;&#x4E2A;&#x7C7B;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6240;&#x5C5E;&#x5305;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x7C7B;&#xFF0C;&#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#x5305;&#x4E2D;&#x7684;&#x516C;&#x5171;&#x7C7B;</p>
+<p>&#x6807;&#x8BB0;&#x4E3A;public&#x7684;&#x90E8;&#x5206;&#x53EF;&#x4EE5;&#x7531;&#x4EFB;&#x610F;&#x7C7B;&#x4F7F;&#x7528;&#xFF1B;&#x6807;&#x8BB0;&#x4E3A;private&#x7684;&#x90E8;&#x5206;&#x53EA;&#x80FD;&#x7531;&#x5B9A;&#x4E49;&#x4ED6;&#x4EEC;&#x7684;&#x7C7B;&#x4F7F;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x6307;&#x5B9A;public&#x6216;private&#xFF0C;&#x8FD9;&#x4E2A;&#x90E8;&#x5206;&#x53EF;&#x4EE5;&#x88AB;&#x540C;&#x4E00;&#x4E2A;&#x5305;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x65B9;&#x6CD5;&#x8BBF;&#x95EE;&#x3002;</p>
+<h3 id="7-7-&#x7C7B;&#x8BBE;&#x8BA1;&#x6280;&#x5DE7;"><a href="#7-7-&#x7C7B;&#x8BBE;&#x8BA1;&#x6280;&#x5DE7;" class="headerlink" title="7.7. &#x7C7B;&#x8BBE;&#x8BA1;&#x6280;&#x5DE7;"></a>7.7. <a name="-1"></a>&#x7C7B;&#x8BBE;&#x8BA1;&#x6280;&#x5DE7;</h3><blockquote>
+<p>1.&#x4FDD;&#x8BC1;&#x6570;&#x636E;&#x79C1;&#x6709;&#xFF0C;&#x4E0D;&#x8981;&#x7834;&#x574F;&#x5C01;&#x88C5;&#x6027;&#x3002;<br>2.&#x4E00;&#x5B9A;&#x8981;&#x5BF9;&#x6570;&#x636E;&#x521D;&#x59CB;&#x5316;&#x3002;<br>3.&#x4E0D;&#x8981;&#x5728;&#x7C7B;&#x4E2D;&#x4F7F;&#x7528;&#x8FC7;&#x591A;&#x7684;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#xFF0C;&#x7528;&#x5176;&#x4ED6;&#x7684;&#x7C7B;&#x66FF;&#x6362;&#x4F7F;&#x7528;&#x591A;&#x4E2A;&#x76F8;&#x5173;&#x7684;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x3002;<br>4.&#x4E0D;&#x662F;&#x6240;&#x6709;&#x7684;&#x5B57;&#x6BB5;&#x90FD;&#x9700;&#x8981;&#x5355;&#x72EC;&#x7684;&#x5B57;&#x6BB5;&#x8BBF;&#x95EE;&#x5668;&#x548C;&#x5B57;&#x6BB5;&#x66F4;&#x6539;&#x5668;&#x3002;<br>5.&#x5206;&#x89E3;&#x6709;&#x8FC7;&#x591A;&#x804C;&#x8D23;&#x7684;&#x7C7B;&#x3002;<br>6.&#x7C7B;&#x540D;&#x548C;&#x65B9;&#x6CD5;&#x540D;&#x8981;&#x80FD;&#x591F;&#x4F53;&#x73B0;&#x4ED6;&#x4EEC;&#x7684;&#x804C;&#x8D23;&#x3002;<br>7.&#x4F18;&#x5148;&#x4F7F;&#x7528;&#x4E0D;&#x53EF;&#x53D8;&#x7684;&#x7C7B;&#x3002;</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/24/%E3%80%8Ajava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
   
     <article id="post-对数组和指针的一些思考" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -359,11 +584,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">c/c++</a>
+                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+                <a href="javascript:void(0)" class="js-tag color1">c/c++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -379,11 +604,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">c</a>
+                <a href="javascript:void(0)" class="js-tag color2">chisel</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">chisel</a>
+                <a href="javascript:void(0)" class="js-tag color2">c</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -412,6 +637,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">汇编</a>
               </li>
              
               <li class="article-tag-list-item">
