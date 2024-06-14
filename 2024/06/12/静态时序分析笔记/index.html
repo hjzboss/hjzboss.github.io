@@ -6,18 +6,37 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: tcl | hjzboss的博客</title>
+  <title>静态时序分析笔记 | hjzboss的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="nudt研究生报道！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hjzboss的博客">
-<meta property="og:url" content="http://yoursite.com/tags/tcl/index.html">
+  <meta name="description" content="STA&amp;#x7B14;&amp;#x8BB0;&amp;#x9759;&amp;#x6001;&amp;#x65F6;&amp;#x5E8F;&amp;#x5206;&amp;#x6790;&amp;#x53EA;&amp;#x80FD;&amp;#x7528;&amp;#x4E8E;&amp;#x540C;&amp;#x6B65;&amp;#x7535;&amp;#x8DEF;&amp;#xFF0C;&amp;#x4E3B;&amp;#x8981;&amp;#x9A8C;&amp;#x8BC1;&amp;#x5BC4;&amp;#x5B58;&amp;#x5668;&amp;#x76">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静态时序分析笔记">
+<meta property="og:url" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="hjzboss的博客">
-<meta property="og:description" content="nudt研究生报道！">
+<meta property="og:description" content="STA&amp;#x7B14;&amp;#x8BB0;&amp;#x9759;&amp;#x6001;&amp;#x65F6;&amp;#x5E8F;&amp;#x5206;&amp;#x6790;&amp;#x53EA;&amp;#x80FD;&amp;#x7528;&amp;#x4E8E;&amp;#x540C;&amp;#x6B65;&amp;#x7535;&amp;#x8DEF;&amp;#xFF0C;&amp;#x4E3B;&amp;#x8981;&amp;#x9A8C;&amp;#x8BC1;&amp;#x5BC4;&amp;#x5B58;&amp;#x5668;&amp;#x76">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/sta%E4%B8%8Etb.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/file.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/example1.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/design.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/f.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/of.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200514115004770.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyODI2NDQ4,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/path.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/pvt.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/nldm.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/guass.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/seq.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/seq_nldm1.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/seq_nldm2.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/wireload.png">
+<meta property="og:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/wireload1.png">
+<meta property="article:published_time" content="2024-06-12T05:53:15.000Z">
+<meta property="article:modified_time" content="2024-06-14T10:36:18.144Z">
 <meta property="article:author" content="hjzboss">
-<meta property="article:tag" content="学生,编程,计算机">
+<meta property="article:tag" content="ic">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/sta%E4%B8%8Etb.png">
   
     <link rel="alternative" href="/atom.xml" title="hjzboss的博客" type="application/atom+xml">
   
@@ -152,61 +171,351 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-静态时序分析笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/02/13/Synopsys-TCL%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2023-02-13T01:27:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/13/Synopsys-TCL%E7%AC%94%E8%AE%B0/">Synopsys-TCL笔记</a>
+    <h1 class="article-title" itemprop="name">
+      静态时序分析笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        <!--显示阅读次数-->
+        
+          <br/>
+          <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+          <span class="icon-sort"></span>
+          <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+            阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+          </span>
+          </a>
+        
+        <!--显示阅读次数完毕-->
+        
+        <a href="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2024-06-12T05:53:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="STA&#x7B14;&#x8BB0;"><a href="#STA&#x7B14;&#x8BB0;" class="headerlink" title="STA&#x7B14;&#x8BB0;"></a>STA&#x7B14;&#x8BB0;</h1><p>&#x9759;&#x6001;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x53EA;&#x80FD;&#x7528;&#x4E8E;<strong>&#x540C;&#x6B65;&#x7535;&#x8DEF;</strong>&#xFF0C;&#x4E3B;&#x8981;&#x9A8C;&#x8BC1;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x5EFA;&#x7ACB;&#x65F6;&#x95F4;&#x548C;&#x4FDD;&#x6301;&#x65F6;&#x95F4;&#x662F;&#x5426;&#x6EE1;&#x8DB3;&#x8981;&#x6C42;</p>
+<p>&#x9759;&#x6001;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x4E0E;&#x529F;&#x80FD;&#x4EFF;&#x771F;&#x7684;&#x533A;&#x522B;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/sta%E4%B8%8Etb.png" alt="sta&#x4E0E;tb"></p>
+<h2 id="TCL"><a href="#TCL" class="headerlink" title="TCL"></a>TCL</h2><h3 id="&#x53D8;&#x91CF;"><a href="#&#x53D8;&#x91CF;" class="headerlink" title="&#x53D8;&#x91CF;"></a>&#x53D8;&#x91CF;</h3><p>$&#x7B26;&#x53F7;&#x8868;&#x793A;&#x53D8;&#x91CF;&#x7F6E;&#x6362;&#xFF0C;tcl&#x4F1A;&#x8BA4;&#x4E3A;$&#x540E;&#x9762;&#x7684;&#x7B26;&#x53F7;&#x662F;&#x53D8;&#x91CF;&#x540D;&#xFF0C;&#x5C06;&#x53D8;&#x91CF;&#x7F6E;&#x6362;&#x6210;&#x5B83;&#x7684;&#x503C;</p>
+<p>[]&#x5185;&#x662F;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x7684;tcl&#x8BED;&#x53E5;&#xFF0C;&#x5982;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> a [<span class="keyword">expr</span> <span class="number">3</span>+<span class="number">4</span>]</span><br><span class="line"><span class="keyword">puts</span> a</span><br><span class="line"><span class="number">7</span></span><br></pre></td></tr></table></figure>
+
+<p>tcl&#x89E3;&#x91CA;&#x5668;&#x4F1A;&#x5BF9;<strong>&#x53CC;&#x5F15;&#x53F7;</strong>&#x4E2D;&#x7684;$&#x548C;[]&#x7B26;&#x53F7;&#x8FDB;&#x884C;&#x53D8;&#x91CF;&#x66FF;&#x6362;&#x548C;&#x547D;&#x4EE4;&#x7F6E;&#x6362;&#xFF0C;&#x800C;&#x5728;&#x82B1;&#x62EC;&#x53F7;&#x4E2D;&#xFF0C;&#x6240;&#x6709;&#x5B57;&#x7B26;&#x90FD;&#x662F;&#x666E;&#x901A;&#x5B57;&#x7B26;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">puts</span> <span class="string">&quot;\t[expr $x + $y]&quot;</span></span><br><span class="line">	<span class="number">2.5</span></span><br><span class="line"><span class="keyword">puts</span> {\t[<span class="keyword">expr</span> <span class="variable">$x</span> + <span class="variable">$y</span>]}</span><br><span class="line">\t[<span class="keyword">expr</span> <span class="variable">$x</span> + <span class="variable">$y</span>]</span><br></pre></td></tr></table></figure>
+
+<p>&#x7279;&#x6B8A;&#x7B26;&#x53F7;&#x52A0;&#x4E0A;&#x53CD;&#x659C;&#x6760;\&#x540E;&#x4F1A;&#x88AB;&#x7F6E;&#x6362;&#x6210;&#x666E;&#x901A;&#x5B57;&#x7B26;</p>
+<p>&#x5B9A;&#x4E49;&#x53D8;&#x91CF;set&#x4E0E;&#x53D6;&#x53D8;&#x91CF;&#x503C;$</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> cell <span class="string">&quot;bufx2&quot;</span></span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$cell</span></span><br><span class="line">bufx2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> cell <span class="string">&quot;bufx2&quot;</span></span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$cell_1</span> #&#x62A5;&#x9519;&#xFF0C;&#x6CA1;&#x6709;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;</span><br><span class="line"><span class="keyword">puts</span> <span class="variable">${cell}</span>_1</span><br><span class="line">bufx2_1</span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x6570;&#x7EC4;&#x4E0E;&#x5217;&#x8868;"><a href="#&#x6570;&#x7EC4;&#x4E0E;&#x5217;&#x8868;" class="headerlink" title="&#x6570;&#x7EC4;&#x4E0E;&#x5217;&#x8868;"></a>&#x6570;&#x7EC4;&#x4E0E;&#x5217;&#x8868;</h3><p>&#x5B9A;&#x4E49;&#x6570;&#x7EC4;&#xFF0C;array&#x5173;&#x952E;&#x5B57;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x83B7;&#x53D6;&#x6570;&#x7EC4;&#x4FE1;&#x606F;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> cell(ref1) <span class="string">&quot;bufx2&quot;</span></span><br><span class="line"><span class="keyword">set</span> cell(ref2) <span class="string">&quot;a b c&quot;</span></span><br><span class="line"><span class="keyword">puts</span> cell(ref1)</span><br><span class="line">bufx2</span><br><span class="line"><span class="keyword">array</span> size cell</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="keyword">array</span> names cell</span><br><span class="line">ref1 ref2</span><br></pre></td></tr></table></figure>
+
+<p>&#x5B9A;&#x4E49;&#x5217;&#x8868;&#x4E0E;&#x5E38;&#x7528;&#x5217;&#x8868;&#x65B9;&#x6CD5;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> cell1 {a b c}</span><br><span class="line"><span class="keyword">set</span> cell2 {d e}</span><br><span class="line"><span class="keyword">concat</span> <span class="variable">$cell1</span> <span class="variable">$cell2</span> # &#x5217;&#x8868;&#x62FC;&#x63A5;</span><br><span class="line">a b c d e</span><br><span class="line"><span class="keyword">llength</span> <span class="variable">$cell1</span> # &#x5217;&#x8868;&#x957F;&#x5EA6;</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="keyword">llength</span> [<span class="keyword">concat</span> <span class="variable">$cell1</span> <span class="variable">$cell1</span>]</span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="keyword">lindex</span> <span class="variable">$cell1</span> <span class="number">1</span> # &#x8FD4;&#x56DE;&#x5217;&#x8868;&#x4E2D;&#x7B2C;<span class="number">1</span>&#x4E2A;&#x5143;&#x7D20;&#xFF08;&#x4ECE;<span class="number">0</span>&#x5F00;&#x59CB;&#xFF09;</span><br><span class="line">b</span><br><span class="line"><span class="keyword">lindex</span> <span class="variable">$cell1</span> [<span class="keyword">expr</span> [<span class="keyword">llength</span> <span class="variable">$cell1</span>] <span class="number">-1</span>] # &#x8FD4;&#x56DE;&#x5217;&#x8868;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;</span><br><span class="line">c</span><br><span class="line"><span class="keyword">lappend</span> cell1 e # &#x8FFD;&#x52A0;&#x5143;&#x7D20;</span><br><span class="line">a b c e</span><br><span class="line"><span class="keyword">lappend</span> cell1 <span class="variable">$cell2</span> # &#x8FFD;&#x52A0;&#x5217;&#x8868;&#xFF0C;&#x6574;&#x4E2A;&#x5217;&#x8868;&#x90FD;&#x88AB;&#x52A0;&#x8FDB;&#x6765;&#x4E86;&#xFF0C;&#x88AB;&#x5F53;&#x6210;&#x4E00;&#x4E2A;&#x5143;&#x7D20;</span><br><span class="line">a b c e {d e}</span><br></pre></td></tr></table></figure>
+
+<p>&#x5217;&#x8868;&#x6392;&#x5E8F;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> list1 {<span class="number">4</span> <span class="number">5</span> <span class="number">3</span>}</span><br><span class="line"><span class="keyword">lsort</span> <span class="variable">$list1</span> # &#x9ED8;&#x8BA4;&#x6309;&#x7167;ascii&#x7801;&#x987A;&#x5E8F;</span><br><span class="line"><span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line"><span class="keyword">set</span> list2 {<span class="number">-2</span> <span class="number">3.1</span> <span class="number">5</span> <span class="number">0</span>}</span><br><span class="line"><span class="keyword">lsort</span> -real <span class="variable">$list2</span> # &#x6309;&#x7167;&#x6570;&#x5B57;&#x5927;&#x5C0F;&#x6392;&#x5E8F;</span><br><span class="line"><span class="number">-2</span> <span class="number">0</span> <span class="number">3.1</span> <span class="number">5</span></span><br><span class="line"><span class="keyword">set</span> list3 {a c c b a d}</span><br><span class="line"><span class="keyword">lsort</span> -unique <span class="variable">$list3</span> # &#x552F;&#x4E00;&#x5316;</span><br><span class="line">a b c d</span><br></pre></td></tr></table></figure>
+
+<p>tcl&#x652F;&#x6301;&#x7684;&#x6570;&#x5B66;&#x8FD0;&#x7B97;&#xFF0C;expr&#x547D;&#x4EE4;&#x7528;&#x4E8E;&#x6C42;&#x503C;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+ - * / &gt;= &lt;= != ==</span><br><span class="line"><span class="keyword">expr</span> <span class="number">6</span> + <span class="number">4</span></span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x63A7;&#x5236;&#x6D41;"><a href="#&#x63A7;&#x5236;&#x6D41;" class="headerlink" title="&#x63A7;&#x5236;&#x6D41;"></a>&#x63A7;&#x5236;&#x6D41;</h3><p>&#x63A7;&#x5236;&#x6D41;&#x8BED;&#x53E5;&#xFF1A;if elseif else</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>{<span class="variable">$l</span> == <span class="number">3</span>} {</span><br><span class="line">  </span><br><span class="line">} elseif {<span class="variable">$l</span> &gt; <span class="number">3</span>} {</span><br><span class="line">  </span><br><span class="line">} else {</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>foreach&#xFF0C;&#x53EF;&#x4EE5;&#x7528;break&#x7ED3;&#x675F;&#x5FAA;&#x73AF;,continue&#x7EE7;&#x7EED;&#x5FAA;&#x73AF;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> i <span class="variable">$list</span> {</span><br><span class="line">  <span class="keyword">if</span>{<span class="variable">$i</span> &gt; <span class="number">3</span>} {</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  } elseif(<span class="variable">$i</span> &lt; <span class="number">3</span>) {</span><br><span class="line">    <span class="keyword">puts</span> <span class="variable">$i</span></span><br><span class="line">  } else {</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>while&#x5FAA;&#x73AF;&#xFF0C;incr&#x5173;&#x952E;&#x5B57;&#x7528;&#x4E8E;&#x9012;&#x589E;&#x6216;&#x9012;&#x51CF;&#x53D8;&#x91CF;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> {<span class="variable">$i</span> &lt; <span class="number">3</span>} {</span><br><span class="line">  <span class="keyword">puts</span> <span class="variable">$i</span></span><br><span class="line">  <span class="keyword">incr</span> i <span class="number">1</span> # <span class="keyword">set</span> i [<span class="keyword">expr</span> <span class="variable">$i</span> + <span class="number">1</span>]</span><br><span class="line"><span class="comment">  # incr i -1 # set i [expr $i - 1]</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>for&#x5FAA;&#x73AF;&#xFF0C;&#x548C;c&#x8BED;&#x8A00;&#x7C7B;&#x4F3C;&#xFF0C;&#x9700;&#x8981;&#x521D;&#x59CB;&#x53C2;&#x6570;&#xFF0C;&#x5FAA;&#x73AF;&#x6761;&#x4EF6;&#x4E0E;&#x91CD;&#x65B0;&#x521D;&#x59CB;&#x5316;&#x53C2;&#x6570;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> {<span class="keyword">set</span> i <span class="number">3</span>} {<span class="variable">$i</span> &gt; <span class="number">0</span>} {<span class="keyword">incr</span> i <span class="number">-1</span>} {</span><br><span class="line">  <span class="keyword">puts</span> <span class="variable">$i</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x51FD;&#x6570;"><a href="#&#x51FD;&#x6570;" class="headerlink" title="&#x51FD;&#x6570;"></a>&#x51FD;&#x6570;</h3><p>&#x4F7F;&#x7528;proc&#x6765;&#x5B9A;&#x4E49;&#x51FD;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x53C2;&#x6570;&#x548C;&#x8FD4;&#x56DE;&#x503C;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">proc</span><span class="title"> add</span> {a, b} {</span><br><span class="line">	<span class="keyword">set</span> sum [<span class="keyword">expr</span> <span class="variable">$a</span> + <span class="variable">$b</span>]</span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$sum</span></span><br><span class="line">}</span><br><span class="line">add <span class="number">1</span> <span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>&#x5728;&#x51FD;&#x6570;&#x4E2D;&#x5F15;&#x7528;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#x9700;&#x8981;&#x52A0;<strong>global</strong>&#x5173;&#x952E;&#x5B57;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> cin <span class="number">1</span></span><br><span class="line"><span class="keyword">set</span> cout <span class="number">0</span></span><br><span class="line"><span class="keyword">proc</span><span class="title"> add</span> {a, b} {</span><br><span class="line">	<span class="keyword">global</span> cin cout</span><br><span class="line">	<span class="keyword">set</span> sum [<span class="keyword">expr</span> <span class="variable">$a</span> + <span class="variable">$b</span> + <span class="variable">$cin</span>]</span><br><span class="line">	<span class="keyword">set</span> cout <span class="number">2</span></span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$sum</span></span><br><span class="line">}</span><br><span class="line">add <span class="number">1</span> <span class="number">3</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$cout</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"><a href="#&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;" class="headerlink" title="&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"></a>&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</h3><p>&#x4F7F;&#x7528;&#x5173;&#x952E;&#x5B57;regexp&#x6765;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#x67E5;&#x8BE2;&#xFF0C;&#x4E0B;&#x9762;&#x662F;&#x5E38;&#x7528;&#x7528;&#x6CD5;&#xFF0C;&#x5C06;<strong>&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5339;&#x914D;&#x7684;&#x503C;&#x653E;&#x5728;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;</strong>&#xFF0C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x62EC;<strong>&#x53F7;&#x4E2D;</strong>&#x7684;&#x5339;&#x914D;&#x503C;&#x4FDD;&#x5B58;&#x5728;&#x540E;&#x7EED;&#x53C2;&#x6570;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> str <span class="string">&quot;ade 12 er&quot;</span></span><br><span class="line"><span class="keyword">regexp</span> {(\w+)\s(\d+)} <span class="variable">$str</span> match result1 result2</span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$match</span></span><br><span class="line">ade <span class="number">12</span></span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$result1</span></span><br><span class="line">ade</span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$result2</span></span><br><span class="line"><span class="number">12</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x6587;&#x672C;&#x5904;&#x7406;"><a href="#&#x6587;&#x672C;&#x5904;&#x7406;" class="headerlink" title="&#x6587;&#x672C;&#x5904;&#x7406;"></a>&#x6587;&#x672C;&#x5904;&#x7406;</h3><p>&#x4F7F;&#x7528;open&#x6253;&#x5F00;&#x6587;&#x4EF6;&#xFF0C;puts&#x5199;&#x5165;&#x6587;&#x4EF6;&#xFF0C;gets&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#xFF0C;close&#x5173;&#x95ED;&#x6587;&#x4EF6;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/file.png" alt="file"></p>
+<p>&#x4E00;&#x4E2A;&#x4F8B;&#x9898;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/example1.png" alt="example1"></p>
+<h2 id="Synopsys-TCL"><a href="#Synopsys-TCL" class="headerlink" title="Synopsys TCL"></a>Synopsys TCL</h2><p>&#x4E00;&#x4E2A;&#x8BBE;&#x8BA1;&#x91CC;&#x9762;&#x90FD;&#x662F;design object&#xFF0C;&#x5305;&#x62EC;net&#x3001;cell&#x7B49;&#x7B49;object</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/design.png" alt="design"></p>
+<p>&#x53EF;&#x4EE5;&#x7528;get_cells&#xFF0C;get_ports&#xFF0C;get_nets&#xFF0C;get_pins&#x7B49;&#x7B49;&#x6307;&#x4EE4;&#x5F97;&#x5230;&#x5BF9;&#x5E94;&#x7684;object&#x96C6;&#x5408;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">get_ports *</span><br><span class="line">{A B C D CLK OUT1}</span><br><span class="line">get_cells U4</span><br><span class="line">{U4}</span><br><span class="line">get_cells *<span class="number">3</span></span><br><span class="line">{U3}</span><br><span class="line">get_cells U9</span><br><span class="line">No object Found!</span><br><span class="line"></span><br><span class="line">get_pins */Z # pins&#x90FD;&#x5E26;&#x4E86;&#x6240;&#x5C5E;&#x8BBE;&#x8BA1;&#x7684;&#x540D;&#x5B57;</span><br><span class="line">{INV0/Z INV1/Z}</span><br></pre></td></tr></table></figure>
+
+<p>&#x6C42;&#x6570;&#x91CF;&#x6307;&#x4EE4;sizeof_collection&#xFF0C;&#x7B49;&#x4EF7;&#x4E8E;&#x5148;&#x4F7F;&#x7528;get_object_name&#x8F6C;&#x6362;&#x4E3A;&#x5217;&#x8868;&#x518D;&#x6C42;&#x957F;&#x5EA6;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sizeof_collection [gets_nets *]</span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="keyword">llength</span> [get_object_name [get_nets *]] # &#x7B49;&#x4EF7;</span><br></pre></td></tr></table></figure>
+
+<p>&#x6BCF;&#x4E2A;object&#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x4F7F;&#x7528;get_attribute&#x6765;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">get_attribute [get_cells -h U3] ref_name # cell&#x6709;ref&#x7684;&#x540D;&#x5B57;</span><br><span class="line">{INV}</span><br><span class="line"></span><br><span class="line">get_attribute [get_pins U2/A] owner_net # pins&#x6709;&#x4E0E;&#x4E4B;&#x76F8;&#x8FDE;&#x7684;net&#x7684;&#x540D;&#x79F0;</span><br><span class="line">{BUS0}</span><br><span class="line"></span><br><span class="line">get_attribute [get_ports A] direction # port&#x6709;&#x65B9;&#x5411;</span><br><span class="line">{out}</span><br><span class="line"></span><br><span class="line">get_attribute [get_nets INV0] full_name # nets&#x6709;&#x5168;&#x540D;</span><br><span class="line">{INV0}</span><br></pre></td></tr></table></figure>
+
+<p>&#x6839;&#x636E;&#x5C5E;&#x6027;&#x5339;&#x914D;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/f.png" alt="f"></p>
+<p>&#x67E5;&#x627E;&#x4E0E;&#x5BF9;&#x5E94;object&#x76F8;&#x8FDE;&#x7684;object</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/of.png" alt="of"></p>
+<h2 id="STA"><a href="#STA" class="headerlink" title="STA"></a>STA</h2><p>PrimeTime(pt)&#x7528;&#x4E8E;STA</p>
+<p>&#x9759;&#x6001;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x5C31;&#x662F;&#x5C06;&#x7535;&#x8DEF;&#x5212;&#x5206;&#x6210;&#x5404;&#x4E2A;&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;&#xFF0C;&#x5206;&#x6790;&#x6BCF;&#x6761;&#x8DEF;&#x5F84;&#x7684;&#x5EFA;&#x7ACB;&#x65F6;&#x95F4;&#x548C;&#x4FDD;&#x6301;&#x65F6;&#x95F4;&#x662F;&#x5426;&#x6EE1;&#x8DB3;&#x8981;&#x6C42;&#x3002;</p>
+<h3 id="&#x65F6;&#x5E8F;&#x5F27;"><a href="#&#x65F6;&#x5E8F;&#x5F27;" class="headerlink" title="&#x65F6;&#x5E8F;&#x5F27;"></a>&#x65F6;&#x5E8F;&#x5F27;</h3><p>&#x9759;&#x6001;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x662F;&#x57FA;&#x4E8E;timing arc&#x6570;&#x636E;&#x7684;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x3002;&#x65F6;&#x5E8F;&#x5F27;&#x662F;&#x7528;&#x6765;&#x63CF;&#x8FF0;&#x4E24;&#x4E2A;&#x8282;&#x70B9;&#x5EF6;&#x65F6;&#x4FE1;&#x606F;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x65F6;&#x5E8F;&#x5F27;&#x7684;&#x4FE1;&#x606F;&#x5206;&#x4E3A;&#x8FDE;&#x7EBF;&#x5EF6;&#x65F6;&#x548C;&#x5355;&#x5143;&#x5EF6;&#x65F6;&#x3002;</p>
+<ol>
+<li>&#x8FDE;&#x7EBF;&#x5EF6;&#x65F6;&#x662F;&#x5355;&#x5143;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x548C;&#x6247;&#x51FA;&#x7F51;&#x7EDC;&#x8D1F;&#x8F7D;&#x4E4B;&#x95F4;&#x7684;&#x5EF6;&#x65F6;&#x4FE1;&#x606F;&#xFF1B;</li>
+<li>&#x5355;&#x5143;&#x5EF6;&#x65F6;&#x662F;&#x5355;&#x5143;&#x8F93;&#x5165;&#x7AEF;&#x53E3;&#x5230;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x7684;&#x5EF6;&#x65F6;&#x4FE1;&#x606F;&#x3002;&#x56E0;&#x6B64;&#x4E00;&#x6761;&#x5B8C;&#x6574;&#x8DEF;&#x5F84;&#x7684;&#x65F6;&#x5E8F;&#x4FE1;&#x606F;&#x8BA1;&#x7B97;&#x7531;&#x8FDE;&#x7EBF;&#x5EF6;&#x65F6;&#x548C;&#x5355;&#x5143;&#x5EF6;&#x65F6;&#x7EC4;&#x6210;&#x3002;</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200514115004770.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyODI2NDQ4,size_16,color_FFFFFF,t_70" alt="&#x5728;&#x8FD9;&#x91CC;&#x63D2;&#x5165;&#x56FE;&#x7247;&#x63CF;&#x8FF0;"></p>
+<h3 id="&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;"><a href="#&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;" class="headerlink" title="&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;"></a>&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;</h3><p>&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;</p>
+<ul>
+<li>&#x8D77;&#x70B9;&#xFF1A;&#x89E6;&#x53D1;&#x5668;&#x65F6;&#x949F;&#x5F15;&#x811A;&#x3001;&#x8F93;&#x5165;&#x7AEF;&#x53E3;</li>
+<li>&#x7EC8;&#x70B9;&#xFF1A;&#x89E6;&#x53D1;&#x5668;&#x6570;&#x636E;&#x8F93;&#x5165;&#x5F15;&#x811A;&#x3001;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;</li>
+</ul>
+<p>&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;&#x7C7B;&#x578B;&#x5171;&#x6709;4&#x79CD;&#xFF1A;</p>
+<ol>
+<li>clk-&gt;D</li>
+<li>clk-&gt;output_port</li>
+<li>input_port-&gt;D</li>
+<li>input_port-&gt;output_port</li>
+</ol>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/path.png" alt="path"></p>
+<p>&#x4E00;&#x4E2A;&#x65F6;&#x949F;&#x57DF;&#x5185;&#x662F;&#x540C;&#x6B65;&#x7684;&#xFF0C;&#x65F6;&#x949F;&#x57DF;&#x4E4B;&#x95F4;&#x662F;&#x5F02;&#x6B65;&#x7684;&#xFF0C;&#x5168;&#x5C40;&#x5F02;&#x6B65;&#xFF0C;&#x5C40;&#x90E8;&#x540C;&#x6B65;&#x3002;&#x8DE8;&#x65F6;&#x949F;&#x57DF;&#x7684;&#x7535;&#x8DEF;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x7EA6;&#x675F;&#xFF0C;&#x4E0D;&#x8FDB;&#x884C;&#x9759;&#x6001;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x3002;</p>
+<h3 id="PVT&#x73AF;&#x5883;"><a href="#PVT&#x73AF;&#x5883;" class="headerlink" title="PVT&#x73AF;&#x5883;"></a>PVT&#x73AF;&#x5883;</h3><p>&#x9700;&#x8981;&#x6307;&#x5B9A;PVT&#x73AF;&#x5883;&#x624D;&#x80FD;&#x8FDB;&#x884C;STA&#xFF0C;PVT&#x662F;&#x6307;&#x5DE5;&#x827A;&#x5236;&#x7A0B;(process)&#x3001;&#x7535;&#x538B;(voltage)&#x548C;&#x6E29;&#x5EA6;(temperature)&#x3002;</p>
+<p>&#x63D0;&#x4F9B;&#x4E09;&#x79CD;PVT&#x73AF;&#x5883;&#xFF1A;WCS(Worst-Case Slow)&#x3001;TYP(Typical)&#x548C;BCF(Best-Case Fast)&#x3002;WCS&#x548C;BCF&#x73AF;&#x5883;&#x662F;&#x5DE5;&#x5382;&#x5236;&#x9020;&#x5236;&#x7A0B;&#x7684;&#x4E24;&#x79CD;&#x6781;&#x7AEF;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x4E0B;&#x56FE;&#x662F;PVT&#x4E0E;&#x5EF6;&#x8FDF;&#x7684;&#x5173;&#x7CFB;&#xFF1A;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/pvt.png" alt="pvt"></p>
+<p>&#x5728;&#x6700;&#x6162;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#x68C0;&#x67E5;setup&#xFF0C;&#x5728;&#x6700;&#x5FEB;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#x68C0;&#x67E5;hold</p>
+<ul>
+<li>&#x5728;&#x7535;&#x538B;&#x6700;&#x5C0F;&#xFF0C;&#x6E29;&#x5EA6;&#x6700;&#x9AD8;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#xFF08;ss&#xFF09;&#xFF0C;&#x5EF6;&#x8FDF;&#x6700;&#x5927;&#xFF0C;&#x68C0;&#x67E5;setup</li>
+<li>&#x5728;&#x7535;&#x538B;&#x6700;&#x9AD8;&#xFF0C;&#x6E29;&#x5EA6;&#x6700;&#x4F4E;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#xFF08;ff&#xFF09;&#xFF0C;&#x5EF6;&#x8FDF;&#x6700;&#x5C0F;&#xFF0C;&#x68C0;&#x67E5;hold</li>
+</ul>
+<p>&#x4F7F;&#x7528;tcl&#x6307;&#x5B9A;pvt&#x73AF;&#x5883;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set_operating_conditions <span class="string">&quot;WCCOM&quot;</span> -library mychip</span><br><span class="line"><span class="comment"># &#x4F7F;&#x7528;&#x5355;&#x5143;&#x5E93;mychip&#x4E2D;&#x7684;WCCOM&#x73AF;&#x5883;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="&#x6807;&#x51C6;&#x5355;&#x5143;&#x5E93;"><a href="#&#x6807;&#x51C6;&#x5355;&#x5143;&#x5E93;" class="headerlink" title="&#x6807;&#x51C6;&#x5355;&#x5143;&#x5E93;"></a>&#x6807;&#x51C6;&#x5355;&#x5143;&#x5E93;</h2><p>&#x5355;&#x5143;&#x5E93;&#x6587;&#x4EF6;&#x7684;&#x683C;&#x5F0F;&#xFF1A;lib&#x3001;db</p>
+<h3 id="&#x65F6;&#x5E8F;&#x6A21;&#x578B;"><a href="#&#x65F6;&#x5E8F;&#x6A21;&#x578B;" class="headerlink" title="&#x65F6;&#x5E8F;&#x6A21;&#x578B;"></a>&#x65F6;&#x5E8F;&#x6A21;&#x578B;</h3><p>&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#x5206;&#x4E3A;&#x7EBF;&#x6027;&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#x548C;&#x975E;&#x7EBF;&#x6027;&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#x3002;</p>
+<p>&#x5EF6;&#x8FDF;&#x4E0E;<strong>&#x8F93;&#x5165;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#xFF08;input transition&#xFF09;</strong>&#x548C;<strong>&#x8F93;&#x51FA;&#x8D1F;&#x8F7D;&#xFF08;output load&#xFF09;</strong>&#x6709;&#x5173;</p>
+<p>&#x7EBF;&#x6027;&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#x5982;&#x53CD;&#x76F8;&#x5668;&#x3002;&#x901A;&#x8FC7;&#x8F93;&#x5165;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#x548C;&#x8F93;&#x51FA;&#x8D1F;&#x8F7D;&#x7684;&#x503C;&#x5C31;&#x53EF;&#x4EE5;&#x8BA1;&#x7B97;&#x51FA;&#x5668;&#x4EF6;&#x5BF9;&#x5E94;&#x7684;&#x5355;&#x5143;&#x5EF6;&#x8FDF;&#x3002;&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5EF6;&#x8FDF;&#x968F;&#x7740;&#x8FD9;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x63D0;&#x5347;&#x3002;&#x7EBF;&#x6027;&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#xFF1A;$D = D_0 + D_1 \times S + D_2 \times C$</p>
+<p>&#x975E;&#x7EBF;&#x6027;&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#xFF08;NLDM&#xFF0C;None-Linear Delay Model&#xFF09;&#x901A;&#x8FC7;&#x67E5;&#x627E;&#x8868;&#x6765;&#x8BA1;&#x7B97;&#x5355;&#x5143;&#x5EF6;&#x8FDF;&#x3002;NLDM&#x6A21;&#x578B;&#x90FD;&#x662F;&#x901A;&#x8FC7;input transition&#x548C;output load&#x53EF;&#x4EE5;&#x5728;&#x67E5;&#x627E;&#x8868;&#x4E2D;&#x627E;&#x5230;cell delay&#x4EE5;&#x53CA;output transition&#x3002;</p>
+<h3 id="&#x7EC4;&#x5408;&#x5355;&#x5143;&#x6A21;&#x578B;"><a href="#&#x7EC4;&#x5408;&#x5355;&#x5143;&#x6A21;&#x578B;" class="headerlink" title="&#x7EC4;&#x5408;&#x5355;&#x5143;&#x6A21;&#x578B;"></a>&#x7EC4;&#x5408;&#x5355;&#x5143;&#x6A21;&#x578B;</h3><p>&#x4E0B;&#x9762;&#x662F;NLDM&#x7684;&#x4E00;&#x4E2A;&#x7EC4;&#x5408;&#x903B;&#x8F91;&#x5355;&#x5143;&#x7684;&#x4F8B;&#x5B50;&#x3002;&#x56FE;&#x4E2D;&#x663E;&#x793A;&#x4E86;&#x4ECE;INP1&#x5F15;&#x811A;&#x5230;OUT&#x5F15;&#x811A;&#x7684;&#x5EF6;&#x8FDF;&#x67E5;&#x627E;&#x8868;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/nldm.png" alt="nldm"></p>
+<p>&#x5982;&#x679C;&#x7D22;&#x5F15;&#x6CA1;&#x6709;&#x5728;&#x67E5;&#x627E;&#x8868;&#x5185;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x9AD8;&#x65AF;&#x6D88;&#x5143;&#x6CD5;&#x6765;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#xFF0C;&#x5982;&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x8F93;&#x5165;&#x8DF3;&#x53D8;&#x7684;&#x503C;&#x548C;&#x8F93;&#x51FA;&#x8D1F;&#x8F7D;&#x7684;&#x503C;&#x5206;&#x522B;&#x4E3A;0.32&#x4E0E;0.05&#xFF0C;&#x6CA1;&#x6709;&#x5728;&#x67E5;&#x627E;&#x8868;&#x5185;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/guass.png" alt="guass"></p>
+<p>&#x5E93;&#x91CC;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x53C2;&#x6570;slew_derate&#x3002;&#x8BE5;&#x53C2;&#x6570;&#x8BF4;&#x660E;&#xFF0C;&#x5E93;&#x4E2D;&#x7B97;&#x51FA;&#x6765;&#x7684;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#x9700;&#x8981;&#x518D;&#x4E58;&#x4EE5;&#x4E2A;0.5&#x624D;&#x662F;&#x5B9E;&#x9645;&#x7684;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#x3002;&#x73B0;&#x5728;&#x7684;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#x4E0E;&#x5EFA;&#x5E93;&#x65F6;&#x5B9A;&#x4E49;&#x7684;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#x53D1;&#x751F;&#x4E86;&#x53D8;&#x5316;&#x3002;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slew_derate_from_library  : <span class="number">0.5</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x65F6;&#x5E8F;&#x5355;&#x5143;&#x6A21;&#x578B;"><a href="#&#x65F6;&#x5E8F;&#x5355;&#x5143;&#x6A21;&#x578B;" class="headerlink" title="&#x65F6;&#x5E8F;&#x5355;&#x5143;&#x6A21;&#x578B;"></a>&#x65F6;&#x5E8F;&#x5355;&#x5143;&#x6A21;&#x578B;</h3><p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/seq.png" alt="seq"></p>
+<p>&#x65F6;&#x5E8F;&#x5355;&#x5143;&#x6709;clk&#x5F15;&#x811A;&#x5230;D&#x5F15;&#x811A;&#x7684;setup&#x4E0E;hold&#x7684;&#x7EA6;&#x675F;&#x4FE1;&#x606F;&#xFF0C;&#x4EE5;&#x53CA;&#x5F02;&#x6B65;&#x7AEF;&#x53E3;&#x4E0A;&#x7684;recovery&#x4E0E;removal&#x7684;&#x7EA6;&#x675F;&#x4FE1;&#x606F;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/seq_nldm1.png" alt="seq_nldm1"></p>
+<p>&#x6709;clk&#x5230;Q&#x5F15;&#x811A;&#x7684;&#x5EF6;&#x8FDF;&#x4FE1;&#x606F;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/seq_nldm2.png" alt="seq_nldm2"></p>
+<h3 id="&#x7EBF;&#x8F7D;&#x6A21;&#x578B;"><a href="#&#x7EBF;&#x8F7D;&#x6A21;&#x578B;" class="headerlink" title="&#x7EBF;&#x8F7D;&#x6A21;&#x578B;"></a>&#x7EBF;&#x8F7D;&#x6A21;&#x578B;</h3><p>&#x7EBF;&#x8F7D;&#x6A21;&#x578B;&#x91CC;&#x9762;&#x5B9A;&#x4E49;&#x6709;&#x6A21;&#x578B;&#x540D;&#xFF0C;&#x7535;&#x963B;&#x7535;&#x5BB9;&#xFF0C;&#x9762;&#x79EF;&#xFF0C;&#x6247;&#x51FA;&#x4E0E;&#x957F;&#x5EA6;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/wireload.png" alt="wireload"></p>
+<p>&#x5176;&#x4E2D;&#x659C;&#x7387;slope&#x7528;&#x4E8E;&#x5BF9;&#x5E94;&#x6247;&#x51FA;&#x6CA1;&#x6709;&#x5728;&#x6A21;&#x578B;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x5176;&#x4ED6;&#x53C2;&#x6570;&#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/wireload1.png" alt="wireload1"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/yilia/支付宝.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/yilia/微信.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">tcl</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ic</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2023/12/06/%E7%BC%96%E5%86%99%E7%A7%BB%E4%BD%8D%E6%8C%87%E4%BB%A4%E6%97%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%E6%80%9D%E7%BB%B4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">编写移位指令时的一个错误思维</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#STA%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">STA笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TCL"><span class="toc-number">1.1.</span> <span class="toc-text">TCL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E4%B8%8E%E5%88%97%E8%A1%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">数组与列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E6%B5%81"><span class="toc-number">1.1.3.</span> <span class="toc-text">控制流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.4.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.1.5.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86"><span class="toc-number">1.1.6.</span> <span class="toc-text">文本处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Synopsys-TCL"><span class="toc-number">1.2.</span> <span class="toc-text">Synopsys TCL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STA"><span class="toc-number">1.3.</span> <span class="toc-text">STA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%BC%A7"><span class="toc-number">1.3.1.</span> <span class="toc-text">时序弧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E8%B7%AF%E5%BE%84"><span class="toc-number">1.3.2.</span> <span class="toc-text">时序路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PVT%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.3.</span> <span class="toc-text">PVT环境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E5%8D%95%E5%85%83%E5%BA%93"><span class="toc-number">1.4.</span> <span class="toc-text">标准单元库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text">时序模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E5%8D%95%E5%85%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.2.</span> <span class="toc-text">组合单元模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%8D%95%E5%85%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.3.</span> <span class="toc-text">时序单元模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E8%BD%BD%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.4.</span> <span class="toc-text">线载模型</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
 
+  
+
+  
+
+
+
+  
+      <section id="comments" class="comments">
+        <style>
+          .comments{margin:30px;padding:10px;background:#fff}
+          @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+        </style>
+        <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var notify = 'false' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+    av: AV,
+    el: '#vcomment',
+    notify: notify,
+    app_id: "XlKbARHebl4S3KZO5uKT1Cjg-gzGzoHsz",
+    app_key: "VRBlo5BqjO10WuJncw20rbrl",
+    placeholder: "Just go go",
+    avatar: "mm",
+  });
+</script>
+    </section>
+  
 
           </div>
         </div>
@@ -215,7 +524,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 hjzboss
+    		&copy; 2024 hjzboss
     	</div>
       	<div class="footer-right">
 			<!-- # PV方式，单个用户连续点击 n 篇，记录 n 次记录值 -->
@@ -232,9 +541,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -319,15 +628,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">tcl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">chisel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">c</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -335,11 +636,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color2">c</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -359,11 +664,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">汇编</a>
+                <a href="javascript:void(0)" class="js-tag color2">risc-v</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">risc-v</a>
+                <a href="javascript:void(0)" class="js-tag color3">汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -372,6 +677,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ic</a>
               </li>
             
             <div class="clearfix"></div>

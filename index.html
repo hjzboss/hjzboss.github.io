@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>hjzboss的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="nudt研究生报道！">
+  <meta name="description" content="小垃圾一个">
 <meta property="og:type" content="website">
 <meta property="og:title" content="hjzboss的博客">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="hjzboss的博客">
-<meta property="og:description" content="nudt研究生报道！">
+<meta property="og:description" content="小垃圾一个">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="hjzboss">
 <meta property="article:tag" content="学生,编程,计算机">
@@ -153,6 +153,206 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-静态时序分析笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/">静态时序分析笔记</a>
+    </h1>
+  
+
+        <!--显示阅读次数-->
+        
+        <!--显示阅读次数完毕-->
+        
+        <a href="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2024-06-12T05:53:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="STA&#x7B14;&#x8BB0;"><a href="#STA&#x7B14;&#x8BB0;" class="headerlink" title="STA&#x7B14;&#x8BB0;"></a>STA&#x7B14;&#x8BB0;</h1><p>&#x9759;&#x6001;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x53EA;&#x80FD;&#x7528;&#x4E8E;<strong>&#x540C;&#x6B65;&#x7535;&#x8DEF;</strong>&#xFF0C;&#x4E3B;&#x8981;&#x9A8C;&#x8BC1;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x5EFA;&#x7ACB;&#x65F6;&#x95F4;&#x548C;&#x4FDD;&#x6301;&#x65F6;&#x95F4;&#x662F;&#x5426;&#x6EE1;&#x8DB3;&#x8981;&#x6C42;</p>
+<p>&#x9759;&#x6001;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x4E0E;&#x529F;&#x80FD;&#x4EFF;&#x771F;&#x7684;&#x533A;&#x522B;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/sta%E4%B8%8Etb.png" alt="sta&#x4E0E;tb"></p>
+<h2 id="TCL"><a href="#TCL" class="headerlink" title="TCL"></a>TCL</h2><h3 id="&#x53D8;&#x91CF;"><a href="#&#x53D8;&#x91CF;" class="headerlink" title="&#x53D8;&#x91CF;"></a>&#x53D8;&#x91CF;</h3><p>$&#x7B26;&#x53F7;&#x8868;&#x793A;&#x53D8;&#x91CF;&#x7F6E;&#x6362;&#xFF0C;tcl&#x4F1A;&#x8BA4;&#x4E3A;$&#x540E;&#x9762;&#x7684;&#x7B26;&#x53F7;&#x662F;&#x53D8;&#x91CF;&#x540D;&#xFF0C;&#x5C06;&#x53D8;&#x91CF;&#x7F6E;&#x6362;&#x6210;&#x5B83;&#x7684;&#x503C;</p>
+<p>[]&#x5185;&#x662F;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x7684;tcl&#x8BED;&#x53E5;&#xFF0C;&#x5982;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> a [<span class="keyword">expr</span> <span class="number">3</span>+<span class="number">4</span>]</span><br><span class="line"><span class="keyword">puts</span> a</span><br><span class="line"><span class="number">7</span></span><br></pre></td></tr></table></figure>
+
+<p>tcl&#x89E3;&#x91CA;&#x5668;&#x4F1A;&#x5BF9;<strong>&#x53CC;&#x5F15;&#x53F7;</strong>&#x4E2D;&#x7684;$&#x548C;[]&#x7B26;&#x53F7;&#x8FDB;&#x884C;&#x53D8;&#x91CF;&#x66FF;&#x6362;&#x548C;&#x547D;&#x4EE4;&#x7F6E;&#x6362;&#xFF0C;&#x800C;&#x5728;&#x82B1;&#x62EC;&#x53F7;&#x4E2D;&#xFF0C;&#x6240;&#x6709;&#x5B57;&#x7B26;&#x90FD;&#x662F;&#x666E;&#x901A;&#x5B57;&#x7B26;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">puts</span> <span class="string">&quot;\t[expr $x + $y]&quot;</span></span><br><span class="line">	<span class="number">2.5</span></span><br><span class="line"><span class="keyword">puts</span> {\t[<span class="keyword">expr</span> <span class="variable">$x</span> + <span class="variable">$y</span>]}</span><br><span class="line">\t[<span class="keyword">expr</span> <span class="variable">$x</span> + <span class="variable">$y</span>]</span><br></pre></td></tr></table></figure>
+
+<p>&#x7279;&#x6B8A;&#x7B26;&#x53F7;&#x52A0;&#x4E0A;&#x53CD;&#x659C;&#x6760;\&#x540E;&#x4F1A;&#x88AB;&#x7F6E;&#x6362;&#x6210;&#x666E;&#x901A;&#x5B57;&#x7B26;</p>
+<p>&#x5B9A;&#x4E49;&#x53D8;&#x91CF;set&#x4E0E;&#x53D6;&#x53D8;&#x91CF;&#x503C;$</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> cell <span class="string">&quot;bufx2&quot;</span></span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$cell</span></span><br><span class="line">bufx2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> cell <span class="string">&quot;bufx2&quot;</span></span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$cell_1</span> #&#x62A5;&#x9519;&#xFF0C;&#x6CA1;&#x6709;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;</span><br><span class="line"><span class="keyword">puts</span> <span class="variable">${cell}</span>_1</span><br><span class="line">bufx2_1</span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x6570;&#x7EC4;&#x4E0E;&#x5217;&#x8868;"><a href="#&#x6570;&#x7EC4;&#x4E0E;&#x5217;&#x8868;" class="headerlink" title="&#x6570;&#x7EC4;&#x4E0E;&#x5217;&#x8868;"></a>&#x6570;&#x7EC4;&#x4E0E;&#x5217;&#x8868;</h3><p>&#x5B9A;&#x4E49;&#x6570;&#x7EC4;&#xFF0C;array&#x5173;&#x952E;&#x5B57;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x83B7;&#x53D6;&#x6570;&#x7EC4;&#x4FE1;&#x606F;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> cell(ref1) <span class="string">&quot;bufx2&quot;</span></span><br><span class="line"><span class="keyword">set</span> cell(ref2) <span class="string">&quot;a b c&quot;</span></span><br><span class="line"><span class="keyword">puts</span> cell(ref1)</span><br><span class="line">bufx2</span><br><span class="line"><span class="keyword">array</span> size cell</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="keyword">array</span> names cell</span><br><span class="line">ref1 ref2</span><br></pre></td></tr></table></figure>
+
+<p>&#x5B9A;&#x4E49;&#x5217;&#x8868;&#x4E0E;&#x5E38;&#x7528;&#x5217;&#x8868;&#x65B9;&#x6CD5;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> cell1 {a b c}</span><br><span class="line"><span class="keyword">set</span> cell2 {d e}</span><br><span class="line"><span class="keyword">concat</span> <span class="variable">$cell1</span> <span class="variable">$cell2</span> # &#x5217;&#x8868;&#x62FC;&#x63A5;</span><br><span class="line">a b c d e</span><br><span class="line"><span class="keyword">llength</span> <span class="variable">$cell1</span> # &#x5217;&#x8868;&#x957F;&#x5EA6;</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="keyword">llength</span> [<span class="keyword">concat</span> <span class="variable">$cell1</span> <span class="variable">$cell1</span>]</span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="keyword">lindex</span> <span class="variable">$cell1</span> <span class="number">1</span> # &#x8FD4;&#x56DE;&#x5217;&#x8868;&#x4E2D;&#x7B2C;<span class="number">1</span>&#x4E2A;&#x5143;&#x7D20;&#xFF08;&#x4ECE;<span class="number">0</span>&#x5F00;&#x59CB;&#xFF09;</span><br><span class="line">b</span><br><span class="line"><span class="keyword">lindex</span> <span class="variable">$cell1</span> [<span class="keyword">expr</span> [<span class="keyword">llength</span> <span class="variable">$cell1</span>] <span class="number">-1</span>] # &#x8FD4;&#x56DE;&#x5217;&#x8868;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;</span><br><span class="line">c</span><br><span class="line"><span class="keyword">lappend</span> cell1 e # &#x8FFD;&#x52A0;&#x5143;&#x7D20;</span><br><span class="line">a b c e</span><br><span class="line"><span class="keyword">lappend</span> cell1 <span class="variable">$cell2</span> # &#x8FFD;&#x52A0;&#x5217;&#x8868;&#xFF0C;&#x6574;&#x4E2A;&#x5217;&#x8868;&#x90FD;&#x88AB;&#x52A0;&#x8FDB;&#x6765;&#x4E86;&#xFF0C;&#x88AB;&#x5F53;&#x6210;&#x4E00;&#x4E2A;&#x5143;&#x7D20;</span><br><span class="line">a b c e {d e}</span><br></pre></td></tr></table></figure>
+
+<p>&#x5217;&#x8868;&#x6392;&#x5E8F;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> list1 {<span class="number">4</span> <span class="number">5</span> <span class="number">3</span>}</span><br><span class="line"><span class="keyword">lsort</span> <span class="variable">$list1</span> # &#x9ED8;&#x8BA4;&#x6309;&#x7167;ascii&#x7801;&#x987A;&#x5E8F;</span><br><span class="line"><span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line"><span class="keyword">set</span> list2 {<span class="number">-2</span> <span class="number">3.1</span> <span class="number">5</span> <span class="number">0</span>}</span><br><span class="line"><span class="keyword">lsort</span> -real <span class="variable">$list2</span> # &#x6309;&#x7167;&#x6570;&#x5B57;&#x5927;&#x5C0F;&#x6392;&#x5E8F;</span><br><span class="line"><span class="number">-2</span> <span class="number">0</span> <span class="number">3.1</span> <span class="number">5</span></span><br><span class="line"><span class="keyword">set</span> list3 {a c c b a d}</span><br><span class="line"><span class="keyword">lsort</span> -unique <span class="variable">$list3</span> # &#x552F;&#x4E00;&#x5316;</span><br><span class="line">a b c d</span><br></pre></td></tr></table></figure>
+
+<p>tcl&#x652F;&#x6301;&#x7684;&#x6570;&#x5B66;&#x8FD0;&#x7B97;&#xFF0C;expr&#x547D;&#x4EE4;&#x7528;&#x4E8E;&#x6C42;&#x503C;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+ - * / &gt;= &lt;= != ==</span><br><span class="line"><span class="keyword">expr</span> <span class="number">6</span> + <span class="number">4</span></span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x63A7;&#x5236;&#x6D41;"><a href="#&#x63A7;&#x5236;&#x6D41;" class="headerlink" title="&#x63A7;&#x5236;&#x6D41;"></a>&#x63A7;&#x5236;&#x6D41;</h3><p>&#x63A7;&#x5236;&#x6D41;&#x8BED;&#x53E5;&#xFF1A;if elseif else</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>{<span class="variable">$l</span> == <span class="number">3</span>} {</span><br><span class="line">  </span><br><span class="line">} elseif {<span class="variable">$l</span> &gt; <span class="number">3</span>} {</span><br><span class="line">  </span><br><span class="line">} else {</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>foreach&#xFF0C;&#x53EF;&#x4EE5;&#x7528;break&#x7ED3;&#x675F;&#x5FAA;&#x73AF;,continue&#x7EE7;&#x7EED;&#x5FAA;&#x73AF;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> i <span class="variable">$list</span> {</span><br><span class="line">  <span class="keyword">if</span>{<span class="variable">$i</span> &gt; <span class="number">3</span>} {</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  } elseif(<span class="variable">$i</span> &lt; <span class="number">3</span>) {</span><br><span class="line">    <span class="keyword">puts</span> <span class="variable">$i</span></span><br><span class="line">  } else {</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>while&#x5FAA;&#x73AF;&#xFF0C;incr&#x5173;&#x952E;&#x5B57;&#x7528;&#x4E8E;&#x9012;&#x589E;&#x6216;&#x9012;&#x51CF;&#x53D8;&#x91CF;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> {<span class="variable">$i</span> &lt; <span class="number">3</span>} {</span><br><span class="line">  <span class="keyword">puts</span> <span class="variable">$i</span></span><br><span class="line">  <span class="keyword">incr</span> i <span class="number">1</span> # <span class="keyword">set</span> i [<span class="keyword">expr</span> <span class="variable">$i</span> + <span class="number">1</span>]</span><br><span class="line"><span class="comment">  # incr i -1 # set i [expr $i - 1]</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>for&#x5FAA;&#x73AF;&#xFF0C;&#x548C;c&#x8BED;&#x8A00;&#x7C7B;&#x4F3C;&#xFF0C;&#x9700;&#x8981;&#x521D;&#x59CB;&#x53C2;&#x6570;&#xFF0C;&#x5FAA;&#x73AF;&#x6761;&#x4EF6;&#x4E0E;&#x91CD;&#x65B0;&#x521D;&#x59CB;&#x5316;&#x53C2;&#x6570;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> {<span class="keyword">set</span> i <span class="number">3</span>} {<span class="variable">$i</span> &gt; <span class="number">0</span>} {<span class="keyword">incr</span> i <span class="number">-1</span>} {</span><br><span class="line">  <span class="keyword">puts</span> <span class="variable">$i</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x51FD;&#x6570;"><a href="#&#x51FD;&#x6570;" class="headerlink" title="&#x51FD;&#x6570;"></a>&#x51FD;&#x6570;</h3><p>&#x4F7F;&#x7528;proc&#x6765;&#x5B9A;&#x4E49;&#x51FD;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x53C2;&#x6570;&#x548C;&#x8FD4;&#x56DE;&#x503C;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">proc</span><span class="title"> add</span> {a, b} {</span><br><span class="line">	<span class="keyword">set</span> sum [<span class="keyword">expr</span> <span class="variable">$a</span> + <span class="variable">$b</span>]</span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$sum</span></span><br><span class="line">}</span><br><span class="line">add <span class="number">1</span> <span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>&#x5728;&#x51FD;&#x6570;&#x4E2D;&#x5F15;&#x7528;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#x9700;&#x8981;&#x52A0;<strong>global</strong>&#x5173;&#x952E;&#x5B57;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> cin <span class="number">1</span></span><br><span class="line"><span class="keyword">set</span> cout <span class="number">0</span></span><br><span class="line"><span class="keyword">proc</span><span class="title"> add</span> {a, b} {</span><br><span class="line">	<span class="keyword">global</span> cin cout</span><br><span class="line">	<span class="keyword">set</span> sum [<span class="keyword">expr</span> <span class="variable">$a</span> + <span class="variable">$b</span> + <span class="variable">$cin</span>]</span><br><span class="line">	<span class="keyword">set</span> cout <span class="number">2</span></span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$sum</span></span><br><span class="line">}</span><br><span class="line">add <span class="number">1</span> <span class="number">3</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$cout</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"><a href="#&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;" class="headerlink" title="&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"></a>&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</h3><p>&#x4F7F;&#x7528;&#x5173;&#x952E;&#x5B57;regexp&#x6765;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#x67E5;&#x8BE2;&#xFF0C;&#x4E0B;&#x9762;&#x662F;&#x5E38;&#x7528;&#x7528;&#x6CD5;&#xFF0C;&#x5C06;<strong>&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5339;&#x914D;&#x7684;&#x503C;&#x653E;&#x5728;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;</strong>&#xFF0C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x62EC;<strong>&#x53F7;&#x4E2D;</strong>&#x7684;&#x5339;&#x914D;&#x503C;&#x4FDD;&#x5B58;&#x5728;&#x540E;&#x7EED;&#x53C2;&#x6570;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> str <span class="string">&quot;ade 12 er&quot;</span></span><br><span class="line"><span class="keyword">regexp</span> {(\w+)\s(\d+)} <span class="variable">$str</span> match result1 result2</span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$match</span></span><br><span class="line">ade <span class="number">12</span></span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$result1</span></span><br><span class="line">ade</span><br><span class="line"><span class="keyword">puts</span> <span class="variable">$result2</span></span><br><span class="line"><span class="number">12</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x6587;&#x672C;&#x5904;&#x7406;"><a href="#&#x6587;&#x672C;&#x5904;&#x7406;" class="headerlink" title="&#x6587;&#x672C;&#x5904;&#x7406;"></a>&#x6587;&#x672C;&#x5904;&#x7406;</h3><p>&#x4F7F;&#x7528;open&#x6253;&#x5F00;&#x6587;&#x4EF6;&#xFF0C;puts&#x5199;&#x5165;&#x6587;&#x4EF6;&#xFF0C;gets&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#xFF0C;close&#x5173;&#x95ED;&#x6587;&#x4EF6;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/file.png" alt="file"></p>
+<p>&#x4E00;&#x4E2A;&#x4F8B;&#x9898;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/example1.png" alt="example1"></p>
+<h2 id="Synopsys-TCL"><a href="#Synopsys-TCL" class="headerlink" title="Synopsys TCL"></a>Synopsys TCL</h2><p>&#x4E00;&#x4E2A;&#x8BBE;&#x8BA1;&#x91CC;&#x9762;&#x90FD;&#x662F;design object&#xFF0C;&#x5305;&#x62EC;net&#x3001;cell&#x7B49;&#x7B49;object</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/design.png" alt="design"></p>
+<p>&#x53EF;&#x4EE5;&#x7528;get_cells&#xFF0C;get_ports&#xFF0C;get_nets&#xFF0C;get_pins&#x7B49;&#x7B49;&#x6307;&#x4EE4;&#x5F97;&#x5230;&#x5BF9;&#x5E94;&#x7684;object&#x96C6;&#x5408;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">get_ports *</span><br><span class="line">{A B C D CLK OUT1}</span><br><span class="line">get_cells U4</span><br><span class="line">{U4}</span><br><span class="line">get_cells *<span class="number">3</span></span><br><span class="line">{U3}</span><br><span class="line">get_cells U9</span><br><span class="line">No object Found!</span><br><span class="line"></span><br><span class="line">get_pins */Z # pins&#x90FD;&#x5E26;&#x4E86;&#x6240;&#x5C5E;&#x8BBE;&#x8BA1;&#x7684;&#x540D;&#x5B57;</span><br><span class="line">{INV0/Z INV1/Z}</span><br></pre></td></tr></table></figure>
+
+<p>&#x6C42;&#x6570;&#x91CF;&#x6307;&#x4EE4;sizeof_collection&#xFF0C;&#x7B49;&#x4EF7;&#x4E8E;&#x5148;&#x4F7F;&#x7528;get_object_name&#x8F6C;&#x6362;&#x4E3A;&#x5217;&#x8868;&#x518D;&#x6C42;&#x957F;&#x5EA6;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sizeof_collection [gets_nets *]</span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="keyword">llength</span> [get_object_name [get_nets *]] # &#x7B49;&#x4EF7;</span><br></pre></td></tr></table></figure>
+
+<p>&#x6BCF;&#x4E2A;object&#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x4F7F;&#x7528;get_attribute&#x6765;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">get_attribute [get_cells -h U3] ref_name # cell&#x6709;ref&#x7684;&#x540D;&#x5B57;</span><br><span class="line">{INV}</span><br><span class="line"></span><br><span class="line">get_attribute [get_pins U2/A] owner_net # pins&#x6709;&#x4E0E;&#x4E4B;&#x76F8;&#x8FDE;&#x7684;net&#x7684;&#x540D;&#x79F0;</span><br><span class="line">{BUS0}</span><br><span class="line"></span><br><span class="line">get_attribute [get_ports A] direction # port&#x6709;&#x65B9;&#x5411;</span><br><span class="line">{out}</span><br><span class="line"></span><br><span class="line">get_attribute [get_nets INV0] full_name # nets&#x6709;&#x5168;&#x540D;</span><br><span class="line">{INV0}</span><br></pre></td></tr></table></figure>
+
+<p>&#x6839;&#x636E;&#x5C5E;&#x6027;&#x5339;&#x914D;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/f.png" alt="f"></p>
+<p>&#x67E5;&#x627E;&#x4E0E;&#x5BF9;&#x5E94;object&#x76F8;&#x8FDE;&#x7684;object</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/of.png" alt="of"></p>
+<h2 id="STA"><a href="#STA" class="headerlink" title="STA"></a>STA</h2><p>PrimeTime(pt)&#x7528;&#x4E8E;STA</p>
+<p>&#x9759;&#x6001;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x5C31;&#x662F;&#x5C06;&#x7535;&#x8DEF;&#x5212;&#x5206;&#x6210;&#x5404;&#x4E2A;&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;&#xFF0C;&#x5206;&#x6790;&#x6BCF;&#x6761;&#x8DEF;&#x5F84;&#x7684;&#x5EFA;&#x7ACB;&#x65F6;&#x95F4;&#x548C;&#x4FDD;&#x6301;&#x65F6;&#x95F4;&#x662F;&#x5426;&#x6EE1;&#x8DB3;&#x8981;&#x6C42;&#x3002;</p>
+<h3 id="&#x65F6;&#x5E8F;&#x5F27;"><a href="#&#x65F6;&#x5E8F;&#x5F27;" class="headerlink" title="&#x65F6;&#x5E8F;&#x5F27;"></a>&#x65F6;&#x5E8F;&#x5F27;</h3><p>&#x9759;&#x6001;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x662F;&#x57FA;&#x4E8E;timing arc&#x6570;&#x636E;&#x7684;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x3002;&#x65F6;&#x5E8F;&#x5F27;&#x662F;&#x7528;&#x6765;&#x63CF;&#x8FF0;&#x4E24;&#x4E2A;&#x8282;&#x70B9;&#x5EF6;&#x65F6;&#x4FE1;&#x606F;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x65F6;&#x5E8F;&#x5F27;&#x7684;&#x4FE1;&#x606F;&#x5206;&#x4E3A;&#x8FDE;&#x7EBF;&#x5EF6;&#x65F6;&#x548C;&#x5355;&#x5143;&#x5EF6;&#x65F6;&#x3002;</p>
+<ol>
+<li>&#x8FDE;&#x7EBF;&#x5EF6;&#x65F6;&#x662F;&#x5355;&#x5143;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x548C;&#x6247;&#x51FA;&#x7F51;&#x7EDC;&#x8D1F;&#x8F7D;&#x4E4B;&#x95F4;&#x7684;&#x5EF6;&#x65F6;&#x4FE1;&#x606F;&#xFF1B;</li>
+<li>&#x5355;&#x5143;&#x5EF6;&#x65F6;&#x662F;&#x5355;&#x5143;&#x8F93;&#x5165;&#x7AEF;&#x53E3;&#x5230;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x7684;&#x5EF6;&#x65F6;&#x4FE1;&#x606F;&#x3002;&#x56E0;&#x6B64;&#x4E00;&#x6761;&#x5B8C;&#x6574;&#x8DEF;&#x5F84;&#x7684;&#x65F6;&#x5E8F;&#x4FE1;&#x606F;&#x8BA1;&#x7B97;&#x7531;&#x8FDE;&#x7EBF;&#x5EF6;&#x65F6;&#x548C;&#x5355;&#x5143;&#x5EF6;&#x65F6;&#x7EC4;&#x6210;&#x3002;</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200514115004770.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyODI2NDQ4,size_16,color_FFFFFF,t_70" alt="&#x5728;&#x8FD9;&#x91CC;&#x63D2;&#x5165;&#x56FE;&#x7247;&#x63CF;&#x8FF0;"></p>
+<h3 id="&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;"><a href="#&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;" class="headerlink" title="&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;"></a>&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;</h3><p>&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;</p>
+<ul>
+<li>&#x8D77;&#x70B9;&#xFF1A;&#x89E6;&#x53D1;&#x5668;&#x65F6;&#x949F;&#x5F15;&#x811A;&#x3001;&#x8F93;&#x5165;&#x7AEF;&#x53E3;</li>
+<li>&#x7EC8;&#x70B9;&#xFF1A;&#x89E6;&#x53D1;&#x5668;&#x6570;&#x636E;&#x8F93;&#x5165;&#x5F15;&#x811A;&#x3001;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;</li>
+</ul>
+<p>&#x65F6;&#x5E8F;&#x8DEF;&#x5F84;&#x7C7B;&#x578B;&#x5171;&#x6709;4&#x79CD;&#xFF1A;</p>
+<ol>
+<li>clk-&gt;D</li>
+<li>clk-&gt;output_port</li>
+<li>input_port-&gt;D</li>
+<li>input_port-&gt;output_port</li>
+</ol>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/path.png" alt="path"></p>
+<p>&#x4E00;&#x4E2A;&#x65F6;&#x949F;&#x57DF;&#x5185;&#x662F;&#x540C;&#x6B65;&#x7684;&#xFF0C;&#x65F6;&#x949F;&#x57DF;&#x4E4B;&#x95F4;&#x662F;&#x5F02;&#x6B65;&#x7684;&#xFF0C;&#x5168;&#x5C40;&#x5F02;&#x6B65;&#xFF0C;&#x5C40;&#x90E8;&#x540C;&#x6B65;&#x3002;&#x8DE8;&#x65F6;&#x949F;&#x57DF;&#x7684;&#x7535;&#x8DEF;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x7EA6;&#x675F;&#xFF0C;&#x4E0D;&#x8FDB;&#x884C;&#x9759;&#x6001;&#x65F6;&#x5E8F;&#x5206;&#x6790;&#x3002;</p>
+<h3 id="PVT&#x73AF;&#x5883;"><a href="#PVT&#x73AF;&#x5883;" class="headerlink" title="PVT&#x73AF;&#x5883;"></a>PVT&#x73AF;&#x5883;</h3><p>&#x9700;&#x8981;&#x6307;&#x5B9A;PVT&#x73AF;&#x5883;&#x624D;&#x80FD;&#x8FDB;&#x884C;STA&#xFF0C;PVT&#x662F;&#x6307;&#x5DE5;&#x827A;&#x5236;&#x7A0B;(process)&#x3001;&#x7535;&#x538B;(voltage)&#x548C;&#x6E29;&#x5EA6;(temperature)&#x3002;</p>
+<p>&#x63D0;&#x4F9B;&#x4E09;&#x79CD;PVT&#x73AF;&#x5883;&#xFF1A;WCS(Worst-Case Slow)&#x3001;TYP(Typical)&#x548C;BCF(Best-Case Fast)&#x3002;WCS&#x548C;BCF&#x73AF;&#x5883;&#x662F;&#x5DE5;&#x5382;&#x5236;&#x9020;&#x5236;&#x7A0B;&#x7684;&#x4E24;&#x79CD;&#x6781;&#x7AEF;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x4E0B;&#x56FE;&#x662F;PVT&#x4E0E;&#x5EF6;&#x8FDF;&#x7684;&#x5173;&#x7CFB;&#xFF1A;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/pvt.png" alt="pvt"></p>
+<p>&#x5728;&#x6700;&#x6162;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#x68C0;&#x67E5;setup&#xFF0C;&#x5728;&#x6700;&#x5FEB;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#x68C0;&#x67E5;hold</p>
+<ul>
+<li>&#x5728;&#x7535;&#x538B;&#x6700;&#x5C0F;&#xFF0C;&#x6E29;&#x5EA6;&#x6700;&#x9AD8;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#xFF08;ss&#xFF09;&#xFF0C;&#x5EF6;&#x8FDF;&#x6700;&#x5927;&#xFF0C;&#x68C0;&#x67E5;setup</li>
+<li>&#x5728;&#x7535;&#x538B;&#x6700;&#x9AD8;&#xFF0C;&#x6E29;&#x5EA6;&#x6700;&#x4F4E;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#xFF08;ff&#xFF09;&#xFF0C;&#x5EF6;&#x8FDF;&#x6700;&#x5C0F;&#xFF0C;&#x68C0;&#x67E5;hold</li>
+</ul>
+<p>&#x4F7F;&#x7528;tcl&#x6307;&#x5B9A;pvt&#x73AF;&#x5883;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set_operating_conditions <span class="string">&quot;WCCOM&quot;</span> -library mychip</span><br><span class="line"><span class="comment"># &#x4F7F;&#x7528;&#x5355;&#x5143;&#x5E93;mychip&#x4E2D;&#x7684;WCCOM&#x73AF;&#x5883;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="&#x6807;&#x51C6;&#x5355;&#x5143;&#x5E93;"><a href="#&#x6807;&#x51C6;&#x5355;&#x5143;&#x5E93;" class="headerlink" title="&#x6807;&#x51C6;&#x5355;&#x5143;&#x5E93;"></a>&#x6807;&#x51C6;&#x5355;&#x5143;&#x5E93;</h2><p>&#x5355;&#x5143;&#x5E93;&#x6587;&#x4EF6;&#x7684;&#x683C;&#x5F0F;&#xFF1A;lib&#x3001;db</p>
+<h3 id="&#x65F6;&#x5E8F;&#x6A21;&#x578B;"><a href="#&#x65F6;&#x5E8F;&#x6A21;&#x578B;" class="headerlink" title="&#x65F6;&#x5E8F;&#x6A21;&#x578B;"></a>&#x65F6;&#x5E8F;&#x6A21;&#x578B;</h3><p>&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#x5206;&#x4E3A;&#x7EBF;&#x6027;&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#x548C;&#x975E;&#x7EBF;&#x6027;&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#x3002;</p>
+<p>&#x5EF6;&#x8FDF;&#x4E0E;<strong>&#x8F93;&#x5165;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#xFF08;input transition&#xFF09;</strong>&#x548C;<strong>&#x8F93;&#x51FA;&#x8D1F;&#x8F7D;&#xFF08;output load&#xFF09;</strong>&#x6709;&#x5173;</p>
+<p>&#x7EBF;&#x6027;&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#x5982;&#x53CD;&#x76F8;&#x5668;&#x3002;&#x901A;&#x8FC7;&#x8F93;&#x5165;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#x548C;&#x8F93;&#x51FA;&#x8D1F;&#x8F7D;&#x7684;&#x503C;&#x5C31;&#x53EF;&#x4EE5;&#x8BA1;&#x7B97;&#x51FA;&#x5668;&#x4EF6;&#x5BF9;&#x5E94;&#x7684;&#x5355;&#x5143;&#x5EF6;&#x8FDF;&#x3002;&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5EF6;&#x8FDF;&#x968F;&#x7740;&#x8FD9;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x63D0;&#x5347;&#x3002;&#x7EBF;&#x6027;&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#xFF1A;$D = D_0 + D_1 \times S + D_2 \times C$</p>
+<p>&#x975E;&#x7EBF;&#x6027;&#x65F6;&#x5E8F;&#x6A21;&#x578B;&#xFF08;NLDM&#xFF0C;None-Linear Delay Model&#xFF09;&#x901A;&#x8FC7;&#x67E5;&#x627E;&#x8868;&#x6765;&#x8BA1;&#x7B97;&#x5355;&#x5143;&#x5EF6;&#x8FDF;&#x3002;NLDM&#x6A21;&#x578B;&#x90FD;&#x662F;&#x901A;&#x8FC7;input transition&#x548C;output load&#x53EF;&#x4EE5;&#x5728;&#x67E5;&#x627E;&#x8868;&#x4E2D;&#x627E;&#x5230;cell delay&#x4EE5;&#x53CA;output transition&#x3002;</p>
+<h3 id="&#x7EC4;&#x5408;&#x5355;&#x5143;&#x6A21;&#x578B;"><a href="#&#x7EC4;&#x5408;&#x5355;&#x5143;&#x6A21;&#x578B;" class="headerlink" title="&#x7EC4;&#x5408;&#x5355;&#x5143;&#x6A21;&#x578B;"></a>&#x7EC4;&#x5408;&#x5355;&#x5143;&#x6A21;&#x578B;</h3><p>&#x4E0B;&#x9762;&#x662F;NLDM&#x7684;&#x4E00;&#x4E2A;&#x7EC4;&#x5408;&#x903B;&#x8F91;&#x5355;&#x5143;&#x7684;&#x4F8B;&#x5B50;&#x3002;&#x56FE;&#x4E2D;&#x663E;&#x793A;&#x4E86;&#x4ECE;INP1&#x5F15;&#x811A;&#x5230;OUT&#x5F15;&#x811A;&#x7684;&#x5EF6;&#x8FDF;&#x67E5;&#x627E;&#x8868;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/nldm.png" alt="nldm"></p>
+<p>&#x5982;&#x679C;&#x7D22;&#x5F15;&#x6CA1;&#x6709;&#x5728;&#x67E5;&#x627E;&#x8868;&#x5185;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x9AD8;&#x65AF;&#x6D88;&#x5143;&#x6CD5;&#x6765;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#xFF0C;&#x5982;&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x8F93;&#x5165;&#x8DF3;&#x53D8;&#x7684;&#x503C;&#x548C;&#x8F93;&#x51FA;&#x8D1F;&#x8F7D;&#x7684;&#x503C;&#x5206;&#x522B;&#x4E3A;0.32&#x4E0E;0.05&#xFF0C;&#x6CA1;&#x6709;&#x5728;&#x67E5;&#x627E;&#x8868;&#x5185;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/guass.png" alt="guass"></p>
+<p>&#x5E93;&#x91CC;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x53C2;&#x6570;slew_derate&#x3002;&#x8BE5;&#x53C2;&#x6570;&#x8BF4;&#x660E;&#xFF0C;&#x5E93;&#x4E2D;&#x7B97;&#x51FA;&#x6765;&#x7684;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#x9700;&#x8981;&#x518D;&#x4E58;&#x4EE5;&#x4E2A;0.5&#x624D;&#x662F;&#x5B9E;&#x9645;&#x7684;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#x3002;&#x73B0;&#x5728;&#x7684;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#x4E0E;&#x5EFA;&#x5E93;&#x65F6;&#x5B9A;&#x4E49;&#x7684;&#x8F6C;&#x6362;&#x65F6;&#x95F4;&#x53D1;&#x751F;&#x4E86;&#x53D8;&#x5316;&#x3002;</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slew_derate_from_library  : <span class="number">0.5</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x65F6;&#x5E8F;&#x5355;&#x5143;&#x6A21;&#x578B;"><a href="#&#x65F6;&#x5E8F;&#x5355;&#x5143;&#x6A21;&#x578B;" class="headerlink" title="&#x65F6;&#x5E8F;&#x5355;&#x5143;&#x6A21;&#x578B;"></a>&#x65F6;&#x5E8F;&#x5355;&#x5143;&#x6A21;&#x578B;</h3><p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/seq.png" alt="seq"></p>
+<p>&#x65F6;&#x5E8F;&#x5355;&#x5143;&#x6709;clk&#x5F15;&#x811A;&#x5230;D&#x5F15;&#x811A;&#x7684;setup&#x4E0E;hold&#x7684;&#x7EA6;&#x675F;&#x4FE1;&#x606F;&#xFF0C;&#x4EE5;&#x53CA;&#x5F02;&#x6B65;&#x7AEF;&#x53E3;&#x4E0A;&#x7684;recovery&#x4E0E;removal&#x7684;&#x7EA6;&#x675F;&#x4FE1;&#x606F;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/seq_nldm1.png" alt="seq_nldm1"></p>
+<p>&#x6709;clk&#x5230;Q&#x5F15;&#x811A;&#x7684;&#x5EF6;&#x8FDF;&#x4FE1;&#x606F;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/seq_nldm2.png" alt="seq_nldm2"></p>
+<h3 id="&#x7EBF;&#x8F7D;&#x6A21;&#x578B;"><a href="#&#x7EBF;&#x8F7D;&#x6A21;&#x578B;" class="headerlink" title="&#x7EBF;&#x8F7D;&#x6A21;&#x578B;"></a>&#x7EBF;&#x8F7D;&#x6A21;&#x578B;</h3><p>&#x7EBF;&#x8F7D;&#x6A21;&#x578B;&#x91CC;&#x9762;&#x5B9A;&#x4E49;&#x6709;&#x6A21;&#x578B;&#x540D;&#xFF0C;&#x7535;&#x963B;&#x7535;&#x5BB9;&#xFF0C;&#x9762;&#x79EF;&#xFF0C;&#x6247;&#x51FA;&#x4E0E;&#x957F;&#x5EA6;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/wireload.png" alt="wireload"></p>
+<p>&#x5176;&#x4E2D;&#x659C;&#x7387;slope&#x7528;&#x4E8E;&#x5BF9;&#x5E94;&#x6247;&#x51FA;&#x6CA1;&#x6709;&#x5728;&#x6A21;&#x578B;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x5176;&#x4ED6;&#x53C2;&#x6570;&#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;</p>
+<p><img src="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/wireload1.png" alt="wireload1"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ic</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/06/12/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
   
     <article id="post-编写移位指令时的一个错误思维" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1486,188 +1686,6 @@
 
 
   
-    <article id="post-DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/16/DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality/">DTexL: Decoupled Raster Pipeline for Texture Locality</a>
-    </h1>
-  
-
-        <!--显示阅读次数-->
-        
-        <!--显示阅读次数完毕-->
-        
-        <a href="/2023/04/16/DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality/" class="archive-article-date">
-  	<time datetime="2023-04-15T16:01:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="&#x8865;&#x5145;&#x77E5;&#x8BC6;"><a href="#&#x8865;&#x5145;&#x77E5;&#x8BC6;" class="headerlink" title="&#x8865;&#x5145;&#x77E5;&#x8BC6;"></a>&#x8865;&#x5145;&#x77E5;&#x8BC6;</h1><p>TBR&#x7684;&#x6838;&#x5FC3;&#x601D;&#x60F3;&#x662F;&#xFF1A;&#x5C06;&#x5E27;&#x7F13;&#x51B2;&#x5206;&#x5272;&#x4E3A;&#x4E00;&#x5C0F;&#x5757;&#x4E00;&#x5C0F;&#x5757;&#xFF08;tile&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x9010;&#x5757;&#x8FDB;&#x884C;&#x6E32;&#x67D3;&#xFF0C;TBR (Tile-Based Rendering)&#x662F;&#x57FA;&#x4E8E;Tile&#xFF08;&#x5757;&#xFF09;&#x7684;&#x7ED8;&#x5236;&#xFF0C;&#x5C31;&#x662F;&#x5C06;&#x4EE5;&#x5F80;IMR&#x4E0E;&#x7CFB;&#x7EDF;&#x5185;&#x5B58;&#x8FDB;&#x884C;&#x9891;&#x7E41;&#x4EA4;&#x4E92;&#x7684;&#x8FC7;&#x7A0B;&#x8FC1;&#x79FB;&#x5230;&#x9AD8;&#x901F;On-Chip Buffer&#x4E2D;&#x5B8C;&#x6210;&#xFF0C;On-Chip Buffer&#x7684;&#x5927;&#x5C0F;&#x4E0E;tile&#x4E00;&#x81F4;</p>
-<p>&#x5149;&#x6805;&#x5316;&#x7684;&#x672C;&#x8D28;&#x662F;&#x5750;&#x6807;&#x53D8;&#x6362;&#x3001;&#x51E0;&#x4F55;&#x79BB;&#x6563;&#x5316;&#x3002;</p>
-<p>&#x5149;&#x6805;&#x5316;&#x662F;&#x5C06;&#x51E0;&#x4F55;&#x6570;&#x636E;&#x7ECF;&#x8FC7;&#x4E00;&#x7CFB;&#x5217;&#x53D8;&#x6362;&#x540E;&#x6700;&#x7EC8;&#x8F6C;&#x6362;&#x4E3A;&#xFF0C;&#x4ECE;&#x800C;&#x5448;&#x73B0;&#x5728;&#x663E;&#x793A;&#x8BBE;&#x5907;&#x4E0A;&#x7684;&#x8FC7;&#x7A0B;</p>
-<p>&#x5149;&#x6805;&#x5316;&#xFF0C;&#x5C31;&#x662F;&#x5C06;&#x51E0;&#x4F55;&#x4FE1;&#x606F;&#x8F6C;&#x6362;&#x6210;&#x4E00;&#x4E2A;&#x4E2A;&#x7684;&#x6805;&#x683C;&#x7EC4;&#x6210;&#x7684;&#x56FE;&#x50CF;&#x7684;&#x8FC7;&#x7A0B;&#x3002;</p>
-<p>&#x5728;&#x5149;&#x6805;&#x5316;&#x7684;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x77E5;&#x9053;&#x4E86;&#x6BCF;&#x4E2A;&#x7247;&#x65AD;(fragment)&#x7684;&#x6DF1;&#x5EA6;</p>
-<p>&#x73B0;&#x4EE3;GPU&#x4E2D;&#x8FD0;&#x7528;&#x4E86;Early-z&#x7684;&#x6280;&#x672F;&#xFF0C;&#x5728;Vertex&#x9636;&#x6BB5;&#x548C;Fragment&#x9636;&#x6BB5;&#x4E4B;&#x95F4;&#x3008;&#x5149;&#x6805;&#x5316;&#x4E4B;&#x540E;&#xFF0C;fragment&#x4E4B;&#x524D;&#x3009;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x6DF1;&#x5EA6;&#x6D4B;&#x8BD5;&#xFF0C;&#x5982;&#x679C;&#x6DF1;&#x5EA6;&#x6D4B;&#x8BD5;&#x5931;&#x8D25;&#xFF0C;&#x5C31;&#x4E0D;&#x5FC5;&#x8FDB;&#x884C;fragment&#x9636;&#x6BB5;&#x7684;&#x8BA1;&#x7B97;&#x4E86;&#xFF0C;&#x56E0;&#x6B64;&#x5728;&#x6027;&#x80FD;&#x4E0A;&#x4F1A;&#x6709;&#x5F88;&#x5927;&#x7684;&#x63D0;&#x5347;&#x3002;&#x4F46;&#x662F;&#x6700;&#x7EC8;&#x7684;Z-Test&#x4ECD;&#x7136;&#x9700;&#x8981;&#x8FDB;&#x884C;&#xFF0C;&#x4EE5;&#x4FDD;&#x8BC1;&#x6700;&#x7EC8;&#x7684;&#x906E;&#x6321;&#x5173;&#x7CFB;&#x7ED3;&#x679C;&#x6B63;&#x786E;&#x3002;</p>
-<p>&#x56FE;&#x5143;&#x662F;&#x7531;&#x9876;&#x70B9;&#x7EC4;&#x6210;&#x7684;&#x3002;&#x4E00;&#x4E2A;&#x9876;&#x70B9;&#xFF0C;&#x4E00;&#x6761;&#x7EBF;&#x6BB5;&#xFF0C;&#x4E00;&#x4E2A;&#x4E09;&#x89D2;&#x5F62;&#x6216;&#x8005;&#x591A;&#x8FB9;&#x5F62;&#x90FD;&#x53EF;&#x4EE5;&#x6210;&#x4E3A;&#x56FE;&#x5143;&#x3002;</p>
-<p>&#x7247;&#x5143;&#x662F;&#x5728;&#x56FE;&#x5143;&#x7ECF;&#x8FC7;&#x5149;&#x6805;&#x5316;&#x9636;&#x6BB5;&#xFF08;&#x8FD9;&#x4E2A;&#x9636;&#x6BB5;&#x6BD4;&#x8F83;&#x590D;&#x6742;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x8D58;&#x8FF0;&#xFF09;&#x540E;&#xFF0C;&#x88AB;&#x5206;&#x5272;&#x6210;&#x4E00;&#x4E2A;&#x4E2A;&#x50CF;&#x7D20;&#x5927;&#x5C0F;&#x7684;&#x57FA;&#x672C;&#x5355;&#x4F4D;&#x3002;&#x7247;&#x5143;&#x5176;&#x5B9E;&#x5DF2;&#x7ECF;&#x5F88;&#x63A5;&#x8FD1;&#x50CF;&#x7D20;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x5B83;&#x8FD8;&#x4E0D;&#x662F;&#x50CF;&#x7D20;&#x3002;&#x7247;&#x5143;&#x5305;&#x542B;&#x4E86;&#x6BD4;RGBA&#x66F4;&#x591A;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x6BD4;&#x5982;&#x53EF;&#x80FD;&#x6709;&#x6DF1;&#x5EA6;&#x503C;&#xFF0C;&#x6CD5;&#x7EBF;&#xFF0C;&#x7EB9;&#x7406;&#x5750;&#x6807;&#x7B49;&#x7B49;&#x4FE1;&#x606F;&#x3002;<strong>&#x7247;&#x5143;&#x9700;&#x8981;&#x5728;&#x901A;&#x8FC7;&#x4E00;&#x4E9B;&#x6D4B;&#x8BD5;&#xFF08;&#x5982;&#x6DF1;&#x5EA6;&#x6D4B;&#x8BD5;&#xFF09;&#x540E;&#x624D;&#x4F1A;&#x6700;&#x7EC8;&#x6210;&#x4E3A;&#x50CF;&#x7D20;</strong>&#x3002;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x591A;&#x4E2A;&#x7247;&#x5143;&#x7ADE;&#x4E89;&#x540C;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#xFF0C;&#x800C;&#x8FD9;&#x4E9B;&#x6D4B;&#x8BD5;&#x4F1A;&#x6700;&#x7EC8;&#x7B5B;&#x9009;&#x51FA;&#x4E00;&#x4E2A;&#x5408;&#x9002;&#x7684;&#x7247;&#x5143;&#xFF0C;&#x4E22;&#x5F03;&#x6CD5;&#x7EBF;&#x548C;&#x7EB9;&#x7406;&#x5750;&#x6807;&#x7B49;&#x4E0D;&#x9700;&#x8981;&#x7684;&#x4FE1;&#x606F;&#x540E;&#xFF0C;&#x6210;&#x4E3A;&#x50CF;&#x7D20;&#x3002;</p>
-<p>&#x50CF;&#x7D20;&#x5C31;&#x5F88;&#x597D;&#x7406;&#x89E3;&#x4E86;&#xFF0C;&#x6700;&#x7EC8;&#x5448;&#x73B0;&#x5728;&#x5C4F;&#x5E55;&#x4E0A;&#x7684;&#x5305;&#x542B;RGBA&#x503C;&#x7684;&#x56FE;&#x50CF;&#x6700;&#x5C0F;&#x5355;&#x5143;&#x5C31;&#x662F;&#x50CF;&#x7D20;&#x4E86;&#x3002;</p>
-<h1 id="DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality"><a href="#DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality" class="headerlink" title="DTexL: Decoupled Raster Pipeline for Texture Locality"></a>DTexL: Decoupled Raster Pipeline for Texture Locality</h1><p>&#x52A0;&#x6CF0;&#x7F57;&#x5C3C;&#x4E9A;&#x7406;&#x5DE5;&#x5927;&#x5B66;</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>&#x8FD9;&#x7BC7;&#x8BBA;&#x6587;&#x76EE;&#x6807;&#x662F;&#x63D0;&#x5347;LI texture cache&#x7684;&#x5C40;&#x90E8;&#x6027;</p>
-<p>&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;&#x63D0;&#x51FA;&#x4E86;&#x65B0;&#x7684;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x8C03;&#x5EA6;&#x5668;&#x548C;&#x91CD;&#x65B0;&#x6392;&#x5E8F;&#x7EBF;&#x7A0B;</p>
-<p>shader cores&#xFF08;SCs&#xFF09;&#x6267;&#x884C;&#x56FE;&#x5F62;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#xFF0C;SCs&#x4E2D;&#x6709;&#x79C1;&#x6709;&#x7684;L1 texture cache</p>
-<p>&#x5B58;&#x50A8;&#x5668;&#x7684;&#x5EF6;&#x8FDF;&#x5E76;&#x4E0D;&#x662F;&#x56FE;&#x5F62;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x7684;&#x4E3B;&#x8981;&#x95EE;&#x9898;&#xFF0C;&#x56E0;&#x4E3A;GPU&#x4F7F;&#x7528;&#x591A;&#x7EBF;&#x7A0B;&#x6765;&#x9690;&#x85CF;&#x4E86;&#x5B58;&#x50A8;&#x5EF6;&#x8FDF;&#xFF0C;&#x6027;&#x80FD;&#x7684;&#x63D0;&#x5347;&#x4E3B;&#x8981;&#x9760;&#x5E26;&#x5BBD;</p>
-<p>Tile-Based Rendering (TBR) architectures&#x5904;&#x7406;&#x7684;&#x662F;&#x5C4F;&#x5E55;&#x7684;&#x5B50;&#x96C6;&#xFF1A;tile</p>
-<p>&#x4F20;&#x7EDF;&#x7684;TBR&#x4F53;&#x7CFB;&#x7ED3;&#x6784;&#x5728;&#x4E00;&#x4E2A;SC&#x5185;&#x4E00;&#x6B21;&#x53EA;&#x80FD;&#x5904;&#x7406;&#x4E00;&#x4E2A;tile&#xFF0C;&#x5982;&#x679C;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x5728;SC&#x95F4;&#x5206;&#x5E03;&#x4E0D;&#x5747;&#x5300;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;SC&#x4E2D;&#x7684;&#x4F4E;&#x7EBF;&#x7A0B;&#x5360;&#x7528;&#x671F;&#xFF08;SC&#x4E2D;&#x7684;&#x7EBF;&#x7A0B;&#x5C11;&#xFF09;&#xFF0C;&#x4ECE;&#x800C;&#x964D;&#x4F4E;&#x591A;&#x7EBF;&#x7A0B;&#x6548;&#x7387;&#x5E76;&#x589E;&#x52A0;texture cache&#x672A;&#x547D;&#x4E2D;&#x5BF9;&#x6838;&#x5FC3;&#x541E;&#x5410;&#x91CF;&#x7684;&#x5F71;&#x54CD;&#x3002;</p>
-<p>&#x5982;&#x4ECA;&#x7EBF;&#x7A0B;&#x8C03;&#x5EA6;&#x5668;&#x7684;&#x5DE5;&#x4F5C;&#x4E13;&#x6CE8;&#x4E8E;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E3A;&#x6BCF;&#x4E2A;&#x533A;&#x5757;&#x4E3A;SC&#x5206;&#x914D;&#x76F8;&#x4F3C;&#x6570;&#x91CF;&#x7684;&#x7EBF;&#x7A0B;</p>
-<p>&#x4F46;&#x662F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7684;&#x8C03;&#x5EA6;&#x5668;&#x4F1A;&#x5BFC;&#x81F4;&#x4E13;&#x7528;L1 texture cache&#x4E2D;&#x7684;&#x5185;&#x5B58;&#x5757;&#x590D;&#x5236;&#xFF0C;&#x4ECE;&#x800C;&#x964D;&#x4F4E;&#x5176;&#x805A;&#x5408;&#x5BB9;&#x91CF;&#xFF0C;&#x5C40;&#x90E8;&#x6027;&#x8F83;&#x5DEE;&#xFF1B;&#x4E13;&#x6CE8;&#x4E8E;texture memory&#x5C40;&#x90E8;&#x6027;&#x7684;&#x8C03;&#x5EA6;&#x5668;&#x4F1A;&#x5BFC;&#x81F4;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x8F83;&#x5DEE;&#x3002;</p>
-<p>tile&#x53EF;&#x4EE5;&#x6309;&#x4EFB;&#x4F55;&#x987A;&#x5E8F;&#x5904;&#x7406;&#xFF0C;&#x6BCF;&#x4E2A;tile&#x4F1A;&#x4EA7;&#x751F;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x8FD9;&#x4E9B;&#x7EBF;&#x7A0B;&#x53EF;&#x4EE5;&#x6309;&#x7167;&#x4E0D;&#x540C;&#x7684;&#x7B56;&#x7565;&#x5206;&#x7ED9;&#x4E0D;&#x540C;&#x7684;SC&#xFF0C;&#x56E0;&#x6B64;&#x901A;&#x8FC7;&#x6539;&#x53D8;tile&#x7684;&#x5904;&#x7406;&#x987A;&#x5E8F;&#x548C;&#x7ED9;SC&#x7684;&#x5206;&#x914D;&#x987A;&#x5E8F;&#x80FD;&#x591F;&#x6539;&#x53D8;&#x5185;&#x5B58;&#x8BBF;&#x95EE;&#x7684;&#x5C40;&#x90E8;&#x6027;</p>
-<p>&#x672C;&#x6587;&#x901A;&#x8FC7;&#x5C06;&#x7EBF;&#x7A0B;&#x8C03;&#x5EA6;&#x5230;SC&#x6765;&#x5F71;&#x54CD;texture memory&#x7684;&#x8BBF;&#x95EE;&#x6A21;&#x5F0F;&#xFF0C;&#x4EE5;&#x652F;&#x6301;&#x5C40;&#x90E8;&#x6027;&#x800C;&#x4E0D;&#x662F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x672C;&#x6587;&#x91C7;&#x7528;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#xFF1A;</p>
-<ol>
-<li><strong>&#x64CD;&#x7EB5;SC&#x4E4B;&#x95F4;&#x7684;&#x7EBF;&#x7A0B;&#x5206;&#x5E03;</strong>&#xFF0C;&#x4ECE;&#x800C;&#x4EE5;&#x6700;&#x5C0F;&#x5316;&#x7F13;&#x5B58;&#x5757;&#x590D;&#x5236;&#x5E76;&#x589E;&#x52A0;&#x7EB9;&#x7406;&#x7F13;&#x5B58;&#x7684;&#x805A;&#x5408;&#x5BB9;&#x91CF;&#x7684;&#x65B9;&#x5F0F;&#x64CD;&#x7EB5;&#x4E13;&#x7528;L1&#x7EB9;&#x7406;&#x7F13;&#x5B58;&#x4E4B;&#x95F4;&#x7684;&#x5185;&#x5B58;&#x8BBF;&#x95EE;&#x3002;&#x5373;&#x65B0;&#x7684;&#x7EBF;&#x7A0B;&#x8C03;&#x5EA6;&#x65B9;&#x5F0F;</li>
-<li><strong>&#x63A7;&#x5236;&#x56FE;&#x5F62;&#x6D41;&#x6C34;&#x7EBF;&#x5904;&#x7406;tile&#x7684;&#x987A;&#x5E8F;</strong>&#xFF0C;&#x5728;&#x65F6;&#x95F4;&#x4E0A;&#x91CD;&#x65B0;&#x6392;&#x5E8F;&#x5185;&#x5B58;&#x8BBF;&#x95EE;&#x6A21;&#x5F0F;&#x3002;&#x5373;&#x5C06;&#x5185;&#x5B58;&#x8BBF;&#x95EE;&#x6A21;&#x5F0F;&#x91CD;&#x65B0;&#x6392;&#x5E8F;</li>
-<li>&#x4E3A;&#x4E86;&#x5C06;&#x8FD9;&#x79CD;&#x6539;&#x8FDB;&#x8F6C;&#x5316;&#x4E3A;GPU&#x6027;&#x80FD;&#xFF0C;&#x6211;&#x4EEC;&#x5EFA;&#x8BAE;&#x5BF9;&#x57FA;&#x7EBF;&#xFF08;baseline&#xFF09;&#x56FE;&#x5F62;&#x7BA1;&#x9053;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5C0F;&#x7684;&#x4FEE;&#x6539;</li>
-</ol>
-<p>&#x603B;&#x4E4B;&#xFF0C;&#x672C;&#x8BBA;&#x6587;&#x505A;&#x51FA;&#x4E86;&#x4EE5;&#x4E0B;&#x5173;&#x952E;&#x8D21;&#x732E;&#xFF1A;</p>
-<ol>
-<li>&#x63D0;&#x51FA;&#x5E76;&#x8BC4;&#x4F30;SC&#x7684;&#x4E0D;&#x540C;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x8C03;&#x5EA6;&#x5668;&#xFF0C;&#x4EE5;&#x6539;&#x8FDB;&#x79FB;&#x52A8;GPU&#x4E2D;&#x56FE;&#x5F62;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x7684;&#x7EB9;&#x7406;&#x7F13;&#x5B58;</li>
-<li>&#x7ED3;&#x5408;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x8C03;&#x5EA6;&#x5668;&#x63D0;&#x51FA;&#x5E76;&#x8BC4;&#x4F30;&#x4E24;&#x4E2A;tile&#x987A;&#x5E8F;&#xFF0C;&#x4EE5;&#x6539;&#x8FDB;&#x79FB;&#x52A8;GPU&#x4E2D;&#x56FE;&#x5F62;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x7684;&#x7EB9;&#x7406;&#x7F13;&#x5B58;</li>
-<li>&#x4F7F;&#x7528;&#x5EFA;&#x8BAE;&#x7684;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x8C03;&#x5EA6;&#x5668;&#xFF0C;L2&#x8BBF;&#x95EE;&#x603B;&#x6570;&#x51CF;&#x5C11;46.8%</li>
-<li>&#x5BF9;&#x56FE;&#x5F62;&#x6D41;&#x6C34;&#x7EBF;&#x8FDB;&#x884C;&#x4FEE;&#x6539;</li>
-</ol>
-<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>TBR&#x6700;&#x521D;&#x88AB;&#x63D0;&#x51FA;&#x6765;&#x4FBF;&#x5229;&#x5E76;&#x884C;&#x7740;&#x8272;&#xFF0C;tile&#x662F;&#x5E27;&#x7684;&#x4E0D;&#x76F8;&#x4EA4;&#x7684;&#x6BB5;&#xFF0C;&#x80FD;&#x591F;&#x88AB;&#x5E76;&#x884C;&#x7740;&#x8272;</p>
-<p>TBR&#x73B0;&#x5728;&#x662F;&#x4E00;&#x79CD;&#x9002;&#x7528;&#x4E8E;&#x4F4E;&#x529F;&#x8017;&#x56FE;&#x5F62;&#x7CFB;&#x7EDF;&#x7684;&#x901A;&#x7528;&#x67B6;&#x6784;&#xFF0C;tile&#x662F;&#x5728;small-tile-sized&#x7684;&#x7247;&#x4E0A;&#x7F13;&#x51B2;&#x533A;&#x4E0A;&#x987A;&#x5E8F;&#x6E32;&#x67D3;&#x7684;&#xFF0C;&#x8FD9;&#x5141;&#x8BB8;&#x5229;&#x7528;&#x5C40;&#x90E8;&#x6027;&#x5E76;&#x663E;&#x8457;&#x51CF;&#x5C11;&#x8017;&#x7535;&#x7684;DRAM&#x8BBF;&#x95EE;&#x5E76;&#x8282;&#x7701;&#x5185;&#x5B58;&#x5E26;&#x5BBD;</p>
-<p>TBR&#x548C;&#x5176;&#x4ED6;&#x7684;&#x4E0D;&#x57FA;&#x4E8E;tile&#x7684;&#x67B6;&#x6784;&#x76F8;&#x6BD4;&#x5C06;&#x5916;&#x90E8;&#x6570;&#x636E;&#x6D41;&#x91CF;&#x7684;&#x603B;&#x91CF;&#x51CF;&#x5C11;&#x4E86;1.96&#x500D;</p>
-<h3 id="Graphics-Pipeline"><a href="#Graphics-Pipeline" class="headerlink" title="Graphics Pipeline"></a>Graphics Pipeline</h3><p>&#x4E0B;&#x56FE;&#x662F;&#x56FE;&#x5F62;&#x6D41;&#x6C34;&#x7EBF;&#x7684;&#x4E3B;&#x8981;&#x9636;&#x6BB5;</p>
-<p><img src="/2023/04/16/DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality/pip.png" alt="pip"></p>
-<p>&#x5728;TBR&#x67B6;&#x6784;&#x4E2D;&#xFF0C;raster pipeline&#x88AB;&#x8BBE;&#x8BA1;&#x4E3A;&#x6E32;&#x67D3;tile&#x800C;&#x4E0D;&#x662F;&#x6574;&#x4E2A;&#x5E27;</p>
-<p>&#x5904;&#x7406;&#x6B65;&#x9AA4;&#xFF1A;</p>
-<ol>
-<li>&#x56FE;&#x5F62;&#x6D41;&#x6C34;&#x7EBF;&#x7684;&#x8F93;&#x5165;&#x6570;&#x636E;&#x662F;&#x7531;<strong>&#x9876;&#x70B9;&#xFF08;vertices&#xFF09;&#x548C;&#x7EB9;&#x7406;&#xFF08;textures&#xFF09;</strong>&#x7EC4;&#x6210;&#x7684;&#x3002;&#x8FD9;&#x4E9B;&#x9876;&#x70B9;&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#x5F62;&#x6210;&#x4E0D;&#x540C;&#x7684;&#x591A;&#x8FB9;&#x5F62;&#xFF08;<strong>&#x901A;&#x5E38;&#x662F;&#x4E09;&#x89D2;&#x5F62;</strong>&#xFF09;&#xFF0C;&#x79F0;&#x4E4B;&#x4E3A;<strong>&#x56FE;&#x5143;&#xFF08;primitives&#xFF09;</strong> &#xFF1B;&#x7EB9;&#x7406;&#x7528;&#x4E8E;&#x5728;&#x6E32;&#x67D3;&#x573A;&#x666F;&#x65F6;&#x589E;&#x5F3A;&#x66F2;&#x9762;&#x4E0A;&#x7684;&#x7EC6;&#x8282;&#x3002;</li>
-<li>&#x4E00;&#x4E2A;&#x7ED8;&#x5236;&#x547D;&#x4EE4;&#xFF08;Draw Command&#xFF09;&#x4F1A;&#x89E6;&#x53D1;Geometry Pipeline&#xFF0C;&#x7136;&#x540E;&#x4F1A;&#x4ECE;vertex cache&#x4E2D;&#x53D6;&#x51FA;&#x9876;&#x70B9;&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;&#x7528;&#x6237;&#x63D0;&#x4F9B;&#x7684;&#x9876;&#x70B9;&#x7A0B;&#x5E8F;&#x5C06;&#x9876;&#x70B9;&#x8FDB;&#x884C;&#x53D8;&#x6362;&#xFF0C;primitive assembly&#x4EE5;&#x7A0B;&#x5E8F;&#x987A;&#x5E8F;&#x83B7;&#x53D6;&#x9876;&#x70B9;&#x5E76;&#x5C06;&#x5B83;&#x4EEC;&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#x5F62;&#x6210;&#x56FE;&#x5143;&#x4F5C;&#x4E3A;tiling engine&#x7684;&#x8F93;&#x5165;&#xFF0C;<strong>&#x8BE5;&#x9636;&#x6BB5;&#x4F1A;&#x7531;&#x9876;&#x70B9;&#x751F;&#x6210;&#x56FE;&#x5143;</strong>&#xFF08;&#x5982;&#x4E09;&#x89D2;&#x5F62;&#xFF09;</li>
-<li>Polygon List Builder&#x7684;&#x4F5C;&#x7528;&#x662F;&#x4E3A;&#x6BCF;&#x4E2A;tile&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5217;&#x8868;&#xFF0C;&#x5217;&#x8868;&#x4E2D;&#x5305;&#x62EC;&#x4E86;&#x4E0E;&#x4E4B;&#x6709;&#x4EA4;&#x96C6;&#x7684;&#x6240;&#x6709;&#x56FE;&#x5143;&#xFF0C;&#x5217;&#x8868;&#x4E2D;&#x4FDD;&#x5B58;&#x7684;&#x662F;&#x56FE;&#x5143;&#x7684;ID&#x3002;&#x5217;&#x8868;&#x4EE5;&#x53C2;&#x6570;&#x7F13;&#x51B2;&#x533A;&#xFF08;Parameter Buffer&#xFF09;&#x7684;&#x7ED3;&#x6784;&#x6392;&#x5217;&#xFF0C;&#x53C2;&#x6570;&#x7F13;&#x51B2;&#x533A;&#x4E2D;&#x8FD8;&#x4FDD;&#x5B58;&#x4E86;&#x56FE;&#x5143;&#x7684;&#x5C5E;&#x6027;&#xFF08;&#x989C;&#x8272;&#x3001;&#x7EB9;&#x7406;&#x5750;&#x6807;&#x7B49;&#xFF09;&#xFF0C;&#x6BCF;&#x4E2A;&#x56FE;&#x5143;&#x7684;&#x5C5E;&#x6027;&#x53EA;&#x5728;&#x53C2;&#x6570;&#x7F13;&#x51B2;&#x533A;&#x4E2D;<strong>&#x5B58;&#x50A8;&#x4E00;&#x6B21;</strong>&#xFF08;&#x56E0;&#x4E3A;&#x8282;&#x7701;&#x7A7A;&#x95F4;&#xFF09;&#x3002;&#x53C2;&#x6570;&#x7F13;&#x51B2;&#x533A;&#x5728;&#x540C;&#x4E00;&#x5E27;&#x4E2D;&#x6784;&#x5EFA;&#x5E76;&#x4F7F;&#x7528;</li>
-<li>Tile Fetcher&#x7684;&#x4F5C;&#x7528;&#x662F;&#x63D0;&#x53D6;&#x4E00;&#x4E2A;tile&#x4E2D;&#x7684;&#x6240;&#x6709;&#x56FE;&#x5143;&#xFF08;&#x5229;&#x7528;&#x53C2;&#x6570;&#x7F13;&#x51B2;&#x533A;&#xFF09;&#xFF0C;<strong>&#x4E00;&#x6B21;&#x63D0;&#x53D6;&#x4E00;&#x4E2A;tile&#x7684;&#x56FE;&#x5143;</strong>&#xFF08;&#x987A;&#x5E8F;&#x6CA1;&#x5B9A;&#xFF09;&#xFF0C;&#x63D0;&#x53D6;&#x7684;&#x56FE;&#x5143;&#x653E;&#x5165;&#x4E00;&#x4E2A;FIFO&#x961F;&#x5217;&#x7B49;&#x5F85;Raster Pipeline&#x8FDB;&#x884C;&#x5904;&#x7406;</li>
-<li>Rasterizer&#x9636;&#x6BB5;&#x4F1A;&#x4ECE;FIFO&#x4E2D;&#x53D6;&#x51FA;&#x56FE;&#x5143;&#xFF0C;&#x7136;&#x540E;&#x8BC6;&#x522B;&#x5F53;&#x524D;tile&#x7684;&#x54EA;&#x4E9B;&#x50CF;&#x7D20;&#x88AB;&#x56FE;&#x5143;&#x8986;&#x76D6;&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;&#x63D2;&#x503C;&#x6CD5;&#x8BA1;&#x7B97;&#x50CF;&#x7D20;&#x7684;&#x5C5E;&#x6027;&#x5F62;&#x6210;&#x7247;&#x5143;&#xFF08;fragment&#xFF0C;&#x7247;&#x5143;&#x662F;&#x4E00;&#x7EC4;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x4F5C;&#x9884;&#x5907;&#x50CF;&#x7D20;&#xFF0C;&#x662F;&#x50CF;&#x7D20;&#x7684;&#x6570;&#x636E;&#x8868;&#x793A;&#xFF09;&#xFF0C;&#x6BCF;&#x56DB;&#x4E2A;&#x76F8;&#x90BB;&#x50CF;&#x7D20;&#x7684;&#x7247;&#x5143;&#x88AB;&#x5206;&#x7EC4;&#x5F62;&#x6210;&#x4E00;&#x4E2A;quad&#x53D1;&#x9001;&#x5230;Early Z-Test&#x9636;&#x6BB5;&#x3002;&#x5373;<strong>&#x5149;&#x6805;&#x5316;&#x9636;&#x6BB5;&#x4F1A;&#x5C06;&#x56FE;&#x5143;&#x5206;&#x5272;&#x6210;&#x4E00;&#x4E2A;&#x4E2A;&#x50CF;&#x7D20;&#x5927;&#x5C0F;&#x7684;&#x57FA;&#x672C;&#x5355;&#x4F4D;&#xFF0C;&#x7247;&#x5143;&#x3002;&#x518D;&#x5C06;&#x76F8;&#x90BB;&#x7684;&#x7247;&#x5143;&#x7EC4;&#x5408;&#x6210;quad&#x53D1;&#x9001;&#x51FA;&#x53BB;</strong></li>
-<li>Early Z-Test&#x9636;&#x6BB5;&#x4F1A;&#x5B58;&#x50A8;&#x4E4B;&#x524D;&#x5904;&#x7406;&#x8FC7;&#x7684;&#x7247;&#x5143;&#x7684;&#x6700;&#x5C0F;&#x6DF1;&#x5EA6;&#x5230;Z-Buffer&#x6765;&#x6D88;&#x9664;&#x90A3;&#x4E9B;&#x4F4D;&#x4E8E;&#x53E6;&#x4E00;&#x4E2A;&#x5148;&#x524D;&#x5904;&#x7406;&#x7684;&#x4E0D;&#x900F;&#x660E;&#x7684;&#x7247;&#x5143;&#x540E;&#x9762;&#x7684;&#x7247;&#x5143;</li>
-<li>Fragment Stage&#x7684;&#x4EFB;&#x52A1;&#x662F;&#x5C06;&#x901A;&#x8FC7;&#x6D4B;&#x8BD5;&#x7684;quad&#x53D1;&#x9001;&#x5230;SC&#xFF0C;SC&#x4F1A;&#x8BA1;&#x7B97;quad&#x4E2D;&#x6BCF;&#x4E2A;&#x50CF;&#x7D20;&#x7684;&#x521D;&#x59CB;&#x989C;&#x8272;&#xFF08;&#x6839;&#x636E;&#x7740;&#x8272;&#x5668;&#x7A0B;&#x5E8F;&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8F93;&#x51FA;&#x989C;&#x8272;&#x53D1;&#x9001;&#x5230;blending&#x5355;&#x5143;</li>
-<li>&#x67D0;&#x4E9B;&#x6E32;&#x67D3;&#x6280;&#x672F;&#x8981;&#x6C42;SC&#x66F4;&#x6539;&#x7247;&#x5143;&#x7684;&#x6DF1;&#x5EA6;&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Early Z-Test&#x88AB;&#x7981;&#x7528;&#xFF0C;&#x800C;Late Z-Test&#x88AB;&#x4F7F;&#x7528;</li>
-<li>Blending&#x9636;&#x6BB5;&#x4F1A;&#x6839;&#x636E;&#x6BCF;&#x4E2A;quad&#x7684;&#x900F;&#x660E;&#x6027;&#x6765;&#x8BA1;&#x7B97;quad&#x4E2D;&#x6BCF;&#x4E2A;&#x50CF;&#x7D20;&#x7684;&#x6700;&#x7EC8;&#x989C;&#x8272;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x5176;&#x4FDD;&#x5B58;&#x5728;Color Buffer&#x4E2D;&#xFF08;<strong>&#x6B64;&#x65F6;&#x5C06;&#x7247;&#x5143;&#x8F6C;&#x6362;&#x4E3A;&#x4E86;&#x50CF;&#x7D20;</strong>&#xFF0C;&#x7247;&#x5143;&#x7ECF;&#x8FC7;&#x6D4B;&#x8BD5;&#x548C;&#x6DF7;&#x5408;&#x540E;&#x6210;&#x4E3A;&#x50CF;&#x7D20;&#xFF09;</li>
-<li>&#x5F53;&#x4E00;&#x4E2A;tile&#x88AB;&#x5B8C;&#x5168;&#x5904;&#x7406;&#x5B8C;&#x540E;&#xFF0C;color buffer&#x4F1A;&#x5237;&#x65B0;&#x5230;frame buffer&#x4E2D;</li>
-</ol>
-<p>&#x4E3A;&#x4E86;&#x63D0;&#x9AD8;&#x541E;&#x5410;&#x91CF;&#xFF0C;&#x4ECE;Early Z-Test&#x9636;&#x6BB5;&#x5F00;&#x59CB;&#xFF0C;<strong>Raster pipeline&#x7531;&#x51E0;&#x4E2A;&#x72EC;&#x7ACB;&#x8FD0;&#x884C;&#x7684;&#x5E76;&#x884C;&#x6D41;&#x6C34;&#x7EBF;&#x5B9E;&#x73B0;</strong>&#xFF08;&#x4E3A;&#x4E86;&#x7B80;&#x5355;&#x8D77;&#x89C1;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5728;&#x672C;&#x6587;&#x7684;&#x5176;&#x4F59;&#x90E8;&#x5206;&#x5047;&#x8BBE;&#x56DB;&#x6761;&#x6D41;&#x6C34;&#x7EBF;&#xFF09;&#xFF0C;&#x6BCF;&#x4E2A;&#x6D41;&#x6C34;&#x7EBF;&#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x7684;SC&#x548C;&#x4E13;&#x7528;&#x7684;L1&#x7EB9;&#x7406;&#x7F13;&#x5B58;&#x3002;Z-Buffer&#x548C;Color Buffer&#x90FD;&#x88AB;&#x5212;&#x5206;&#x4E3A;&#x56DB;&#x4E2A;bank&#xFF0C;&#x56E0;&#x6B64;<strong>&#x6BCF;&#x4E2A;&#x6D41;&#x6C34;&#x7EBF;&#x90FD;&#x5728;&#x7F13;&#x51B2;&#x533A;&#x7684;&#x4E0D;&#x76F8;&#x4EA4;&#x90E8;&#x5206;&#x4E0A;&#x64CD;&#x4F5C;</strong>&#xFF0C;&#x4EE5;&#x907F;&#x514D;&#x8BBF;&#x95EE;&#x51B2;&#x7A81;&#x5E76;&#x63D0;&#x9AD8;&#x5E26;&#x5BBD;&#x3002;</p>
-<h3 id="Quad-Scheduling"><a href="#Quad-Scheduling" class="headerlink" title="Quad Scheduling"></a>Quad Scheduling</h3><p>&#x5F53;&#x524D;GPU&#x4E13;&#x6CE8;&#x4E8E;&#x7EBF;&#x7A0B;&#x8C03;&#x5EA6;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x8FD9;&#x5BF9;&#x5E73;&#x8861;&#x8D44;&#x6E90;&#x5229;&#x7528;&#x7387;&#x975E;&#x5E38;&#x6709;&#x6548;</p>
-<p>overdraw&#x662F;&#x91CD;&#x590D;&#x7ED8;&#x5236;&#x540C;&#x4E00;&#x50CF;&#x7D20;</p>
-<p>&#x4F46;&#x662F;&#x53EA;&#x8981;&#x91CD;&#x53E0;&#x7684;&#x56FE;&#x5143;&#x4E0D;&#x6309;&#x5148;&#x540E;&#x987A;&#x5E8F;&#x8FDB;&#x884C;&#x6E32;&#x67D3;&#x5C31;&#x6709;&#x53EF;&#x80FD;&#x51FA;&#x73B0;<strong>overdraw</strong>&#x95EE;&#x9898;&#xFF1B;&#x6B64;&#x5916;&#xFF0C;&#x7531;&#x4E8E;&#x51E0;&#x4F55;&#x4F53;&#x5E76;&#x975E;&#x5747;&#x5300;&#x5206;&#x5E03;&#x5728;&#x5E27;&#x4E0A;&#xFF0C;&#x67D0;&#x4E9B;&#x533A;&#x57DF;&#x7684;&#x6DF1;&#x5EA6;&#x590D;&#x6742;&#x5EA6;&#x66F4;&#x4E30;&#x5BCC;&#x7684;&#x53EF;&#x80FD;&#x4F1A;&#x906D;&#x53D7;&#x66F4;&#x591A;&#x7684;overdraw&#x3002;&#x56E0;&#x6B64;&#x5C06;&#x8BB8;&#x591A;&#x76F8;&#x90BB;&#x7684;quad&#x4F4D;&#x7F6E;&#x6620;&#x5C04;&#x5230;&#x76F8;&#x540C;&#x5904;&#x7406;&#x5668;&#x4F1A;&#x63D0;&#x5347;&#x90A3;&#x4E9B;&#x88AB;&#x9AD8;&#x5EA6;overdraw&#x7684;&#x533A;&#x57DF;&#x88AB;&#x6620;&#x5C04;&#x5230;&#x76F8;&#x540C;&#x5904;&#x7406;&#x5668;&#x7684;&#x53EF;&#x80FD;&#x6027;&#xFF0C;<strong>&#x56E0;&#x6B64;&#xFF0C;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x5206;&#x914D;&#x7ED9;&#x6BCF;&#x4E2A;SC&#x7684;quad&#x7684;&#x8D1F;&#x8F7D;&#x5E73;&#x8861;&#xFF0C;&#x5FC5;&#x987B;&#x4EE5;&#x7EC6;&#x7C92;&#x5EA6;&#x7684;&#x65B9;&#x5F0F;&#x5C06;quad&#x8C03;&#x5EA6;&#x7ED9;SC&#xFF0C;&#x4EE5;&#x4F7F;&#x76F8;&#x90BB;&#x7684;&#x5C4F;&#x5E55;&#x4E2D;&#x7684;&#x76F8;&#x90BB;quad&#x53BB;&#x5F80;&#x4E0D;&#x540C;&#x7684;SC</strong></p>
-<p><strong>&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x76F8;&#x90BB;&#x7684;quad&#x663E;&#x793A;&#x4E86;&#x7EB9;&#x7406;&#x6570;&#x636E;&#x7684;&#x91CD;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x4ED6;&#x4EEC;&#x53BB;&#x4E86;&#x540C;&#x4E00;&#x4E2A;SC&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x4E13;&#x7528;L1cache&#x5757;&#x7684;&#x91CD;&#x590D;</strong>&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5C06;&#x76F8;&#x90BB;quad&#x5206;&#x914D;&#x7ED9;&#x4E0D;&#x540C;&#x7684;SC&#x4F1A;&#x5BFC;&#x81F4;&#x4E13;&#x7528;L1cache&#x4E2D;&#x7684;&#x5757;&#x590D;&#x5236;&#xFF0C;&#x5E76;&#x964D;&#x4F4E;&#x53EF;&#x7528;&#x5B58;&#x50A8;&#x7684;&#x6709;&#x6548;&#x6027;</p>
-<h3 id="Barriers"><a href="#Barriers" class="headerlink" title="Barriers"></a>Barriers</h3><p>&#x5149;&#x6805;&#x6D41;&#x6C34;&#x7EBF;&#x4E2D;&#x4F1A;&#x63D2;&#x5165;barrier&#x6765;&#x9650;&#x5236;&#x6BCF;&#x4E2A;&#x6D41;&#x6C34;&#x7EBF;&#x9636;&#x6BB5;&#x53EA;&#x5904;&#x7406;&#x4E00;&#x4E2A;tile&#xFF0C;&#x7531;&#x4E8E;&#x4EE5;&#x4E0B;&#x539F;&#x56E0;&#xFF1A;</p>
-<ol>
-<li>&#x7247;&#x4E0A;&#x7F13;&#x5B58;&#xFF08;Z-BUFFER&#x3001;color buffer&#xFF09;&#x7684;&#x5927;&#x5C0F;&#x662F;&#x4E00;&#x4E2A;tile&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x56E0;&#x6B64;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x7F13;&#x51B2;&#x533A;&#x7684;&#x6D41;&#x6C34;&#x7EBF;&#x9636;&#x6BB5;&#x518D;&#x5B8C;&#x6210;&#x5F53;&#x524D;tile&#x7684;&#x5904;&#x7406;&#x4E4B;&#x524D;&#x65E0;&#x6CD5;&#x79FB;&#x52A8;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;tile</li>
-<li>&#x907F;&#x514D;&#x91CD;&#x6392;&#x5E8F;&#x7684;&#x9AD8;&#x5F00;&#x9500;&#xFF08;Fragment&#x9636;&#x6BB5;&#xFF09;</li>
-</ol>
-<p><img src="/2023/04/16/DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality/barries.png" alt="barries"></p>
-<p>&#x52A0;&#x5165;barriers&#x540E;&#x4F1A;&#x4F7F;&#x5F97;&#x6BCF;&#x4E2A;&#x6D41;&#x6C34;&#x7EBF;&#x9636;&#x6BB5;&#x53EA;&#x6709;&#x5904;&#x7406;&#x5B8C;&#x4E4B;&#x524D;tile&#x4E2D;&#x7684;&#x6240;&#x6709;quad&#x540E;&#x624D;&#x4F1A;&#x88AB;&#x9001;&#x5165;&#x65B0;&#x7684;tile&#x7684;quad</p>
-<p>&#x8FD9;&#x4E9B;barriers&#x7684;&#x4F5C;&#x7528;&#x5E76;&#x4E0D;&#x662F;&#x7528;&#x6765;&#x4F5C;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;&#x7684;&#xFF0C;&#x662F;&#x4E3A;&#x4E86;&#x786E;&#x4FDD;&#x5149;&#x6805;&#x6D41;&#x6C34;&#x7EBF;&#x4E2D;&#x6BCF;&#x4E2A;&#x9636;&#x6BB5;&#x4E00;&#x6B21;&#x53EA;&#x5904;&#x7406;&#x4E00;&#x4E2A;tile</p>
-<h3 id="Memory-Organization"><a href="#Memory-Organization" class="headerlink" title="Memory Organization"></a>Memory Organization</h3><p>&#x4E0B;&#x56FE;&#x5DE6;&#x4FA7;&#x662F;&#x5B58;&#x50A8;&#x5C42;&#x6B21;&#x7ED3;&#x6784;&#xFF0C;&#x53F3;&#x56FE;&#x662F;&#x56FE;&#x5F62;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4F7F;&#x7528;&#x7684;&#x4E3B;&#x8981;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF08;&#x5B58;&#x50A8;&#x5728;&#x5DE6;&#x4FA7;&#x7684;&#x7ED3;&#x6784;&#x4E2D;&#xFF09;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x6709;&#x591A;&#x4E2A;&#x6307;&#x4EE4;&#x548C;&#x6570;&#x636E;&#x7684;L1 Cache</p>
-<p><img src="/2023/04/16/DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality/memory.png" alt="memory"></p>
-<h2 id="DTexL"><a href="#DTexL" class="headerlink" title="DTexL"></a>DTexL</h2><p>&#x672C;&#x6587;&#x7684;&#x4E3B;&#x8981;&#x8D21;&#x732E;&#xFF1A;</p>
-<ol>
-<li>&#x901A;&#x8FC7;<strong>&#x63A7;&#x5236;&#x5BF9;SC&#x96C6;&#x5408;&#x7684;&#x5185;&#x5B58;&#x8BBF;&#x95EE;&#x6D41;&#x7684;&#x8C03;&#x5EA6;&#x65B9;&#x5F0F;</strong>&#x6765;&#x5B9E;&#x73B0;&#x652F;&#x6301;&#x5728;quad&#x8C03;&#x5EA6;&#x671F;&#x95F4;&#x652F;&#x6301;texture&#x5C40;&#x90E8;&#x6027;&#x5E76;&#x4ECD;&#x7136;&#x4FDD;&#x6301;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x63D0;&#x9AD8;&#x79C1;&#x6709;L1 texture cache&#x7684;&#x7F13;&#x5B58;&#x529F;&#x80FD;</li>
-<li>&#x8C03;&#x6574;&#x5149;&#x6805;&#x6D41;&#x6C34;&#x7EBF;&#x4EE5;&#x5BF9;&#x6297;&#x968F;&#x540E;&#x7684;&#x8D1F;&#x8F7D;&#x4E0D;&#x5747;&#x8861;&#xFF0C;&#x5E76;&#x5B9E;&#x73B0;gpu&#x6027;&#x80FD;&#x548C;&#x80FD;&#x8017;&#x7684;&#x663E;&#x8457;&#x6539;&#x5584;</li>
-</ol>
-<p>&#x4E3B;&#x8981;&#x6311;&#x6218;&#xFF1A;</p>
-<ol>
-<li>&#x6839;&#x636E;&#x5C06;tile&#x5212;&#x5206;&#x6210;&#x56DB;&#x4E2A;&#x5B50;tile&#x7684;&#x6620;&#x5C04;&#xFF0C;quad&#x88AB;&#x8C03;&#x5EA6;&#x5230;&#x56DB;&#x4E2A;SC&#x4E2D;&#x3002;<strong>&#x5982;&#x679C;overdraw&#x7684;quad&#x6CA1;&#x6709;&#x5728;&#x5B50;tile&#x4E4B;&#x95F4;&#x5747;&#x5300;&#x5206;&#x5E03;&#x4F1A;&#x5BFC;&#x81F4;&#x8D1F;&#x8F7D;&#x4E0D;&#x5747;&#x8861;</strong>&#xFF0C;&#x514B;&#x670D;&#x8FD9;&#x79CD;&#x4E0D;&#x5E73;&#x8861;&#x7684;&#x6700;&#x7B80;&#x5355;&#x65B9;&#x6CD5;&#x662F;<strong>&#x4F7F;&#x7528;&#x7EC6;&#x7C92;&#x5EA6;&#x6620;&#x5C04;</strong>&#xFF0C;&#x5C06;&#x7A7A;&#x95F4;&#x4E0A;&#x76F8;&#x90BB;&#x7684;quad&#x5206;&#x914D;&#x7ED9;&#x4E0D;&#x540C;&#x7684;SC</li>
-<li>&#x5728;&#x5C4F;&#x5E55;&#x4E2D;<strong>&#x76F8;&#x90BB;&#x7684;quads&#x5F88;&#x6709;&#x53EF;&#x80FD;&#x5177;&#x6709;&#x7A7A;&#x95F4;&#x5C40;&#x90E8;&#x6027;</strong>&#xFF0C;&#x56E0;&#x4E3A;&#x4ED6;&#x4EEC;&#x7684;&#x7EB9;&#x7406;&#x50CF;&#x7D20;&#x53EF;&#x80FD;&#x88AB;&#x6620;&#x5C04;&#x5230;&#x76F8;&#x540C;&#x7684;&#x7F13;&#x5B58;&#x5757;&#xFF1B;&#x540C;&#x65F6;&#x8FD8;&#x53EF;&#x80FD;&#x5177;&#x6709;<strong>&#x65F6;&#x95F4;&#x5C40;&#x90E8;&#x6027;</strong>&#xFF0C;&#x53D6;&#x51B3;&#x4E8E;&#x7EB9;&#x7406;&#x5316;&#x8FC7;&#x7A0B;&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x6EE4;&#x6CE2;&#x7C7B;&#x3002;&#x56E0;&#x6B64;<strong>&#x5BF9;&#x76F8;&#x90BB;quad&#x7684;&#x5206;&#x7EC4;</strong>&#x4F1A;&#x5BFC;&#x81F4;L1 texture cache&#x7684;&#x7F13;&#x5B58;&#x6027;&#x80FD;&#x66F4;&#x597D;&#xFF08;&#x5373;&#x5B50;tile&#x7684;&#x5206;&#x5272;&#x95EE;&#x9898;&#xFF09;</li>
-<li>&#x76F8;&#x90BB;tile&#x4E4B;&#x95F4;&#x4F1A;&#x5171;&#x4EAB;&#x8FB9;&#xFF0C;&#x5B58;&#x5728;&#x9690;&#x85CF;&#x7684;&#x5C40;&#x90E8;&#x6027;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x786E;&#x4FDD;&#x6765;&#x81EA;&#x8FDE;&#x7EED;tile&#x7684;&#x76F8;&#x90BB;&#x5B50;tile&#x8FDB;&#x5165;&#x540C;&#x4E00;SC&#x5C06;&#x589E;&#x5F3A;&#x7EB9;&#x7406;&#x5C40;&#x90E8;&#x6027;</li>
-<li>&#x4E13;&#x6CE8;&#x4E8E;&#x7EB9;&#x7406;&#x5C40;&#x90E8;&#x6027;&#x7684;quad&#x8C03;&#x5EA6;&#x5668;&#x503E;&#x5411;&#x4E8E;&#x5C06;&#x7C97;&#x7C92;&#x5EA6;&#x533A;&#x57DF;&#x6620;&#x5C04;&#x5230;&#x76F8;&#x540C;&#x7684;SC&#xFF08;&#x76F8;&#x90BB;&#x7684;quad&#x6210;&#x7EC4;&#xFF09;&#xFF0C;&#x8FD9;&#x4F1A;&#x5BFC;&#x81F4;&#x663E;&#x8457;&#x7684;&#x8D1F;&#x8F7D;&#x4E0D;&#x5747;&#x8861;&#xFF0C;&#x5BFC;&#x81F4;&#x4E0E;&#x65E8;&#x5728;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7684;&#x7EC6;&#x7C92;&#x5EA6;&#x8C03;&#x5EA6;&#x5668;&#x76F8;&#x6BD4;&#xFF0C;GPU&#x7684;&#x603B;&#x6027;&#x80FD;&#x76F8;&#x7B49;&#x6216;&#x66F4;&#x5DEE;</li>
-</ol>
-<h3 id="Our-Approach"><a href="#Our-Approach" class="headerlink" title="Our Approach"></a>Our Approach</h3><p>&#x63D0;&#x51FA;&#x4E86;&#x65B0;&#x7684;tile&#x987A;&#x5E8F;&#xFF0C;&#x5728;&#x6700;&#x5927;&#x5316;&#x7EB9;&#x7406;&#x5B58;&#x50A8;&#x5668;&#x7684;&#x5C40;&#x90E8;&#x6027;</p>
-<p>&#x6700;&#x5927;&#x5316;&#x7EB9;&#x7406;&#x5B58;&#x50A8;&#x5668;&#x7684;&#x5C40;&#x90E8;&#x6027;&#x4F1A;&#x5BFC;&#x81F4;&#x8D1F;&#x8F7D;&#x4E0D;&#x5747;&#x8861;&#xFF0C;&#x56E0;&#x6B64;&#x63D0;&#x51FA;&#x4E86;&#x89E3;&#x8026;&#x5149;&#x6805;&#x6D41;&#x6C34;&#x7EBF;&#x6765;&#x514B;&#x670D;&#x7531;&#x6B64;&#x4EA7;&#x751F;&#x7684;&#x8D1F;&#x8F7D;&#x4E0D;&#x5747;&#x8861;</p>
-<h4 id="Quad-Mapping"><a href="#Quad-Mapping" class="headerlink" title="Quad Mapping"></a>Quad Mapping</h4><p>&#x56FE;&#x5143;&#x7ECF;&#x8FC7;&#x5149;&#x6805;&#x5316;&#x9636;&#x6BB5;&#x540E;&#x4F1A;&#x751F;&#x6210;&#x7247;&#x5143;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x76F8;&#x90BB;&#x7684;&#x56DB;&#x4E2A;&#x7247;&#x5143;&#x7EC4;&#x6210;&#x4E00;&#x4E2A;quad&#xFF0C;&#x8FD9;&#x4E9B;quads&#x4F1A;&#x88AB;&#x6620;&#x5C04;&#x5230;Z-Buffer&#x4E2D;&#x56DB;&#x4E2A;bank&#xFF0C;&#x56E0;&#x6B64;&#x8981;&#x5BF9;quad&#x8FDB;&#x884C;&#x5206;&#x7EC4;&#xFF08;&#x8FD9;&#x4E9B;quad&#x90FD;&#x5C5E;&#x4E8E;&#x540C;&#x4E00;&#x4E2A;tile&#xFF09;</p>
-<p>&#x6211;&#x4EEC;&#x5C06;&#x6620;&#x5C04;&#x5230;&#x540C;&#x4E00;&#x4E2A;bank&#x7684;quads&#x79F0;&#x4E3A;&#x4E00;&#x4E2A;subtile&#xFF0C;&#x7136;&#x540E;&#x8FD9;&#x4E9B;subtiles&#x5C31;&#x4F1A;&#x88AB;&#x5206;&#x914D;&#x5230;&#x56DB;&#x4E2A;SC&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x8FDB;&#x884C;&#x5904;&#x7406;</p>
-<h4 id="Quad-Grouping"><a href="#Quad-Grouping" class="headerlink" title="Quad Grouping"></a>Quad Grouping</h4><p>&#x7531;&#x4E8E;overdrawn&#x56FE;&#x5143;&#x4F1A;&#x96C6;&#x4E2D;&#x5728;&#x7279;&#x5B9A;&#x533A;&#x57DF;&#x4E2D;&#xFF0C;&#x4E00;&#x4E2A;tile&#x4E2D;&#x53EF;&#x80FD;&#x6709;&#x66F4;&#x591A;quad&#x96C6;&#x4E2D;&#x5728;&#x8BE5;&#x533A;&#x57DF;&#xFF0C;&#x4E3A;&#x4E86;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x4E0B;&#x56FE;&#x4E2D;&#x7684;a-f&#x7ED9;&#x51FA;&#x4E86;&#x7EC6;&#x7C92;&#x5EA6;&#x7684;&#x5206;&#x7EC4;&#x65B9;&#x5F0F;&#x3002;a&#x548C;b&#x786E;&#x4FDD;&#x4E86;&#x6CA1;&#x6709;&#x76F8;&#x90BB;&#x7684;quad&#x8FDB;&#x5165;&#x540C;&#x4E00;&#x4E2A;SC&#x4E2D;&#xFF1B;c&#x548C;d&#x4E2D;&#x6BCF;&#x4E2A;quad&#x5141;&#x8BB8;&#x6700;&#x591A;2&#x4E2A;&#x5BF9;&#x89D2;&#x76F8;&#x90BB;quad&#x8FDB;&#x5165;&#x540C;&#x4E00;SC&#xFF1B;e&#x548C;f&#x5206;&#x522B;&#x5141;&#x8BB8;&#x6700;&#x591A;&#x4E24;&#x4E2A;&#x7AD6;&#x76F4;&#x7684;&#x548C;&#x4E24;&#x4E2A;&#x6C34;&#x5E73;&#x7684;&#x76F8;&#x90BB;quad&#x8FDB;&#x5165;&#x540C;&#x4E00;&#x4E2A;SC</p>
-<p>&#x56FE;g-j&#x662F;&#x4E3A;&#x4E86;&#x51CF;&#x5C11;L1&#x7EB9;&#x7406;cache&#x4E2D;&#x5757;&#x7684;&#x590D;&#x5236;&#x548C;&#x4FDD;&#x8FDB;&#x884C;&#x7684;&#x5206;&#x7EC4;</p>
-<p><img src="/2023/04/16/DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality/quad.png" alt="quad"></p>
-<h4 id="Subtile-Assignment"><a href="#Subtile-Assignment" class="headerlink" title="Subtile Assignment"></a>Subtile Assignment</h4><p>subtile&#x4E4B;&#x95F4;&#x4F1A;&#x6709;&#x5171;&#x4EAB;&#x8FB9;&#xFF0C;&#x800C;&#x53C8;&#x56E0;&#x4E3A;tile&#x5904;&#x7406;&#x987A;&#x5E8F;&#x7684;&#x4E0D;&#x540C;&#xFF0C;&#x4E0D;&#x540C;tile&#x4E4B;&#x95F4;&#x4E5F;&#x4F1A;&#x6709;&#x5171;&#x4EAB;&#x8FB9;&#xFF0C;&#x6BCF;&#x4E2A;tile&#x4E0E;&#x4E0A;&#x4E00;&#x4E2A;&#x5904;&#x7406;&#x7684;tile&#x4E4B;&#x95F4;&#x6700;&#x5C11;&#x5171;&#x4EAB;&#x4E86;&#x4E00;&#x6761;&#x8FB9;&#xFF0C;&#x8FD9;&#x4E9B;&#x5171;&#x4EAB;&#x8FB9;&#x4E4B;&#x95F4;&#x4F1A;&#x5B58;&#x5728;&#x9690;&#x85CF;&#x7684;&#x5C40;&#x90E8;&#x6027;</p>
-<p>&#x5C06;&#x540C;&#x4E00;tile&#x5185;&#x76F8;&#x90BB;&#x7684;subtile&#x5206;&#x7ED9;&#x540C;&#x4E00;&#x4E2A;SC&#x548C;&#x5C06;&#x4E0D;&#x540C;tile&#x4E4B;&#x95F4;&#x76F8;&#x90BB;&#x7684;subtile&#x5206;&#x914D;&#x7ED9;&#x540C;&#x4E00;&#x4E2A;SC&#x53EF;&#x80FD;&#x4F1A;&#x63D0;&#x5347;&#x5C40;&#x90E8;&#x6027;</p>
-<p>&#x4E0D;&#x540C;tile&#x4E4B;&#x95F4;&#x76F8;&#x90BB;subtile&#x4E0E;tile&#x5904;&#x7406;&#x7684;&#x987A;&#x5E8F;&#x6709;&#x5173;</p>
-<h4 id="Tile-Orders"><a href="#Tile-Orders" class="headerlink" title="Tile Orders"></a>Tile Orders</h4><p>&#x56FE;&#x5F62;&#x4E2D;&#x6700;&#x8457;&#x540D;&#x7684;&#x626B;&#x63CF;&#x7EBF;&#x987A;&#x5E8F;&#x548C;Z&#x987A;&#x5E8F;&#xFF0C;&#x626B;&#x63CF;&#x7EBF;&#x987A;&#x5E8F;&#x662F;&#x4E00;&#x884C;&#x4E00;&#x884C;&#x5904;&#x7406;tile&#xFF0C;&#x800C;Z&#x987A;&#x5E8F;&#x5982;&#x4E0B;&#x56FE;&#x5DE6;&#x8FB9;&#x6240;&#x793A;&#xFF0C;&#x53F3;&#x56FE;&#x662F;Hilbert&#x987A;&#x5E8F;&#xFF0C;&#x5728;&#x6570;&#x503C;&#x5206;&#x6790;&#x4E2D;&#x66F4;&#x51FA;&#x540D;</p>
-<p><img src="/2023/04/16/DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality/order.png" alt="order"></p>
-<p>Hilbert&#x987A;&#x5E8F;&#x53EA;&#x5728;&#x7279;&#x5B9A;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x4E2D;&#x8868;&#x73B0;&#x6BD4;Z&#x987A;&#x5E8F;&#x66F4;&#x597D;</p>
-<p>Hilbert&#x4E3B;&#x8981;&#x662F;&#x56E0;&#x4E3A;&#x8BA1;&#x7B97;ID&#x66F4;&#x590D;&#x6742;&#xFF0C;&#x4F46;&#x662F;&#x5728;TBR&#x67B6;&#x6784;&#x4E2D;&#x7684;tile&#x6570;&#x91CF;&#x4E0D;&#x591A;&#xFF0C;&#x53EF;&#x4EE5;&#x9884;&#x5148;&#x8BA1;&#x7B97;&#x907F;&#x514D;&#x6B64;&#x7C7B;&#x5F00;&#x9500;&#xFF1B;&#x800C;&#x4E14;Hilbert&#x987A;&#x5E8F;&#x5E76;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x77E9;&#x5F62;&#xFF0C;&#x4F46;&#x662F;&#x79FB;&#x52A8;&#x5C4F;&#x5E55;&#x4E3B;&#x8981;&#x662F;&#x77E9;&#x5F62;</p>
-<p>&#x672C;&#x6587;&#x63D0;&#x51FA;&#x4E86;&#x4E00;&#x79CD;&#x9002;&#x7528;&#x4E8E;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#x7684;Hilbert&#x987A;&#x5E8F;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5E0C;&#x5C14;&#x4F2F;&#x7279;&#x9636;&#x5E94;&#x7528;&#x4E8E;&#x5177;&#x6709;8X8 tiles&#x7684;&#x6B63;&#x65B9;&#x5F62;&#x5B50;&#x5E27;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x5E27;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x5B50;&#x5E27;&#x4EE5;&#x6CE2;&#x72B6;&#x904D;&#x5386;&#xFF0C;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x4EE5;S&#x5F62;&#x904D;&#x5386;&#x3002;</p>
-<h4 id="Tile-Order-and-Subtile-Assignment"><a href="#Tile-Order-and-Subtile-Assignment" class="headerlink" title="Tile Order and Subtile Assignment"></a>Tile Order and Subtile Assignment</h4><p>&#x4E0B;&#x56FE;&#x4E2D;&#x7684;&#x5E27;&#x662F;&#x7531;16&#x4E2A;tile&#x7EC4;&#x6210;&#x7684;&#xFF0C;&#x5C55;&#x793A;&#x4E86;8&#x4E2D;tile&#x987A;&#x5E8F;</p>
-<p><img src="/2023/04/16/DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality/tileorder.png" alt="tileorder"></p>
-<p>a&#xFF0C;c&#xFF0C;g&#x7684;&#x987A;&#x5E8F;&#x4E2D;&#xFF0C;&#x4E0D;&#x540C;tile&#x7684;subtile&#x4E0D;&#x5171;&#x4EAB;&#x8FB9;&#xFF0C;&#x800C;&#x5176;&#x4ED6;&#x4E94;&#x79CD;&#x987A;&#x5E8F;&#x662F;&#x5171;&#x4EAB;&#x8FB9;&#x7684;</p>
-<p>d&#x4E2D;&#x5728;&#x987A;&#x5E8F;&#x5904;&#x7406;&#x4E2D;&#x53EA;&#x662F;&#x6CBF;&#x7740;&#x5171;&#x4EAB;&#x8FB9;&#x5BF9;&#x79F0;&#x7FFB;&#x8F6C;</p>
-<p>b&#x4E2D;&#x7684;1&#x4ECE;&#x4E0D;&#x5171;&#x4EAB;&#x8FB9;&#xFF0C;&#x800C;4&#x503E;&#x5411;&#x4E8E;&#x59CB;&#x7EC8;&#x5171;&#x4EAB;&#x8FB9;&#xFF0C;e&#x548C;h&#x514B;&#x670D;&#x4E86;&#x8FD9;&#x79CD;&#x4E0D;&#x5E73;&#x8861;&#xFF0C;&#x5F53;&#x4ECE;&#x5076;&#x6570;tile&#x5230;&#x5947;&#x6570;tile&#x65F6;&#xFF0C;&#x4F1A;&#x6CBF;&#x7740;&#x5171;&#x4EAB;&#x8FB9;&#x7FFB;&#x8F6C;&#x7684;&#x540C;&#x65F6;&#x4E5F;&#x4F1A;&#x53CD;&#x8F6C;&#x975E;&#x5171;&#x4EAB;subtile</p>
-<p>&#x5728;f&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x6BCF;16&#x4E2A;tile&#x7FFB;&#x8F6C;&#x6240;&#x6709;&#x56DB;&#x4E2A;subtile&#xFF0C;&#x8FD9;&#x6837;&#x76F8;&#x540C;&#x7684;FP&#x6BCF;&#x6B21;&#x90FD;&#x4E0D;&#x4F1A;&#x5904;&#x4E8E;&#x4F18;&#x52BF;&#x6216;&#x52A3;&#x52BF;</p>
-<p>&#x603B;&#x7ED3;&#xFF1A;</p>
-<ol>
-<li>&#x5C06;&#x6240;&#x6709;tile&#x4E2D;&#x5BF9;&#x5E94;&#x4F4D;&#x7F6E;&#x7684;subtile&#x90FD;&#x6620;&#x5C04;&#x5230;&#x540C;&#x4E00;&#x4E2A;SC&#x4E0D;&#x80FD;&#x5145;&#x5206;&#x63A2;&#x7D22;&#x5C40;&#x90E8;&#x6027;</li>
-<li>&#x5728;tile&#x6267;&#x884C;&#x987A;&#x5E8F;&#x4E2D;&#x6BCF;&#x6B21;&#x53EA;&#x6CBF;&#x7740;&#x5171;&#x4EAB;&#x8FB9;&#x7FFB;&#x8F6C;subtile&#x7684;&#x5206;&#x5E03;&#x80FD;&#x591F;&#x5229;&#x7528;&#x5C40;&#x90E8;&#x6027;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x5BFC;&#x81F4;&#x4E00;&#x4E2A;subtile&#x59CB;&#x7EC8;&#x5177;&#x6709;&#x5171;&#x4EAB;&#x8FB9;&#x7684;&#x4F18;&#x52BF;</li>
-<li>e,f,h&#x514B;&#x670D;&#x4E86;&#x4E0D;&#x5E73;&#x8861;&#xFF0C;&#x5728;&#x6574;&#x4E2A;&#x5E27;&#x8FC7;&#x7A0B;&#x4E2D;&#x4E3A;&#x6240;&#x6709;SC&#x63D0;&#x4F9B;&#x4E86;&#x516C;&#x5E73;&#x7684;&#x5171;&#x4EAB;&#x8FB9;&#x4EFD;&#x989D;</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">论文笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/04/16/DTexL-Decoupled-Raster-Pipeline-for-Texture-Locality/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1682,7 +1700,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 hjzboss
+    		&copy; 2024 hjzboss
     	</div>
       	<div class="footer-right">
 			<!-- # PV方式，单个用户连续点击 n 篇，记录 n 次记录值 -->
@@ -1786,15 +1804,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">tcl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">chisel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">c</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1802,11 +1812,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color2">c</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1826,11 +1840,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">汇编</a>
+                <a href="javascript:void(0)" class="js-tag color2">risc-v</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">risc-v</a>
+                <a href="javascript:void(0)" class="js-tag color3">汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1839,6 +1853,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ic</a>
               </li>
             
             <div class="clearfix"></div>
